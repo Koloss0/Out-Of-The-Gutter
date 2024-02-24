@@ -23,6 +23,12 @@ Net="*res://Autoloads/Net.gd"
 AlertDisplayer="*res://Autoloads/alert_displayer.tscn"
 MusicPlayer="*res://Autoloads/music_player.tscn"
 
+[debug]
+
+multirun/number_of_windows=2
+multirun/add_custom_args=true
+multirun/window_args=["listen", "join"]
+
 [display]
 
 window/size/viewport_width=1080
@@ -31,6 +37,10 @@ window/size/window_width_override=400
 window/size/window_height_override=711
 window/stretch/mode="viewport"
 window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/multirun/plugin.cfg")
 
 [layer_names]
 
