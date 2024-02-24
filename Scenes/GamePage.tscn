@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="2_nya3t"]
 [ext_resource type="Script" path="res://Scripts/World.gd" id="2_rna7n"]
 [ext_resource type="Script" path="res://Scripts/PlatformGenerator.gd" id="4_ugii6"]
-[ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://Scenes/Counter.tscn" id="5_q0264"]
+[ext_resource type="PackedScene" path="res://Scenes/Counter.tscn" id="5_q0264"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
 size = Vector2(2013.85, 263.98)
