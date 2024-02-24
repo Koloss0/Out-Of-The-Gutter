@@ -1,17 +1,28 @@
-[gd_scene format=3 uid="uid://bvgo7xjkuyk5p"]
+[gd_scene load_steps=4 format=3 uid="uid://b612srpjtt8mm"]
+
+[ext_resource type="Script" path="res://Scripts/Start.gd" id="1_nhqit"]
+[ext_resource type="Script" path="res://Scripts/TitlePage.gd" id="1_xvnd4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b60gh"]
 
 [node name="TitlePage" type="Node2D"]
+material = SubResource("CanvasItemMaterial_b60gh")
+script = ExtResource("1_xvnd4")
 
-[node name="Button" type="Button" parent="."]
+[node name="Start" type="Button" parent="."]
 offset_left = 392.0
 offset_top = 938.0
 offset_right = 760.0
 offset_bottom = 1097.0
 text = "Start"
+script = ExtResource("1_nhqit")
 
-[node name="Button2" type="Button" parent="."]
+[node name="Quit" type="Button" parent="."]
 offset_left = 386.0
 offset_top = 1257.0
 offset_right = 745.0
 offset_bottom = 1422.0
 text = "Quit"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
