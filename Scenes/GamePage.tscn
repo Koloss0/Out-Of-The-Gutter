@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 [gd_scene load_steps=3 format=3 uid="uid://df4t3gsc8yiwa"]
 
 [ext_resource type="Script" path="res://Scripts/GamePage.gd" id="1_cdt35"]
+=======
+[gd_scene load_steps=2 format=3 uid="uid://no6krnp6r2bh"]
+>>>>>>> 5dfbc4a0d5c52395b2b78a5ee28d392770d9e25f
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
 size = Vector2(2013.85, 263.98)
