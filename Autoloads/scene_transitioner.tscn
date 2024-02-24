@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8odylepaju05"]
 
-[ext_resource type="Script" path="res://Scripts/scene_transitionar.gd" id="1_gocvi"]
+[ext_resource type="Script" path="res://Autoloads/scene_transitioner.gd" id="1_gocvi"]
 
 [sub_resource type="Animation" id="Animation_6tx4c"]
 resource_name = "fade_in"
