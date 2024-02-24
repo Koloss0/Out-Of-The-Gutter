@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bwchq5nxc4mdf"]
+[gd_scene load_steps=2 format=3 uid="uid://bwchq5nxc4mdf"]
+
+[ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://Scenes/labeled_texture_button.tscn" id="1_hs5vx"]
 
 [node name="HostPage" type="Control"]
 layout_mode = 3
@@ -8,8 +10,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="LabeledTextureButton" parent="." instance=ExtResource("1_hs5vx")]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Connect"
+offset_left = 401.0
+offset_top = 664.0
+offset_right = 583.0
+offset_bottom = 736.0
+
+[node name="Label" parent="LabeledTextureButton" index="0"]
+text = "Connect
+"
+
+[editable path="LabeledTextureButton"]

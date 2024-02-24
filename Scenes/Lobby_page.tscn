@@ -1,47 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://b80ntjxq1w75s"]
+[gd_scene load_steps=2 format=3 uid="uid://df4t3gsc8yiwa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
 size = Vector2(2013.85, 263.98)
 
 [node name="LobbyPage" type="Node"]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-68.8893, 966.898)
+[node name="World" type="Node2D" parent="."]
+
+[node name="Walls" type="StaticBody2D" parent="World"]
+
+[node name="Left" type="CollisionShape2D" parent="World/Walls"]
+position = Vector2(-141, 973)
 rotation = 1.57152
 shape = SubResource("RectangleShape2D_47dww")
 one_way_collision_margin = 0.0
 debug_color = Color(0, 0, 0, 0.419608)
 
-[node name="ColorRect" type="TextureRect" parent="CollisionShape2D2"]
-offset_left = -965.0
-offset_top = -127.0
-offset_right = 733.0
-offset_bottom = 40.0
+[node name="ColorRect" type="TextureRect" parent="World/Walls/Left"]
+offset_left = -977.097
+offset_top = -133.293
+offset_right = 720.903
+offset_bottom = 33.707
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(1169.28, 850.169)
+[node name="Right" type="CollisionShape2D" parent="World/Walls"]
+position = Vector2(1211, 928)
 rotation = -1.57346
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_47dww")
 one_way_collision_margin = 0.0
 debug_color = Color(0, 0, 0, 0.419608)
 
-[node name="ColorRect" type="TextureRect" parent="CollisionShape2D3"]
-offset_left = -837.0
-offset_top = -123.0
-offset_right = 868.0
-offset_bottom = 40.0
+[node name="ColorRect2" type="TextureRect" parent="World/Walls/Right"]
+offset_left = -770.675
+offset_top = -123.053
+offset_right = 934.325
+offset_bottom = 39.9469
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D3"]
-position = Vector2(-957.09, -654.837)
-rotation = 1.57346
+[node name="Floor" type="StaticBody2D" parent="World"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/Floor"]
+position = Vector2(511, 1947)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_47dww")
 one_way_collision_margin = 0.0
 debug_color = Color(0, 0, 0, 0.419608)
 
-[node name="Ground" type="TextureRect" parent="CollisionShape2D3/CollisionShape2D"]
-offset_left = -596.0
-offset_top = -131.0
-offset_right = 604.0
-offset_bottom = 140.0
+[node name="Ground" type="TextureRect" parent="World/Floor/CollisionShape2D2"]
+offset_left = -583.995
+offset_top = -52.9999
+offset_right = 616.005
+offset_bottom = 218.0
