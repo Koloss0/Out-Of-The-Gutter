@@ -9,9 +9,4 @@
 position = Vector2(224, 93)
 
 [node name="Moving_platform" parent="." instance=ExtResource("2_w0ych")]
-position = Vector2(733, 938)
-scale = Vector2(14, 14)
-
-[node name="Moving_platform2" parent="." instance=ExtResource("2_w0ych")]
-position = Vector2(164, 1153)
-scale = Vector2(14, 14)
+position = Vector2(-1530, 1583)
