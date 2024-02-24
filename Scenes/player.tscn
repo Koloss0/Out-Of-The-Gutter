@@ -41,6 +41,7 @@ animations = [{
 size = Vector2(120, 120)
 
 [node name="Player" type="CharacterBody2D"]
+input_pickable = true
 script = ExtResource("1_is82o")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
