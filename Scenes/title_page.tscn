@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b612srpjtt8mm"]
+[gd_scene load_steps=7 format=3 uid="uid://b612srpjtt8mm"]
 
 [ext_resource type="Script" path="res://Scripts/Start.gd" id="1_nhqit"]
 [ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://Themes/ui.tres" id="1_nooup"]
 [ext_resource type="Script" path="res://Scripts/TitlePage.gd" id="1_xvnd4"]
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="3_ym7je"]
+[ext_resource type="Texture2D" uid="uid://1xcpfnd0omw7" path="res://Art/MainPageBJ.png" id="5_3tyg3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b60gh"]
 
@@ -68,6 +69,15 @@ offset_bottom = 143.0
 text = "QUIT"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 59.0
+offset_top = 153.0
+offset_right = 1018.0
+offset_bottom = 677.0
+texture = ExtResource("5_3tyg3")
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
