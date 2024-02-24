@@ -22,37 +22,37 @@ offset_right = 1080.0
 offset_bottom = 1920.0
 texture = ExtResource("4_omjky")
 
+[node name="Port" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 631.0
+offset_right = 1023.0
+offset_bottom = 803.0
+placeholder_text = "Port"
+alignment = 1
+
 [node name="Host" parent="." instance=ExtResource("1_hs5vx")]
 layout_mode = 0
-offset_left = 233.0
-offset_top = 1055.0
-offset_right = 833.0
-offset_bottom = 1205.0
+offset_left = 94.0
+offset_top = 983.0
+offset_right = 994.0
+offset_bottom = 1230.5
 
 [node name="Label" parent="Host" index="0"]
 text = "Host"
 
-[node name="BackButton" parent="." instance=ExtResource("1_hs5vx")]
+[node name="Back" parent="." instance=ExtResource("1_hs5vx")]
 layout_mode = 0
-offset_left = 233.0
-offset_top = 1354.0
-offset_right = 833.0
-offset_bottom = 1504.0
+offset_left = 86.0
+offset_top = 1313.0
+offset_right = 986.0
+offset_bottom = 1560.5
 
-[node name="Label" parent="BackButton" index="0"]
+[node name="Label" parent="Back" index="0"]
 text = "Back"
 
-[node name="Port" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 94.0
-offset_top = 673.0
-offset_right = 1007.0
-offset_bottom = 827.0
-placeholder_text = "Port"
-alignment = 1
-
 [connection signal="pressed" from="Host" to="." method="on_connect_pressed"]
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_button_pressed"]
 
 [editable path="Host"]
-[editable path="BackButton"]
+[editable path="Back"]

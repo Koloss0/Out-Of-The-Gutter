@@ -18,5 +18,4 @@ func _on_back_button_pressed() -> void:
 	SceneManager.fade_to_scene("HostJoinPage")
 
 
-func _on_connect_pressed() -> void:
-	pass # Replace with function body.
+
