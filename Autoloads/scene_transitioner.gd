@@ -10,5 +10,5 @@ func fade_in() -> Signal:
 	return animation_player.animation_finished
 
 func fade_out() -> Signal:
-	animation_player.play_backwards("fade_in")
+	animation_player.play("fade_out")
 	return animation_player.animation_finished
