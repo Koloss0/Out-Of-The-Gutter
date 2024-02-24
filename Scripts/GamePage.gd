@@ -66,7 +66,7 @@ func on_server_disconnected():
 func _on_start_button_pressed() -> void:
 	start_countdown.rpc()
 
-@rpc
+@rpc("call_local")
 func start_countdown():
 	counter.play_countdown()
 	get_tree().call_group("Platforms", "set_collision", true)
