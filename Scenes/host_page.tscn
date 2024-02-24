@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwchq5nxc4mdf"]
+[gd_scene load_steps=5 format=3 uid="uid://bwchq5nxc4mdf"]
 
 [ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://Scenes/labeled_texture_button.tscn" id="1_hs5vx"]
 [ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://Themes/ui.tres" id="1_o1is0"]
 [ext_resource type="Script" path="res://Scripts/host_page.gd" id="2_ij063"]
 [ext_resource type="Texture2D" uid="uid://be4xldphturmu" path="res://Art/sewer_wall.png" id="4_omjky"]
-[ext_resource type="Texture2D" uid="uid://cg5ay8tl3m4bi" path="res://Art/Light_Gray.PNG" id="5_kyhjs"]
 
 [node name="HostPage" type="Control"]
 layout_mode = 3
@@ -50,24 +49,7 @@ offset_top = 673.0
 offset_right = 1007.0
 offset_bottom = 827.0
 placeholder_text = "Port"
-
-[node name="TextureRect2" type="TextureRect" parent="Port"]
-texture_filter = 1
-texture_repeat = 3
-layout_mode = 0
-offset_right = 913.0
-offset_bottom = 186.0
-texture = ExtResource("5_kyhjs")
-
-[node name="Label" type="Label" parent="Port"]
-texture_filter = 1
-layout_mode = 0
-offset_right = 913.0
-offset_bottom = 186.0
-theme_override_font_sizes/font_size = 100
-text = "PORT"
-horizontal_alignment = 1
-vertical_alignment = 1
+alignment = 1
 
 [connection signal="pressed" from="Host" to="." method="on_connect_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
