@@ -5,6 +5,15 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Net.peer_connected.connect(on_peer_connected)
+	Net.peer_disconnected.connect(on_peer_disconnected)
+	Net.connected_to_server.connect(on_connected_to_server)
+	Net.connection_failed.connect(on_connection_failed)
+	
+	 connected_to_server()
+signal connection_failed()
+signal peer_connected(peer_id: int)
+signal peer_disconnected(peer_id: int)
+signal server_disconnected()
 	Net.start()
 	MusicPlayer.play_Lobby_music()
 	
