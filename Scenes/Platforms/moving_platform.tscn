@@ -4,12 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://v3t1aswmd872" path="res://Art/shiny_pipe.png" id="2_oiplf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_852gm"]
-size = Vector2(42.3333, 12.8333)
+size = Vector2(42.25, 6.5)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ynmq7"]
 
 [node name="moving" type="AnimatableBody2D"]
-texture_filter = 2
+texture_filter = 1
+texture_repeat = 3
 position = Vector2(0, -6)
 scale = Vector2(12, 12)
 script = ExtResource("1_b5p1q")
@@ -24,7 +25,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 32, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.833333, -3.41667)
+position = Vector2(0.875001, -3.41667)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_852gm")
 one_way_collision = true

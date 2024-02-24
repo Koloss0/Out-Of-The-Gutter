@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dleyxsih8ux3a"]
+[gd_scene load_steps=4 format=3 uid="uid://dleyxsih8ux3a"]
 
 [ext_resource type="PackedScene" uid="uid://bgrr60hlm211y" path="res://Scenes/Platforms/player.tscn" id="1_j8l7d"]
 [ext_resource type="PackedScene" uid="uid://b2yg3vafomraj" path="res://Scenes/Platforms/moving_platform.tscn" id="2_w0ych"]
+[ext_resource type="PackedScene" uid="uid://cxonf107w3okg" path="res://Scenes/Platforms/Stationary_platform.tscn" id="3_0rgq3"]
 
 [node name="Testing" type="Node2D"]
 
@@ -9,4 +10,13 @@
 position = Vector2(224, 93)
 
 [node name="Moving_platform" parent="." instance=ExtResource("2_w0ych")]
-position = Vector2(530, 979)
+position = Vector2(804, 367)
+
+[node name="StationaryPlatform" parent="." instance=ExtResource("3_0rgq3")]
+position = Vector2(68, 1255)
+
+[node name="StationaryPlatform2" parent="." instance=ExtResource("3_0rgq3")]
+position = Vector2(549, 1045)
+
+[node name="StationaryPlatform3" parent="." instance=ExtResource("3_0rgq3")]
+position = Vector2(794, 763)
