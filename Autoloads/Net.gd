@@ -41,6 +41,7 @@ func start():
 			print("[Net] Hosting Server...")
 		else:
 			print("[Net] Failed to create server: %s" % error);
+			AlertDisplayer.alert("Failed to Create Server: %s" % error)
 	else:
 		error = network_peer.create_client(server_ip, server_port)
 		if error == OK:
@@ -48,6 +49,7 @@ func start():
 			print("[Net] Joining...")
 		else:
 			print("[Net] Failed to create client: %s" % error);
+			AlertDisplayer.alert("Failed to Create Client: %s" % error)
 
 func on_connected_to_server():
 	connected_to_server.emit()
@@ -55,6 +57,7 @@ func on_connected_to_server():
 	
 func on_connection_failed():
 	connection_failed.emit()
+	AlertDisplayer.alert("Connection Failed")
 	pass
 
 func on_peer_connected(peer_id: int):
@@ -67,4 +70,5 @@ func on_peer_disconnected(peer_id: int):
 
 func on_server_disconnected():
 	server_disconnected.emit()
+	AlertDisplayer.alert("Server Disconnected")
 	pass
