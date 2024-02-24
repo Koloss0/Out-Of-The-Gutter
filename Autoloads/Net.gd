@@ -37,7 +37,7 @@ func start():
 	if is_host:
 		error = network_peer.create_server(server_port, MAX_PLAYERS-1)
 		if error == OK:
-			multiplayer.set_network_peer(network_peer)
+			multiplayer.set_multiplayer_peer(network_peer)
 			print("[Net] Hosting Server...")
 		else:
 			print("[Net] Failed to create server: %s" % error);
@@ -45,7 +45,7 @@ func start():
 	else:
 		error = network_peer.create_client(server_ip, server_port)
 		if error == OK:
-			multiplayer.set_network_peer(network_peer)
+			multiplayer.set_multiplayer_peer(network_peer)
 			print("[Net] Joining...")
 		else:
 			print("[Net] Failed to create client: %s" % error);

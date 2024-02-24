@@ -1,6 +1,6 @@
 extends Control
 
-@onready var connect: TextureButton = $Connect
+@onready var connect: TextureButton = $Host
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,4 +9,5 @@ func _ready():
 func on_connect_pressed():
 	Net.server_ip = $IP.text
 	Net.server_port = $Port.text
-	SceneManager.fade_to_scene("res://Scenes/host_page.tscn")
+	Net.is_host = true
+	SceneManager.fade_to_scene("res://Scenes/GamePage.tscn")
