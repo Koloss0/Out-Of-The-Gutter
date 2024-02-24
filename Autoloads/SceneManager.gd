@@ -3,7 +3,8 @@ extends Node
 signal load_progress_updated(progress : float)
 
 const SCENES : Dictionary = {
-	"TitlePage" : "res://Scenes/title_page.tscn"
+	"TitlePage" : "res://Scenes/title_page.tscn",
+	"HostScene" : "res://Scenes/HostJoin_page.tscn"
 }
 
 
