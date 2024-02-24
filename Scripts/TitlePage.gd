@@ -1,8 +1,7 @@
 extends Control
 
-
-# Called when the node enters the scene tree for the first time.s
-
+func _ready():
+	MusicPlayer.play_main_menu_music()
 
 func _on_quit_pressed():
 	get_tree().quit()
