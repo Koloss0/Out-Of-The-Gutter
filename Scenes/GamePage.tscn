@@ -22,11 +22,12 @@ shape = SubResource("RectangleShape2D_47dww")
 one_way_collision_margin = 0.0
 debug_color = Color(0, 0, 0, 0.419608)
 
-[node name="Ground" type="TextureRect" parent="World/Floor/CollisionShape2D2"]
-offset_left = -583.995
-offset_top = -52.9999
-offset_right = 616.005
-offset_bottom = 218.0
+[node name="Ground" type="ColorRect" parent="World/Floor/CollisionShape2D2"]
+offset_left = -577.0
+offset_top = -134.0
+offset_right = 623.0
+offset_bottom = 137.0
+color = Color(0.192157, 0.192157, 0.192157, 1)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="World"]
 
