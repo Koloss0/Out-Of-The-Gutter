@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3cbu88pisnqx"]
+
+[ext_resource type="Texture2D" uid="uid://be4xldphturmu" path="res://Art/sewer_wall.png" id="1_r6876"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_3jhti"]
+
+[node name="SewerWall" type="MeshInstance2D"]
+scale = Vector2(1080, 1920)
+mesh = SubResource("QuadMesh_3jhti")
+texture = ExtResource("1_r6876")

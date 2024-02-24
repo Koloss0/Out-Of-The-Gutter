@@ -1,6 +1,8 @@
+
 extends AnimatableBody2D
 
 const SPEED = 13.00
+var speed_multiplier = 1
 
 var left_bound = 240
 
@@ -18,7 +20,8 @@ func _process(delta):
 		moving_right = true
 	
 	if(moving_right): 
-		translate(Vector2(SPEED, 0))
+		translate(Vector2(SPEED*speed_multiplier, 0))
 	else:
-		translate((Vector2(-SPEED, 0)))
+		translate((Vector2(-SPEED*speed_multiplier, 0)))
 		
+

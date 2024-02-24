@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+[gd_scene format=3 uid="uid://7ycx6opg5dk6"]
+=======
 [gd_scene format=3 uid="uid://daxmym4r7ovpy"]
+>>>>>>> 5dfbc4a0d5c52395b2b78a5ee28d392770d9e25f
 
 [node name="LeaderBoard" type="Control"]
 layout_mode = 3

@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://no6krnp6r2bh"]
+[gd_scene load_steps=5 format=3 uid="uid://no6krnp6r2bh"]
+
+[ext_resource type="Script" path="res://Scripts/GamePage.gd" id="1_cdt35"]
+[ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="2_nya3t"]
+[ext_resource type="Script" path="res://Scripts/World.gd" id="2_rna7n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
 size = Vector2(2013.85, 263.98)
 
 [node name="GamePage" type="Node"]
+script = ExtResource("1_cdt35")
 
 [node name="World" type="Node2D" parent="."]
+script = ExtResource("2_rna7n")
 
 [node name="Walls" type="StaticBody2D" parent="World"]
 
@@ -48,3 +54,15 @@ offset_left = -583.995
 offset_top = -52.9999
 offset_right = 616.005
 offset_bottom = 218.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="World"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="World/ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer"]
+position = Vector2(540, 960)
+scale = Vector2(15, 15)
+texture = ExtResource("2_nya3t")
+
+[node name="Spawnpoint" type="Marker2D" parent="World"]
+position = Vector2(511, -176)
