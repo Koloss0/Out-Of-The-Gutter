@@ -28,7 +28,7 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	$Camera2D.position += Vector2(0, -2)
+	%Camera2D.position += Vector2(0, -2)
 
 func generate_map(height : int, seed : int):
 	var random : RandomNumberGenerator = RandomNumberGenerator.new()

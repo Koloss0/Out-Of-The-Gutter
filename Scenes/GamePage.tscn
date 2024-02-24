@@ -34,6 +34,7 @@ offset_bottom = 218.0
 motion_scale = Vector2(0.8, 0.8)
 
 [node name="BG" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer"]
+visible = false
 texture_repeat = 2
 position = Vector2(540, -17280)
 scale = Vector2(15, 15)
@@ -74,7 +75,15 @@ offset_top = -123.053
 offset_right = 934.325
 offset_bottom = 39.9469
 
+[node name="Camera2D" type="Camera2D" parent="World/PlayerTracker"]
+unique_name_in_owner = true
+anchor_mode = 0
+
 [node name="Players" type="Node2D" parent="World"]
 
-[node name="PlatformGenerator" type="Node2D" parent="World"]
+[node name="Platforms" type="Node2D" parent="World"]
+
+[node name="PlatformGenerator" type="Node2D" parent="World" node_paths=PackedStringArray("background_node", "platform_node")]
 script = ExtResource("4_ugii6")
+background_node = NodePath("../ParallaxBackground/ParallaxLayer")
+platform_node = NodePath("../Platforms")
