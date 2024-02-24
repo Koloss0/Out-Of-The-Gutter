@@ -8,7 +8,7 @@ size = Vector2(42.25, 6.5)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ynmq7"]
 
-[node name="moving" type="AnimatableBody2D"]
+[node name="moving" type="AnimatableBody2D" groups=["platform"]]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(0, -6)

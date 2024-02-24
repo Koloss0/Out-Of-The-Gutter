@@ -11,6 +11,10 @@ var left_bound = 240
 
 var moving_right = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func _ready():
+	set_process(false)
+
 func _process(delta):
 	
 	if(position.x > right_bound):
@@ -24,4 +28,12 @@ func _process(delta):
 	else:
 		translate((Vector2(-SPEED*speed_multiplier, 0)))
 		
+
+
+func set_collision(choice : bool):
+	$CollisionShape2D.disabled = not choice
+
+func start_moving(choice : bool):
+	set_process(choice)
+	
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://df4t3gsc8yiwa"]
+[gd_scene load_steps=5 format=3 uid="uid://no6krnp6r2bh"]
 
 [ext_resource type="Script" path="res://Scripts/GamePage.gd" id="1_cdt35"]
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="2_nya3t"]
