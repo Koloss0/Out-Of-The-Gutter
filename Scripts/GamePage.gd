@@ -4,6 +4,7 @@ extends Node
 @onready var start_button: TextureButton = $Control/StartButton
 @onready var counter: Control = $Control/Counter
 @onready var platform_generator: Node2D = $World/PlatformGenerator
+@onready var leader_board: Control = $Control/LeaderBoard
 
 const MAP_HEIGHT : int = 10
 
@@ -21,12 +22,18 @@ func _ready():
 	Net.start()
 	MusicPlayer.play_Lobby_music()
 	
+	$World/PlatformGenerator.game_finished.connect(on_game_finished)
+	
 	#if is_multiplayer_authority():
 		#var my_player_info = Net.player_data[multiplayer.get_unique_id()]
 		#world.spawn_player(my_player_info)
 
 func on_peer_connected(peer_id: int):
 	pass
+
+func on_game_finished(l: Array):
+	leader_board.show()
+	
 
 func on_player_registered(peer_id: int):
 	var player_info = Net.player_data[peer_id]
@@ -72,4 +79,6 @@ func _on_start_button_pressed() -> void:
 func start_countdown():
 	counter.play_countdown()
 	get_tree().call_group("platform", "set_collision", true)
+	get_tree().call_group("platform", "start_moving", true)
+	$World/PlayerTracker.start_tracking_target($Players.get_node(str(multiplayer.get_unique_id())))
 	

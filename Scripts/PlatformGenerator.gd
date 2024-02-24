@@ -4,6 +4,8 @@ const MOVING_PLATFORM = preload("res://Scenes/Platforms/moving_platform.tscn")
 const STATIC_PLATFORM = preload("res://Scenes/Platforms/Stationary_platform.tscn")
 const BACKGROUND_TILE_SIZE : Vector2i = Vector2i(1080, 1920)
 
+const END = preload("res://Scenes/end_area.tscn")
+
 @export_group("Platforms", "platform")
 @export var platform_initial_height : float = 200
 @export var platform_min_spacing : Vector2 = Vector2(200, 200)
@@ -12,7 +14,7 @@ const BACKGROUND_TILE_SIZE : Vector2i = Vector2i(1080, 1920)
 @export_range(0, 1) var platform_min_speed : float = 0.5
 @export_range(1, 2) var platform_max_speed : float = 1.5
 
-
+signal game_finished(leaderboard: Array)
 @export var background_node: Node2D
 @export var platform_node: Node2D
 
@@ -53,6 +55,13 @@ func generate_map(height : int, seed : int):
 			instanciate_moving_platform(pos, random.randf_range(platform_min_speed, platform_max_speed))
 		else:
 			instanciate_static_platform(pos) #TODO: Rotation?
+	var end = END.instantiate()
+	end.position = Vector2(0, map_height)
+	end.game_finished.connect(on_game_fin)
+	background_node.add_child(end)
+
+func on_game_fin(l: Array):
+	game_finished.emit(l)
 
 func instanciate_static_platform(pos : Vector2):
 	var instance = STATIC_PLATFORM.instantiate()

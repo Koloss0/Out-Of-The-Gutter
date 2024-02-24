@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://df4t3gsc8yiwa"]
+[gd_scene load_steps=10 format=3 uid="uid://df4t3gsc8yiwa"]
 
 [ext_resource type="Script" path="res://Scripts/GamePage.gd" id="1_cdt35"]
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="2_nya3t"]
 [ext_resource type="Script" path="res://Scripts/World.gd" id="2_rna7n"]
+[ext_resource type="Script" path="res://Scripts/PlayerTracker.gd" id="4_7rkfj"]
 [ext_resource type="Script" path="res://Scripts/PlatformGenerator.gd" id="4_ugii6"]
 [ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://Scenes/Counter.tscn" id="5_q0264"]
 [ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://Scenes/labeled_texture_button.tscn" id="6_v5caa"]
+[ext_resource type="PackedScene" uid="uid://cwtn7efq8he32" path="res://Scenes/LeaderBoard/leader_board.tscn" id="8_mjb2n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
 size = Vector2(2013.85, 263.98)
@@ -52,6 +54,7 @@ position = Vector2(540, 960)
 position = Vector2(540, 736)
 
 [node name="PlayerTracker" type="Node2D" parent="World"]
+script = ExtResource("4_7rkfj")
 
 [node name="Walls" type="StaticBody2D" parent="World/PlayerTracker"]
 
@@ -92,6 +95,8 @@ position = Vector2(0, 1920)
 
 [node name="PlatformGenerator" type="Node2D" parent="World" node_paths=PackedStringArray("background_node", "platform_node")]
 script = ExtResource("4_ugii6")
+platform_min_spacing = Vector2(200, 300)
+platform_max_spacing = Vector2(1080, 500)
 background_node = NodePath("../ParallaxBackground/ParallaxLayer/Offset")
 platform_node = NodePath("../Platforms")
 
@@ -125,6 +130,9 @@ grow_vertical = 2
 
 [node name="Label" parent="Control/StartButton" index="0"]
 text = "Start"
+
+[node name="LeaderBoard" parent="Control" instance=ExtResource("8_mjb2n")]
+visible = false
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
 
