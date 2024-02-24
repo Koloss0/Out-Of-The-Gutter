@@ -2,24 +2,24 @@
 
 [node name="StartGame-HostJoin" type="Node2D"]
 
-[node name="Button3" type="Button" parent="."]
+[node name="JoinButton" type="Button" parent="."]
 offset_left = 265.0
 offset_top = 773.0
-offset_right = 814.0
-offset_bottom = 923.0
+offset_right = 816.0
+offset_bottom = 957.0
 text = "JOIN"
 
-[node name="Button4" type="Button" parent="."]
-offset_left = 237.0
-offset_top = 1426.0
-offset_right = 881.0
-offset_bottom = 1635.0
+[node name="BackButton" type="Button" parent="."]
+offset_left = 269.0
+offset_top = 1296.0
+offset_right = 827.0
+offset_bottom = 1491.0
 text = "BACK
 "
 
-[node name="Button5" type="Button" parent="."]
-offset_left = 277.0
-offset_top = 519.0
-offset_right = 804.0
-offset_bottom = 664.0
+[node name="HostButton" type="Button" parent="."]
+offset_left = 269.0
+offset_top = 527.0
+offset_right = 812.0
+offset_bottom = 688.0
 text = "HOST"
