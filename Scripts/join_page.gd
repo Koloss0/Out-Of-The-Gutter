@@ -11,3 +11,4 @@ func on_connect_pressed():
 	Net.server_port = $Port.text
 	Net.is_host = false
 	SceneManager.fade_to_scene("res://Scenes/GamePage.tscn")
+	MusicPlayer.stop_music()
