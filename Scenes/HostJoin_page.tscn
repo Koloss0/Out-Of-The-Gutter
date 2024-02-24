@@ -17,6 +17,12 @@ func _process(delta):
 
 func _on_back_pressed():
 	SceneManager.fade_to_scene(\"TitlePage\")
+
+func on_join_pressed():
+	SceneManager.fade_to_scene(\"res://Scenes/join_page.tscn\")
+
+func on_host_pressed():
+	SceneManager.fade_to_scene(\"res://Scenes/host_page.tscn\")
 "
 
 [node name="StartGame-HostJoin" type="Control"]
@@ -53,4 +59,6 @@ offset_right = 763.0
 offset_bottom = 616.0
 text = "HOST"
 
+[connection signal="pressed" from="Join" to="." method="on_join_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Host" to="." method="on_host_pressed"]
