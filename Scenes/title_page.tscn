@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b612srpjtt8mm"]
+[gd_scene load_steps=5 format=3 uid="uid://b612srpjtt8mm"]
 
 [ext_resource type="Script" path="res://Scripts/Start.gd" id="1_nhqit"]
+[ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://Themes/ui.tres" id="1_nooup"]
 [ext_resource type="Script" path="res://Scripts/TitlePage.gd" id="1_xvnd4"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b60gh"]
@@ -13,28 +14,48 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_nooup")
 script = ExtResource("1_xvnd4")
 
-[node name="Start" type="Button" parent="."]
+[node name="Start" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.331481
+anchor_left = 0.283333
 anchor_top = 0.471875
 anchor_right = 0.672222
-anchor_bottom = 0.554688
-text = "Start"
+anchor_bottom = 0.560417
 script = ExtResource("1_nhqit")
 metadata/_edit_use_anchors_ = true
 
-[node name="Quit" type="Button" parent="."]
+[node name="Label" type="Label" parent="Start"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 17.0
+offset_right = 457.0
+offset_bottom = 154.0
+theme = ExtResource("1_nooup")
+text = "START	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.331481
-anchor_top = 0.606771
+anchor_left = 0.317593
+anchor_top = 0.6125
 anchor_right = 0.663889
 anchor_bottom = 0.692708
-text = "Quit"
 metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Quit"]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 6.0
+offset_right = 369.0
+offset_bottom = 143.0
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
