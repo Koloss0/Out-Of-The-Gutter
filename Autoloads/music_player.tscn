@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dynm24vcgkmr6"]
+
+[ext_resource type="Script" path="res://Scripts/MusicPlayer.gd" id="1_7fi2i"]
+[ext_resource type="AudioStream" uid="uid://ds65q3guv0xyn" path="res://Art/Music/MainMenuMusicSJ.mp3" id="2_l1dp2"]
+
+[node name="MusicPlayer" type="Node"]
+script = ExtResource("1_7fi2i")
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l1dp2")
+
+[node name="Game" type="AudioStreamPlayer" parent="."]
+
+[node name="Lobby" type="AudioStreamPlayer" parent="."]

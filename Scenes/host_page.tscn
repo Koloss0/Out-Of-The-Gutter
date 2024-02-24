@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwchq5nxc4mdf"]
+[gd_scene load_steps=4 format=3 uid="uid://bwchq5nxc4mdf"]
 
 [ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://Scenes/labeled_texture_button.tscn" id="1_hs5vx"]
 [ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://Themes/ui.tres" id="1_o1is0"]
+[ext_resource type="Script" path="res://Scripts/host_page.gd" id="2_ij063"]
 
 [node name="HostPage" type="Control"]
 layout_mode = 3
@@ -11,15 +12,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_o1is0")
+script = ExtResource("2_ij063")
 
-[node name="LabeledTextureButton" parent="." instance=ExtResource("1_hs5vx")]
+[node name="Connect" parent="." instance=ExtResource("1_hs5vx")]
 layout_mode = 0
 offset_left = 264.0
 offset_top = 1288.0
 offset_right = 864.0
 offset_bottom = 1438.0
 
-[node name="Label" parent="LabeledTextureButton" index="0"]
+[node name="Label" parent="Connect" index="0"]
 text = "Connect
 "
 
@@ -39,4 +41,4 @@ offset_right = 1000.0
 offset_bottom = 1136.0
 placeholder_text = "Port"
 
-[editable path="LabeledTextureButton"]
+[editable path="Connect"]
