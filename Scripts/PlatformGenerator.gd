@@ -27,9 +27,6 @@ func _ready() -> void:
 	#$Camera2D.zoom = Vector2(0.1, 0.1)
 	pass
 
-func _process(delta: float) -> void:
-	%Camera2D.position += Vector2(0, -2)
-
 func generate_map(height : int, seed : int):
 	var random : RandomNumberGenerator = RandomNumberGenerator.new()
 	random.set_seed(seed)
