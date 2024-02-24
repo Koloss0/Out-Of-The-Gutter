@@ -1,3 +1,25 @@
-[gd_scene format=3 uid="uid://c1ex3frsd01l5"]
+[gd_scene load_steps=2 format=3 uid="uid://c1ex3frsd01l5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3wom"]
+size = Vector2(1080, 325)
 
 [node name="WaterLevel" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_o3wom")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -540.0
+offset_top = -170.0
+offset_right = 540.0
+offset_bottom = 155.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.337255, 0.74902, 0.286275, 1)
