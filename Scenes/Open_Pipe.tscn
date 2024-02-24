@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvmh22b5j64fa"]
 
-[ext_resource type="Texture2D" uid="uid://clgvvfhn8jw4v" path="res://Art/pipe_half.png" id="1_imyja"]
+[ext_resource type="Texture2D" uid="uid://clgvvfhn8jw4v" path="res://Art/pipe_half.png" id="1_ycvu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uw6aj"]
 size = Vector2(26, 10)
@@ -13,4 +13,4 @@ shape = SubResource("RectangleShape2D_uw6aj")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
 scale = Vector2(0.0313904, 0.0786784)
-texture = ExtResource("1_imyja")
+texture = ExtResource("1_ycvu2")
