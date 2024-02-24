@@ -8,6 +8,8 @@ var num_players: int = 0
 
 var network_peer := ENetMultiplayerPeer.new()
 
+var map_seed: int
+
 var is_host := false
 
 var server_ip: String
@@ -17,6 +19,7 @@ signal connected_to_server()
 signal connection_failed()
 signal player_registered(peer_id: int)
 signal player_deregistered(peer_id: int)
+signal map_seed_received(seed: int)
 signal peer_connected(peer_id: int)
 signal peer_disconnected(peer_id: int)
 signal server_disconnected()
@@ -46,6 +49,8 @@ func start():
 			
 			print("unique ID: %s" % multiplayer.get_unique_id())
 			register_player(multiplayer.get_unique_id(), Color.WHITE)
+			map_seed = randi()
+			map_seed_received.emit(map_seed)
 		else:
 			print("[Net] Failed to create server: %s" % error);
 			AlertDisplayer.alert("Failed to Create Server: %s" % error)
@@ -74,6 +79,7 @@ func on_peer_connected(peer_id: int):
 	if is_multiplayer_authority():
 		var color: Color = Color(randf(), randf(), randf())
 		register_player(peer_id, color)
+		register_map_seed.rpc(map_seed)
 		
 		for player_info in player_data.values():
 			register_player.rpc_id(peer_id, player_info.peer_id, player_info.color)
@@ -83,13 +89,20 @@ func register_player(peer_id: int, color: Color):
 	var player_info: PlayerInfo = PlayerInfo.new(peer_id, color)
 	
 	player_data[peer_id] = player_info
+	num_players += 1
 	player_registered.emit(peer_id)
 	pass
+
+@rpc
+func register_map_seed(seed: int):
+	map_seed = seed
+	map_seed_received.emit(seed)
 
 func on_peer_disconnected(peer_id: int):
 	if player_data.has(peer_id):
 		peer_disconnected.emit(peer_id)
 		player_data.erase(peer_id)
+		num_players -= 1
 		player_deregistered.emit(peer_id)
 
 func on_server_disconnected():
