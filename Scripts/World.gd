@@ -10,4 +10,8 @@ func spawn_player(player_info: PlayerInfo):
 	players.add_child(player)
 	player.position = spawnpoint.position
 	player.init(player_info)
-	print("spawned %s" % player_info.peer_id)
+
+func remove_player(peer_id: int):
+	var player = players.get_node_or_null(str(peer_id))
+	if player != null:
+		player.queue_free()

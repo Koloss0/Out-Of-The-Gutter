@@ -15,6 +15,8 @@ var server_port: int
 
 signal connected_to_server()
 signal connection_failed()
+signal player_registered(peer_id: int)
+signal player_deregistered(peer_id: int)
 signal peer_connected(peer_id: int)
 signal peer_disconnected(peer_id: int)
 signal server_disconnected()
@@ -71,19 +73,24 @@ func on_connection_failed():
 func on_peer_connected(peer_id: int):
 	if is_multiplayer_authority():
 		var color: Color = Color(randf(), randf(), randf())
-		register_player.rpc(peer_id, color)
+		register_player(peer_id, color)
+		
+		for player_info in player_data.values():
+			register_player.rpc_id(peer_id, player_info.peer_id, player_info.color)
 
-@rpc("call_local")
+@rpc
 func register_player(peer_id: int, color: Color):
 	var player_info: PlayerInfo = PlayerInfo.new(peer_id, color)
 	
 	player_data[peer_id] = player_info
-	peer_connected.emit(peer_id)
+	player_registered.emit(peer_id)
 	pass
 
 func on_peer_disconnected(peer_id: int):
-	peer_disconnected.emit(peer_id)
-	pass
+	if player_data.has(peer_id):
+		peer_disconnected.emit(peer_id)
+		player_data.erase(peer_id)
+		player_deregistered.emit(peer_id)
 
 func on_server_disconnected():
 	server_disconnected.emit()

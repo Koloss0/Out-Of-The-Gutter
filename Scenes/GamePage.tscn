@@ -47,7 +47,7 @@ region_rect = Rect2(0, 0, 72, 2560)
 position = Vector2(540, 960)
 
 [node name="Spawnpoint" type="Marker2D" parent="World"]
-position = Vector2(511, -176)
+position = Vector2(540, 736)
 
 [node name="PlayerTracker" type="Node2D" parent="World"]
 

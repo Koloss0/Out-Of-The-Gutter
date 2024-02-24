@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgrr60hlm211y"]
+[gd_scene load_steps=11 format=3 uid="uid://bgrr60hlm211y"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_is82o"]
 [ext_resource type="Texture2D" uid="uid://bffpw037fjn2f" path="res://Art/slimes.png" id="2_u3dem"]
@@ -56,11 +56,6 @@ size = Vector2(120, 120)
 [sub_resource type="CircleShape2D" id="CircleShape2D_eo8gd"]
 radius = 300.217
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6j1uo"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_is82o")
 
@@ -92,7 +87,3 @@ position = Vector2(0, 21)
 
 [node name="RayCast2D3" type="RayCast2D" parent="."]
 position = Vector2(60, 21)
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_6j1uo")
-visibility_update_mode = 1

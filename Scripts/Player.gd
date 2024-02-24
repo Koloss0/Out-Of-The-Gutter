@@ -23,6 +23,15 @@ func init(info: PlayerInfo):
 
 
 func _physics_process(delta):
+	if not held_down:
+		if on_ground():
+			$Sprite2D.play("idle")
+		else:
+			$Sprite2D.play("jump")
+	
+	if held_down and on_ground():
+		$Sprite2D.play("squish")
+		
 	if is_multiplayer_authority():
 		if on_ground():
 			if jump_velocity.length() > 0.0:
@@ -32,16 +41,13 @@ func _physics_process(delta):
 		else:
 			velocity.y += gravity * delta
 
-		if not held_down:
-			if on_ground():
-				$Sprite2D.play("idle")
-			else:
-				$Sprite2D.play("jump")
+		move_and_slide()
 		
-		if held_down and on_ground():
-			$Sprite2D.play("squish")
+		update_pos.rpc(position)
 
-	move_and_slide()
+@rpc("unreliable")
+func update_pos(pos: Vector2):
+	position = pos
 
 func _process(delta):
 	if is_multiplayer_authority() and held_down:
@@ -65,6 +71,13 @@ func _input(event):
 func set_held_down(new_held_down: bool):
 	held_down = new_held_down
 	$Arrow.visible = held_down
+	
+	if not held_down:
+		$Sprite2D.play("idle")
+
+@rpc
+func update_held_down(new_held_down: bool):
+	held_down = new_held_down
 	
 	if not held_down:
 		$Sprite2D.play("idle")
