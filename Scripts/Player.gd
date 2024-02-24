@@ -20,6 +20,7 @@ func _ready():
 func init(info: PlayerInfo):
 	set_multiplayer_authority(info.peer_id)
 	peer_id = info.peer_id
+	$Sprite2D.modulate = info.color
 
 
 func _physics_process(delta):

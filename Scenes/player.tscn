@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgrr60hlm211y"]
+[gd_scene load_steps=11 format=3 uid="uid://bjsaswejfqx25"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_is82o"]
 [ext_resource type="Texture2D" uid="uid://bffpw037fjn2f" path="res://Art/slimes.png" id="2_u3dem"]
@@ -57,6 +57,7 @@ size = Vector2(120, 120)
 radius = 300.217
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_is82o")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
