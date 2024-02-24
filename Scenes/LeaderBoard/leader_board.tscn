@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwtn7efq8he32"]
 
 [ext_resource type="Script" path="res://Scenes/LeaderBoard/leader_board.gd" id="1_32flm"]
-[ext_resource type="FontFile" uid="uid://dgpecf0hl0qgp" path="res://fonts/LuckiestGuy-Regular.ttf" id="1_rlhfu"]
-[ext_resource type="FontFile" uid="uid://dyem6l6kp1pob" path="res://fonts/ConcertOne-Regular.ttf" id="2_45r73"]
+[ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://Themes/ui.tres" id="1_n5nxa"]
+[ext_resource type="Texture2D" uid="uid://bslspu1mx13xh" path="res://Art/laederboard_sprite.png" id="2_5o8re"]
 
 [sub_resource type="Animation" id="Animation_kkkgc"]
 resource_name = "new_animation"
@@ -27,66 +27,69 @@ _data = {
 [node name="LeaderBoard" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_n5nxa")
 script = ExtResource("1_32flm")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 442.0
-offset_right = 1004.0
-offset_bottom = 1596.0
+[node name="LaederboardSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(539, 957.5)
+scale = Vector2(14.9722, 14.9609)
+texture = ExtResource("2_5o8re")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 155.0
+offset_top = 286.0
+offset_right = 911.0
+offset_bottom = 439.0
+theme_override_font_sizes/font_size = 64
+text = "LEADERBOARD"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
 
-[node name="Player1" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 195.0
+offset_top = 597.0
+offset_right = 889.0
+offset_bottom = 1536.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Player1" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_45r73")
 theme_override_font_sizes/font_size = 50
 text = "Player 1
 
 
 "
 
-[node name="Player2" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Player2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_45r73")
 theme_override_font_sizes/font_size = 50
 text = "Player 2
 
 
 "
 
-[node name="Player3" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Player3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_45r73")
 theme_override_font_sizes/font_size = 50
 text = "Player 3
 
 
 "
 
-[node name="Player4" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Player4" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_45r73")
 theme_override_font_sizes/font_size = 50
 text = "Player 4
 
 
 "
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 273.0
-offset_right = 1004.0
-offset_bottom = 380.0
-theme_override_fonts/font = ExtResource("1_rlhfu")
-theme_override_font_sizes/font_size = 100
-text = "LEADERBOARD"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
