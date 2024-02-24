@@ -14,6 +14,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	$TouchBox.input_event.connect(on_touch_box_input)
 
+# called directly by player spawner
+func init(info: PlayerInfo):
+	set_multiplayer_authority(info.peer_id)
+
+
 func _physics_process(delta):
 	if on_ground():
 		if jump_velocity.length() > 0.0:
