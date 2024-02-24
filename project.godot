@@ -28,3 +28,8 @@ window/size/window_width_override=400
 window/size/window_height_override=711
 window/stretch/mode="viewport"
 window/handheld/orientation=1
+
+[layer_names]
+
+2d_physics/layer_1="Ground"
+2d_physics/layer_2="Player"
