@@ -9,6 +9,7 @@ size = Vector2(1112, 72)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(541, 1920)
+input_pickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(7, -20)
