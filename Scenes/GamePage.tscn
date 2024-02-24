@@ -42,6 +42,9 @@ texture = ExtResource("2_nya3t")
 region_enabled = true
 region_rect = Rect2(0, 0, 72, 2560)
 
+[node name="Offset" type="Node2D" parent="World/ParallaxBackground/ParallaxLayer"]
+position = Vector2(540, 960)
+
 [node name="Spawnpoint" type="Marker2D" parent="World"]
 position = Vector2(511, -176)
 
@@ -85,5 +88,5 @@ anchor_mode = 0
 
 [node name="PlatformGenerator" type="Node2D" parent="World" node_paths=PackedStringArray("background_node", "platform_node")]
 script = ExtResource("4_ugii6")
-background_node = NodePath("../ParallaxBackground/ParallaxLayer")
+background_node = NodePath("../ParallaxBackground/ParallaxLayer/Offset")
 platform_node = NodePath("../Platforms")
