@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 [gd_scene load_steps=5 format=3 uid="uid://no6krnp6r2bh"]
+=======
+[gd_scene load_steps=6 format=3 uid="uid://df4t3gsc8yiwa"]
+>>>>>>> 3f9045b949f68e86a176f77566cd38ec36be51f5
 
 [ext_resource type="Script" path="res://Scripts/GamePage.gd" id="1_cdt35"]
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="2_nya3t"]
 [ext_resource type="Script" path="res://Scripts/World.gd" id="2_rna7n"]
+[ext_resource type="Script" path="res://Scripts/PlatformGenerator.gd" id="4_ugii6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
 size = Vector2(2013.85, 263.98)
@@ -12,34 +17,6 @@ script = ExtResource("1_cdt35")
 
 [node name="World" type="Node2D" parent="."]
 script = ExtResource("2_rna7n")
-
-[node name="Walls" type="StaticBody2D" parent="World"]
-
-[node name="Left" type="CollisionShape2D" parent="World/Walls"]
-position = Vector2(-141, 973)
-rotation = 1.57152
-shape = SubResource("RectangleShape2D_47dww")
-one_way_collision_margin = 0.0
-debug_color = Color(0, 0, 0, 0.419608)
-
-[node name="ColorRect" type="TextureRect" parent="World/Walls/Left"]
-offset_left = -977.097
-offset_top = -133.293
-offset_right = 720.903
-offset_bottom = 33.707
-
-[node name="Right" type="CollisionShape2D" parent="World/Walls"]
-position = Vector2(1211, 928)
-rotation = -1.57346
-shape = SubResource("RectangleShape2D_47dww")
-one_way_collision_margin = 0.0
-debug_color = Color(0, 0, 0, 0.419608)
-
-[node name="ColorRect2" type="TextureRect" parent="World/Walls/Right"]
-offset_left = -770.675
-offset_top = -123.053
-offset_right = 934.325
-offset_bottom = 39.9469
 
 [node name="Floor" type="StaticBody2D" parent="World"]
 
@@ -58,11 +35,50 @@ offset_bottom = 218.0
 [node name="ParallaxBackground" type="ParallaxBackground" parent="World"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="World/ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
 
-[node name="Sprite2D" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer"]
-position = Vector2(540, 960)
+[node name="BG" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(540, -17280)
 scale = Vector2(15, 15)
 texture = ExtResource("2_nya3t")
+region_enabled = true
+region_rect = Rect2(0, 0, 72, 2560)
 
 [node name="Spawnpoint" type="Marker2D" parent="World"]
 position = Vector2(511, -176)
+
+[node name="PlayerTracker" type="Node2D" parent="World"]
+
+[node name="Walls" type="StaticBody2D" parent="World/PlayerTracker"]
+
+[node name="Left" type="CollisionShape2D" parent="World/PlayerTracker/Walls"]
+position = Vector2(-141, 973)
+rotation = 1.57152
+shape = SubResource("RectangleShape2D_47dww")
+one_way_collision_margin = 0.0
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="ColorRect" type="TextureRect" parent="World/PlayerTracker/Walls/Left"]
+offset_left = -977.097
+offset_top = -133.293
+offset_right = 720.903
+offset_bottom = 33.707
+
+[node name="Right" type="CollisionShape2D" parent="World/PlayerTracker/Walls"]
+position = Vector2(1211, 928)
+rotation = -1.57346
+shape = SubResource("RectangleShape2D_47dww")
+one_way_collision_margin = 0.0
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="ColorRect2" type="TextureRect" parent="World/PlayerTracker/Walls/Right"]
+offset_left = -770.675
+offset_top = -123.053
+offset_right = 934.325
+offset_bottom = 39.9469
+
+[node name="Players" type="Node2D" parent="World"]
+
+[node name="PlatformGenerator" type="Node2D" parent="World"]
+script = ExtResource("4_ugii6")

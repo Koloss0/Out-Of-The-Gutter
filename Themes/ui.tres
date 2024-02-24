@@ -5,3 +5,6 @@
 [resource]
 Label/font_sizes/font_size = 95
 Label/fonts/font = ExtResource("1_xmf4o")
+LineEdit/constants/minimum_character_width = 14
+LineEdit/font_sizes/font_size = 64
+LineEdit/fonts/font = ExtResource("1_xmf4o")

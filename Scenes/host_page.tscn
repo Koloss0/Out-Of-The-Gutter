@@ -1,11 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwchq5nxc4mdf"]
 
 [ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://Scenes/labeled_texture_button.tscn" id="1_hs5vx"]
-[ext_resource type="FontFile" uid="uid://bbsihsv58dw5x" path="res://Art/public-pixel-font/PublicPixel-z84yD.ttf" id="1_l2tc3"]
-
-[sub_resource type="Theme" id="Theme_87ffy"]
-Label/font_sizes/font_size = 95
-Label/fonts/font = ExtResource("1_l2tc3")
+[ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://Themes/ui.tres" id="1_o1is0"]
+[ext_resource type="Script" path="res://Scripts/host_page.gd" id="2_ij063"]
 
 [node name="HostPage" type="Control"]
 layout_mode = 3
@@ -14,24 +11,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_87ffy")
+theme = ExtResource("1_o1is0")
+script = ExtResource("2_ij063")
 
-[node name="LabeledTextureButton" parent="." instance=ExtResource("1_hs5vx")]
+[node name="Host" parent="." instance=ExtResource("1_hs5vx")]
 layout_mode = 0
 offset_left = 264.0
 offset_top = 1288.0
 offset_right = 864.0
 offset_bottom = 1438.0
 
-[node name="Label" parent="LabeledTextureButton" index="0"]
-text = "Connect
-"
+[node name="Label" parent="Host" index="0"]
+text = "Host"
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="IP" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 312.0
-offset_top = 664.0
-offset_right = 379.063
-offset_bottom = 695.0
+offset_left = 96.0
+offset_top = 880.0
+offset_right = 1000.0
+offset_bottom = 952.0
+placeholder_text = "IP Address"
 
-[editable path="LabeledTextureButton"]
+[node name="Port" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 1064.0
+offset_right = 1000.0
+offset_bottom = 1136.0
+placeholder_text = "Port"
+
+[editable path="Host"]
