@@ -8,12 +8,8 @@ func _ready():
 	Net.peer_disconnected.connect(on_peer_disconnected)
 	Net.connected_to_server.connect(on_connected_to_server)
 	Net.connection_failed.connect(on_connection_failed)
+	Net.server_disconnected.connect(on_server_disconnected)
 	
-	 connected_to_server()
-signal connection_failed()
-signal peer_connected(peer_id: int)
-signal peer_disconnected(peer_id: int)
-signal server_disconnected()
 	Net.start()
 	MusicPlayer.play_Lobby_music()
 	
@@ -25,3 +21,15 @@ func on_peer_connected(peer_id: int):
 	if !is_multiplayer_authority():
 		var player_info = Net.player_data[peer_id]
 		world.spawn_player(player_info)
+
+func on_peer_disconnected(peer_id: int):
+	pass
+	
+func on_connected_to_server():
+	pass
+
+func on_connection_failed():
+	pass
+
+func on_server_disconnected():
+	pass
