@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="2_nya3t"]
 [ext_resource type="Script" path="res://Scripts/World.gd" id="2_rna7n"]
 [ext_resource type="Script" path="res://Scripts/PlatformGenerator.gd" id="4_ugii6"]
-[ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://Scenes/Counter.tscn" id="5_q0264"]
+[ext_resource type="PackedScene" path="res://Scenes/Counter.tscn" id="5_q0264"]
 [ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://Scenes/labeled_texture_button.tscn" id="6_v5caa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
@@ -108,12 +108,18 @@ visible = false
 mouse_filter = 2
 
 [node name="StartButton" parent="Control" instance=ExtResource("6_v5caa")]
-visible = false
-layout_mode = 0
-offset_left = 125.0
-offset_top = 553.0
-offset_right = 960.0
-offset_bottom = 802.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -417.5
+offset_top = -124.5
+offset_right = 417.5
+offset_bottom = 124.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" parent="Control/StartButton" index="0"]
 text = "Start"
