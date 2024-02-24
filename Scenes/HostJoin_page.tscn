@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://gep28ojo02rb"]
+[gd_scene load_steps=4 format=3 uid="uid://gep28ojo02rb"]
 
 [ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://Scenes/labeled_texture_button.tscn" id="1_hprpf"]
+[ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="1_uq5wp"]
 
 [sub_resource type="GDScript" id="GDScript_xwxs2"]
 resource_name = "StartGame"
@@ -36,40 +37,47 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_xwxs2")
 
-[node name="HostButton" parent="." instance=ExtResource("1_hprpf")]
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 237.0
-offset_top = 443.0
-offset_right = 837.0
-offset_bottom = 593.0
+offset_right = 1115.0
+offset_bottom = 1954.0
+texture = ExtResource("1_uq5wp")
 
-[node name="Label" parent="HostButton" index="0"]
+[node name="Host" parent="." instance=ExtResource("1_hprpf")]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 576.0
+offset_right = 1009.0
+offset_bottom = 823.5
+
+[node name="Label" parent="Host" index="0"]
 text = "Host"
 
-[node name="JoinButton" parent="." instance=ExtResource("1_hprpf")]
+[node name="Join" parent="." instance=ExtResource("1_hprpf")]
 layout_mode = 0
-offset_left = 237.0
-offset_top = 773.0
-offset_right = 837.0
-offset_bottom = 923.0
+offset_left = 102.0
+offset_top = 910.0
+offset_right = 1002.0
+offset_bottom = 1157.5
 
-[node name="Label" parent="JoinButton" index="0"]
+[node name="Label" parent="Join" index="0"]
 text = "Join"
 
-[node name="BackButton" parent="." instance=ExtResource("1_hprpf")]
+[node name="Back" parent="." instance=ExtResource("1_hprpf")]
 layout_mode = 0
-offset_left = 237.0
-offset_top = 1459.0
-offset_right = 837.0
-offset_bottom = 1609.0
+offset_left = 92.0
+offset_top = 1267.0
+offset_right = 992.0
+offset_bottom = 1514.5
 
-[node name="Label" parent="BackButton" index="0"]
+[node name="Label" parent="Back" index="0"]
 text = "Back"
 
-[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Host" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Join" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_button_pressed"]
 
-[editable path="HostButton"]
-[editable path="JoinButton"]
-[editable path="BackButton"]
+[editable path="Host"]
+[editable path="Join"]
+[editable path="Back"]

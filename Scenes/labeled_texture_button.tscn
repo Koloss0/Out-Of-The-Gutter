@@ -6,8 +6,8 @@
 [node name="LabeledTextureButton" type="TextureButton"]
 texture_filter = 1
 custom_minimum_size = Vector2(600, 150)
-offset_right = 1082.0
-offset_bottom = 335.0
+offset_right = 900.0
+offset_bottom = 247.5
 theme = ExtResource("1_285mj")
 texture_normal = ExtResource("2_ksjs0")
 stretch_mode = 0
