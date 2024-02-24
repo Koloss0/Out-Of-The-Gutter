@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b2yg3vafomraj"]
 
 [ext_resource type="Script" path="res://Scripts/moving_platform.gd" id="1_7k2us"]
-[ext_resource type="Texture2D" uid="uid://cawcqgp82pn5" path="res://Art/Test Art/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="1_n0qfy"]
+[ext_resource type="Texture2D" path="res://Art/Test Art/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="1_n0qfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_852gm"]
 size = Vector2(46, 6)
