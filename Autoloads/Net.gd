@@ -3,7 +3,8 @@ extends Node
 
 const MAX_PLAYERS = 4
 
-var player_data: Array[PlayerInfo]
+var player_data: Dictionary
+var num_players: int = 0
 
 var network_peer := ENetMultiplayerPeer.new()
 
@@ -39,6 +40,10 @@ func start():
 		if error == OK:
 			multiplayer.set_multiplayer_peer(network_peer)
 			print("[Net] Hosting Server...")
+			AlertDisplayer.alert("Creating Server...")
+			
+			print("unique ID: %s" % multiplayer.get_unique_id())
+			register_player(multiplayer.get_unique_id(), Color.WHITE)
 		else:
 			print("[Net] Failed to create server: %s" % error);
 			AlertDisplayer.alert("Failed to Create Server: %s" % error)
@@ -47,12 +52,15 @@ func start():
 		if error == OK:
 			multiplayer.set_multiplayer_peer(network_peer)
 			print("[Net] Joining...")
+			AlertDisplayer.alert("Joining...")
 		else:
 			print("[Net] Failed to create client: %s" % error);
 			AlertDisplayer.alert("Failed to Create Client: %s" % error)
 
 func on_connected_to_server():
 	connected_to_server.emit()
+	print("Connected")
+	print("unique ID: %s" % multiplayer.get_unique_id())
 	pass
 	
 func on_connection_failed():
@@ -61,6 +69,15 @@ func on_connection_failed():
 	pass
 
 func on_peer_connected(peer_id: int):
+	if is_multiplayer_authority():
+		var color: Color = Color(randf(), randf(), randf())
+		register_player.rpc(peer_id, color)
+
+@rpc("call_local")
+func register_player(peer_id: int, color: Color):
+	var player_info: PlayerInfo = PlayerInfo.new(peer_id, color)
+	
+	player_data[peer_id] = player_info
 	peer_connected.emit(peer_id)
 	pass
 
