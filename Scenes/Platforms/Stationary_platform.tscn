@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxonf107w3okg"]
 
-[ext_resource type="Script" path="res://Scenes/Platforms/Stationary_platform.gd" id="1_1oho1"]
+[ext_resource type="Script" path="res://Scripts/Stationary_platform.gd" id="1_1oho1"]
 [ext_resource type="Texture2D" uid="uid://bo0ijt3llcmf8" path="res://Art/rusty_pipe.png" id="1_8pnhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_osewe"]
