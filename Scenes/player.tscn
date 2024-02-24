@@ -56,7 +56,7 @@ size = Vector2(120, 120)
 [sub_resource type="CircleShape2D" id="CircleShape2D_eo8gd"]
 radius = 300.217
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_is82o")
 
