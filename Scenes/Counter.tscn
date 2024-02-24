@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://flycxanwi2xc"]
 
 [ext_resource type="Script" path="res://Scripts/Counter.gd" id="1_6bvma"]
-[ext_resource type="FontFile" uid="uid://dyem6l6kp1pob" path="res://fonts/ConcertOne-Regular.ttf" id="1_wi8ev"]
+[ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://Themes/ui.tres" id="1_tgq5f"]
 
 [sub_resource type="Animation" id="Animation_t6h30"]
 resource_name = "CountDown"
@@ -130,7 +130,10 @@ _data = {
 "RESET": SubResource("Animation_hg730")
 }
 
-[node name="Counter" type="Node2D"]
+[node name="Counter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_tgq5f")
 script = ExtResource("1_6bvma")
 
 [node name="1" type="Label" parent="."]
@@ -139,7 +142,6 @@ offset_left = 257.0
 offset_top = 338.0
 offset_right = 847.0
 offset_bottom = 1093.0
-theme_override_fonts/font = ExtResource("1_wi8ev")
 theme_override_font_sizes/font_size = 200
 text = "1"
 horizontal_alignment = 1
@@ -152,7 +154,6 @@ offset_left = 257.0
 offset_top = 338.0
 offset_right = 847.0
 offset_bottom = 1093.0
-theme_override_fonts/font = ExtResource("1_wi8ev")
 theme_override_font_sizes/font_size = 200
 text = "2"
 horizontal_alignment = 1
@@ -164,7 +165,6 @@ offset_left = 257.0
 offset_top = 338.0
 offset_right = 847.0
 offset_bottom = 1093.0
-theme_override_fonts/font = ExtResource("1_wi8ev")
 theme_override_font_sizes/font_size = 200
 text = "3"
 horizontal_alignment = 1
@@ -177,7 +177,6 @@ offset_left = 257.0
 offset_top = 338.0
 offset_right = 847.0
 offset_bottom = 1093.0
-theme_override_fonts/font = ExtResource("1_wi8ev")
 theme_override_font_sizes/font_size = 200
 text = "GO!"
 horizontal_alignment = 1

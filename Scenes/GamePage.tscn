@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://df4t3gsc8yiwa"]
+[gd_scene load_steps=7 format=3 uid="uid://df4t3gsc8yiwa"]
 
 [ext_resource type="Script" path="res://Scripts/GamePage.gd" id="1_cdt35"]
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="2_nya3t"]
 [ext_resource type="Script" path="res://Scripts/World.gd" id="2_rna7n"]
 [ext_resource type="Script" path="res://Scripts/PlatformGenerator.gd" id="4_ugii6"]
+[ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://Scenes/Counter.tscn" id="5_q0264"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
 size = Vector2(2013.85, 263.98)
@@ -91,3 +92,13 @@ anchor_mode = 0
 script = ExtResource("4_ugii6")
 background_node = NodePath("../ParallaxBackground/ParallaxLayer/Offset")
 platform_node = NodePath("../Platforms")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Counter" parent="Control" instance=ExtResource("5_q0264")]
