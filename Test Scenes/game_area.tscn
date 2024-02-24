@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfqekb8g0mjqk"]
+
+[ext_resource type="Script" path="res://Scripts/PlatformGenerator.gd" id="1_cfum5"]
+
+[node name="GameArea" type="Node2D" node_paths=PackedStringArray("background_node", "platform_node")]
+script = ExtResource("1_cfum5")
+platform_initial_height = 1800.0
+background_node = NodePath("Background")
+platform_node = NodePath("Platforms")
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(540, 960)
+
+[node name="Platforms" type="Node2D" parent="."]
+position = Vector2(0, 1920)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(540, 960)
+
+[node name="Players" type="Node2D" parent="."]
+position = Vector2(0, 1704)

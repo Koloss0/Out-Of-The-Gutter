@@ -13,19 +13,17 @@ const BACKGROUND_TILE_SIZE : Vector2i = Vector2i(1080, 1920)
 @export_range(0, 1) var platform_min_speed : float = 0.5
 @export_range(1, 2) var platform_max_speed : float = 1.5
 
-#@export var platform_max_side_by_side : int
-
 
 @onready var background: Node2D = $Background
-@onready var platforms: Node2D = $Platforms
-
-#const 
+@export var platform_node: Node2D
 
 var player_spawns : Array[Vector2]
 
 
 func _ready() -> void:
-	player_spawns = [$Players/Spawn1.position, $Players/Spawn2.position, $Players/Spawn3.position, $Players/Spawn4.position]
+	
+	#testing
+	platform_node = $Platforms
 	generate_map(2, 23)
 	#$Camera2D.zoom = Vector2(0.1, 0.1)
 	
@@ -41,7 +39,6 @@ func generate_map(height : int, seed : int):
 	for i in range(height):
 		var wall : Node2D = SEWER_WALL.instantiate()
 		background.add_child(wall)
-		#wall.set_size(BACKGROUND_TILE_SIZE)
 		wall.position.y = -i * BACKGROUND_TILE_SIZE.y
 	
 	var map_height : float = -height * BACKGROUND_TILE_SIZE.y
@@ -52,8 +49,6 @@ func generate_map(height : int, seed : int):
 		platform_y -= random.randf_range(platform_min_spacing.y, platform_max_spacing.y)
 		var platform_x = random.randf_range(platform_min_spacing.x, platform_max_spacing.x)
 		var pos : Vector2 = Vector2(platform_x, platform_y)
-		#var num_side_by_side : int = roundi(random.randf() * platform_max_side_by_side)
-		#for platform in range(num_side_by_side):
 		var moving_platform : bool = random.randf() < platform_motion_chance
 		if moving_platform:
 			instanciate_moving_platform(pos, random.randf_range(platform_min_speed, platform_max_speed))
@@ -62,14 +57,12 @@ func generate_map(height : int, seed : int):
 
 func instanciate_static_platform(pos : Vector2):
 	var instance = STATIC_PLATFORM.instantiate()
-	platforms.add_child(instance)
+	platform_node.add_child(instance)
 	instance.set_position(pos)
 
 func instanciate_moving_platform(pos : Vector2, speed_scale : float):
 	var instance = MOVING_PLATFORM.instantiate()
-	platforms.add_child(instance)
+	platform_node.add_child(instance)
+	instance.speed_multiplier = speed_scale
 	instance.position = pos
-
-func get_player_spawn(index : int) -> Vector2:
-	return player_spawns[index]
 
