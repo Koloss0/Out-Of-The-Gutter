@@ -3,7 +3,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
 size = Vector2(2013.85, 263.98)
 
-[node name="LobbyPage" type="Node"]
+[node name="GamePage" type="Node"]
 
 [node name="World" type="Node2D" parent="."]
 
