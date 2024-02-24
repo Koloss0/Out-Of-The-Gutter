@@ -12,3 +12,7 @@ func on_connect_pressed():
 	Net.is_host = false
 	SceneManager.fade_to_scene("res://Scenes/GamePage.tscn")
 	MusicPlayer.stop_music()
+
+
+func _on_back_button_pressed() -> void:
+	SceneManager.fade_to_scene("HostJoinPage")

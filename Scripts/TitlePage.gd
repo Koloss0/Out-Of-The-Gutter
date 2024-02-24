@@ -8,4 +8,4 @@ func _on_quit_pressed():
 
 
 func _on_start_pressed():
-	SceneManager.fade_to_scene("HostScene")
+	SceneManager.fade_to_scene("HostJoinPage")

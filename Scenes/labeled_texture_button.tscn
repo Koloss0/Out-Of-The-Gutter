@@ -22,3 +22,4 @@ grow_vertical = 2
 text = "Label"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
