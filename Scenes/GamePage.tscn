@@ -28,7 +28,6 @@ offset_bottom = 33.707
 [node name="Right" type="CollisionShape2D" parent="World/Walls"]
 position = Vector2(1211, 928)
 rotation = -1.57346
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_47dww")
 one_way_collision_margin = 0.0
 debug_color = Color(0, 0, 0, 0.419608)
@@ -43,7 +42,6 @@ offset_bottom = 39.9469
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World/Floor"]
 position = Vector2(511, 1947)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_47dww")
 one_way_collision_margin = 0.0
 debug_color = Color(0, 0, 0, 0.419608)
