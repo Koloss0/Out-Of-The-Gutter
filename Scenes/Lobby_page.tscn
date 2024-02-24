@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://b80ntjxq1w75s"]
+[gd_scene load_steps=2 format=3 uid="uid://cucdfuamllouw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
 size = Vector2(2013.85, 263.98)
@@ -21,7 +21,6 @@ offset_bottom = 40.0
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 position = Vector2(1169.28, 850.169)
 rotation = -1.57346
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_47dww")
 one_way_collision_margin = 0.0
 debug_color = Color(0, 0, 0, 0.419608)
@@ -35,7 +34,6 @@ offset_bottom = 40.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D3"]
 position = Vector2(-957.09, -654.837)
 rotation = 1.57346
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_47dww")
 one_way_collision_margin = 0.0
 debug_color = Color(0, 0, 0, 0.419608)
