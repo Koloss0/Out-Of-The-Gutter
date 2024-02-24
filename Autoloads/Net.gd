@@ -50,7 +50,7 @@ func start():
 			print("unique ID: %s" % multiplayer.get_unique_id())
 			register_player(multiplayer.get_unique_id(), Color.WHITE)
 			map_seed = randi()
-			map_seed_received.emit(map_seed)
+			register_map_seed(map_seed)
 		else:
 			print("[Net] Failed to create server: %s" % error);
 			AlertDisplayer.alert("Failed to Create Server: %s" % error)
