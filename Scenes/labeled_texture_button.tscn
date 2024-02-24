@@ -1,15 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://d06y0af7layko"]
 
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="1_24xgl"]
-
-[sub_resource type="Theme" id="Theme_1x4tu"]
+[ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://Themes/ui.tres" id="1_285mj"]
 
 [node name="LabeledTextureButton" type="TextureButton"]
 texture_filter = 1
 custom_minimum_size = Vector2(600, 150)
 offset_right = 182.0
 offset_bottom = 72.0
-theme = SubResource("Theme_1x4tu")
+theme = ExtResource("1_285mj")
 texture_normal = ExtResource("1_24xgl")
 stretch_mode = 0
 

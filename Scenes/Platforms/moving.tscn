@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://so470iagvkml"]
+[gd_scene load_steps=7 format=3 uid="uid://b2yg3vafomraj"]
 
 [ext_resource type="Script" path="res://Scripts/moving_platform.gd" id="1_7k2us"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v8yps"]
-load_path = "res://.godot/imported/Terrain (16x16).png-8bfc88ddb70cbb9d5eedf481f92f4c29.ctex"
+[ext_resource type="Texture2D" path="res://Art/Test Art/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="1_n0qfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_852gm"]
 size = Vector2(46, 6)
@@ -59,7 +57,7 @@ metadata/_edit_group_ = true
 texture_filter = 1
 position = Vector2(-1, 0)
 scale = Vector2(0.958333, 1)
-texture = SubResource("CompressedTexture2D_v8yps")
+texture = ExtResource("1_n0qfy")
 region_enabled = true
 region_rect = Rect2(272, 0, 48, 5)
 

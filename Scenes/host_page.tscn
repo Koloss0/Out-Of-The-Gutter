@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwchq5nxc4mdf"]
+[gd_scene load_steps=4 format=3 uid="uid://bwchq5nxc4mdf"]
 
 [ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://Scenes/labeled_texture_button.tscn" id="1_hs5vx"]
+[ext_resource type="FontFile" uid="uid://bbsihsv58dw5x" path="res://Art/public-pixel-font/PublicPixel-z84yD.ttf" id="1_l2tc3"]
+
+[sub_resource type="Theme" id="Theme_87ffy"]
+Label/font_sizes/font_size = 95
+Label/fonts/font = ExtResource("1_l2tc3")
 
 [node name="HostPage" type="Control"]
 layout_mode = 3
@@ -9,16 +14,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_87ffy")
 
 [node name="LabeledTextureButton" parent="." instance=ExtResource("1_hs5vx")]
 layout_mode = 0
-offset_left = 401.0
-offset_top = 664.0
-offset_right = 583.0
-offset_bottom = 736.0
+offset_left = 264.0
+offset_top = 1288.0
+offset_right = 864.0
+offset_bottom = 1438.0
 
 [node name="Label" parent="LabeledTextureButton" index="0"]
 text = "Connect
 "
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 664.0
+offset_right = 379.063
+offset_bottom = 695.0
 
 [editable path="LabeledTextureButton"]
