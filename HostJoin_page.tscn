@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://dcdjcfy5g1dgt"]
+[gd_scene load_steps=2 format=3 uid="uid://cjvy7pvjkgg3p"]
+
+[ext_resource type="Script" path="res://Scripts/HostJoin_page.gd" id="1_h7jjo"]
 
 [node name="StartGame-HostJoin" type="Node2D"]
+script = ExtResource("1_h7jjo")
 
 [node name="JoinButton" type="Button" parent="."]
 offset_left = 265.0
