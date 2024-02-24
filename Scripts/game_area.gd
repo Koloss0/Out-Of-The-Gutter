@@ -1,12 +1,12 @@
 extends Node2D
 
 const SEWER_WALL = preload("res://Scenes/GameArea/sewer_wall.tscn")
-const PLATFORM = preload("res://Scenes/Pipe.tscn")
-const MOVING_PLATFORM = preload("res://Scenes/Platforms/moving.tscn")
-
+const MOVING_PLATFORM = preload("res://Scenes/Platforms/moving_platform.tscn")
+const STATIC_PLATFORM = preload("res://Scenes/Platforms/Stationary_platform.tscn")
 const BACKGROUND_TILE_SIZE : Vector2i = Vector2i(1080, 1920)
 
 @export_group("Platforms", "platform")
+@export var platform_initial_height : float
 @export var platform_min_spacing : Vector2 = Vector2.ONE
 @export var platform_max_spacing : Vector2 = Vector2.ONE
 @export_range(0, 1) var platform_motion_chance : float = 0.5
@@ -47,7 +47,7 @@ func generate_map(height : int, seed : int):
 	var map_height : float = -height * BACKGROUND_TILE_SIZE.y
 	
 	#create platforms
-	var platform_y : float = 0.0
+	var platform_y : float = platform_initial_height
 	while platform_y > map_height:
 		platform_y -= random.randf_range(platform_min_spacing.y, platform_max_spacing.y)
 		var platform_x = random.randf_range(platform_min_spacing.x, platform_max_spacing.x)
@@ -61,10 +61,9 @@ func generate_map(height : int, seed : int):
 			instanciate_static_platform(pos) #TODO: Rotation?
 
 func instanciate_static_platform(pos : Vector2):
-	# var instance = STATIC_PLATFORM.instanciate()
-	# platforms.add_child(instance)
-	# instance.set_position(pos)
-	pass
+	var instance = STATIC_PLATFORM.instantiate()
+	platforms.add_child(instance)
+	instance.set_position(pos)
 
 func instanciate_moving_platform(pos : Vector2, speed_scale : float):
 	var instance = MOVING_PLATFORM.instantiate()

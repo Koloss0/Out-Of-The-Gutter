@@ -4,9 +4,10 @@
 
 [node name="GameArea" type="Node2D"]
 script = ExtResource("1_clsbq")
+platform_initial_height = 200.0
 platform_min_spacing = Vector2(100, 120)
 platform_max_spacing = Vector2(2000, 200)
-platform_motion_chance = 1.0
+platform_motion_chance = 0.3
 platform_min_speed = 0.25
 platform_max_speed = 1.25
 
@@ -14,6 +15,7 @@ platform_max_speed = 1.25
 position = Vector2(540, 960)
 
 [node name="Platforms" type="Node2D" parent="."]
+position = Vector2(0, 1920)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(540, 960)
