@@ -1,15 +1,35 @@
-[gd_scene format=3 uid="uid://gep28ojo02rb"]
+[gd_scene load_steps=2 format=3 uid="uid://gep28ojo02rb"]
+
+[sub_resource type="GDScript" id="GDScript_xwxs2"]
+resource_name = "StartGame"
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file(\"res://Scenes/title_page.tscn\")
+"
 
 [node name="StartGame-HostJoin" type="Node2D"]
+script = SubResource("GDScript_xwxs2")
 
-[node name="Button3" type="Button" parent="."]
+[node name="Join" type="Button" parent="."]
 offset_left = 265.0
 offset_top = 773.0
 offset_right = 814.0
 offset_bottom = 923.0
 text = "JOIN"
 
-[node name="Button4" type="Button" parent="."]
+[node name="Back" type="Button" parent="."]
 offset_left = 237.0
 offset_top = 1426.0
 offset_right = 881.0
@@ -17,9 +37,11 @@ offset_bottom = 1635.0
 text = "BACK
 "
 
-[node name="Button5" type="Button" parent="."]
+[node name="Host" type="Button" parent="."]
 offset_left = 277.0
 offset_top = 519.0
 offset_right = 804.0
 offset_bottom = 664.0
 text = "HOST"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

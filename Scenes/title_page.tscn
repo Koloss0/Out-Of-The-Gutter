@@ -1,28 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://b612srpjtt8mm"]
 
-[ext_resource type="Script" path="res://Scripts/Start.gd" id="1_8pm3c"]
+[ext_resource type="Script" path="res://Scripts/Start.gd" id="1_nhqit"]
+[ext_resource type="Script" path="res://Scripts/TitlePage.gd" id="1_xvnd4"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b60gh"]
 
-[sub_resource type="GDScript" id="GDScript_kkg4i"]
-resource_name = "titlePage"
-script/source = "extends Node2D
-
-
-# Called when the node enters the scene tree for the first time.s
-
-
-func _on_quit_pressed():
-	get_tree().quit()
-
-
-func _on_start_pressed():
-	get_tree().change_scene_to_file(\"res://HostJoin_page.tscn\")
-"
-
 [node name="TitlePage" type="Node2D"]
 material = SubResource("CanvasItemMaterial_b60gh")
-script = SubResource("GDScript_kkg4i")
+script = ExtResource("1_xvnd4")
 
 [node name="Start" type="Button" parent="."]
 offset_left = 392.0
@@ -30,7 +15,7 @@ offset_top = 938.0
 offset_right = 760.0
 offset_bottom = 1097.0
 text = "Start"
-script = ExtResource("1_8pm3c")
+script = ExtResource("1_nhqit")
 
 [node name="Quit" type="Button" parent="."]
 offset_left = 386.0
