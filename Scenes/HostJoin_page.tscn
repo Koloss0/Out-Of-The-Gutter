@@ -39,30 +39,30 @@ script = SubResource("GDScript_xwxs2")
 
 [node name="HostButton" parent="." instance=ExtResource("1_8bamf")]
 layout_mode = 0
-offset_left = 241.0
-offset_top = 459.0
-offset_right = 841.0
-offset_bottom = 609.0
+offset_left = 258.0
+offset_top = 609.0
+offset_right = 858.0
+offset_bottom = 759.0
 
 [node name="Label" parent="HostButton" index="0"]
 text = "Host"
 
 [node name="JoinButton" parent="." instance=ExtResource("1_8bamf")]
 layout_mode = 0
-offset_left = 246.0
-offset_top = 772.0
-offset_right = 846.0
-offset_bottom = 922.0
+offset_left = 259.0
+offset_top = 939.0
+offset_right = 859.0
+offset_bottom = 1089.0
 
 [node name="Label" parent="JoinButton" index="0"]
 text = "Join"
 
 [node name="BackButton" parent="." instance=ExtResource("1_8bamf")]
 layout_mode = 0
-offset_left = 255.0
-offset_top = 1463.0
-offset_right = 855.0
-offset_bottom = 1613.0
+offset_left = 258.0
+offset_top = 1294.0
+offset_right = 858.0
+offset_bottom = 1444.0
 
 [node name="Label" parent="BackButton" index="0"]
 text = "Back"
