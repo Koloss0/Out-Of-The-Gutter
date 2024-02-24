@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dleyxsih8ux3a"]
+
+[ext_resource type="PackedScene" uid="uid://bgrr60hlm211y" path="res://Scenes/Platforms/player.tscn" id="1_j8l7d"]
+[ext_resource type="PackedScene" uid="uid://b1ml2ni2mprc3" path="res://Scenes/Platforms/moving_platform.tscn" id="2_w0ych"]
+
+[node name="Testing" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_j8l7d")]
+position = Vector2(224, 93)
+
+[node name="Moving_platform" parent="." instance=ExtResource("2_w0ych")]
+position = Vector2(235, 989)
+scale = Vector2(14, 14)
+
+[node name="Moving_platform2" parent="." instance=ExtResource("2_w0ych")]
+position = Vector2(672, 683)
+scale = Vector2(14, 14)

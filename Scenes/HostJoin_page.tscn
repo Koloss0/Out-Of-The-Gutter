@@ -2,7 +2,7 @@
 
 [sub_resource type="GDScript" id="GDScript_xwxs2"]
 resource_name = "StartGame"
-script/source = "extends Node2D
+script/source = "extends Control
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,10 +19,17 @@ func _on_back_pressed():
 	SceneManager.fade_to_scene(\"TitlePage\")
 "
 
-[node name="StartGame-HostJoin" type="Node2D"]
+[node name="StartGame-HostJoin" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = SubResource("GDScript_xwxs2")
 
 [node name="Join" type="Button" parent="."]
+layout_mode = 0
 offset_left = 265.0
 offset_top = 773.0
 offset_right = 814.0
@@ -30,6 +37,7 @@ offset_bottom = 923.0
 text = "JOIN"
 
 [node name="Back" type="Button" parent="."]
+layout_mode = 0
 offset_left = 237.0
 offset_top = 1426.0
 offset_right = 881.0
@@ -38,10 +46,11 @@ text = "BACK
 "
 
 [node name="Host" type="Button" parent="."]
-offset_left = 277.0
-offset_top = 519.0
-offset_right = 804.0
-offset_bottom = 664.0
+layout_mode = 1
+offset_left = 321.0
+offset_top = 443.0
+offset_right = 763.0
+offset_bottom = 616.0
 text = "HOST"
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
