@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2kyi5my4bgbh"]
+[gd_scene load_steps=8 format=3 uid="uid://bgrr60hlm211y"]
 
 [ext_resource type="Texture2D" uid="uid://c807howv6glap" path="res://Art/PlaceholderSlime.png" id="1_3r0mw"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_is82o"]
@@ -47,7 +47,8 @@ script = ExtResource("1_is82o")
 texture_filter = 1
 scale = Vector2(15, 15)
 sprite_frames = SubResource("SpriteFrames_kg5xq")
-animation = &"jump"
+animation = &"idle"
+frame_progress = 0.931497
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jbuoc")
