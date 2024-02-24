@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dleyxsih8ux3a"]
 
 [ext_resource type="PackedScene" uid="uid://bgrr60hlm211y" path="res://Scenes/Platforms/player.tscn" id="1_j8l7d"]
-[ext_resource type="PackedScene" uid="uid://b2yg3vafomraj" path="res://Scenes/Platforms/moving.tscn" id="2_w0ych"]
+[ext_resource type="PackedScene" uid="uid://b2yg3vafomraj" path="res://Scenes/Platforms/moving_platform.tscn" id="2_w0ych"]
 
 [node name="Testing" type="Node2D"]
 
@@ -9,4 +9,4 @@
 position = Vector2(224, 93)
 
 [node name="Moving_platform" parent="." instance=ExtResource("2_w0ych")]
-position = Vector2(-1530, 1583)
+position = Vector2(530, 979)

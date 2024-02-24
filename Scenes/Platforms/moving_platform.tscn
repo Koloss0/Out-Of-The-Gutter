@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2yg3vafomraj"]
+
+[ext_resource type="Script" path="res://Scripts/moving_platform.gd" id="1_b5p1q"]
+[ext_resource type="Texture2D" uid="uid://cawcqgp82pn5" path="res://Art/Test Art/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="1_n0qfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_852gm"]
+size = Vector2(46, 6)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ynmq7"]
+
+[node name="moving" type="AnimatableBody2D"]
+scale = Vector2(10, 10)
+script = ExtResource("1_b5p1q")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, 0)
+scale = Vector2(0.958333, 1)
+texture = ExtResource("1_n0qfy")
+region_enabled = true
+region_rect = Rect2(272, 0, 48, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_852gm")
+one_way_collision = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ynmq7")
+}
