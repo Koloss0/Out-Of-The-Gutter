@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://Art/sewer_bg.png" id="2_nya3t"]
 [ext_resource type="Script" path="res://Scripts/World.gd" id="2_rna7n"]
 [ext_resource type="Script" path="res://Scripts/PlatformGenerator.gd" id="4_ugii6"]
-[ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://Scenes/Counter.tscn" id="5_q0264"]
+[ext_resource type="PackedScene" path="res://Scenes/Counter.tscn" id="5_q0264"]
 [ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://Scenes/labeled_texture_button.tscn" id="6_v5caa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
@@ -101,8 +101,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Counter" parent="Control" instance=ExtResource("5_q0264")]
+mouse_filter = 2
 
 [node name="LabeledTextureButton" parent="Control" instance=ExtResource("6_v5caa")]
 layout_mode = 0
