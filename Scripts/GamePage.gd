@@ -47,6 +47,7 @@ func on_player_deregistered(peer_id: int):
 		start_button.set_disabled(true)
 
 func on_map_seed_received(seed: int):
+	print("map seed: %d" % seed)
 	platform_generator.generate_map(MAP_HEIGHT, seed)
 	get_tree().call_group("Platforms", "set_collision", false)
 
@@ -64,6 +65,8 @@ func on_server_disconnected():
 
 
 func _on_start_button_pressed() -> void:
+	if Net.is_multiplayer_authority():
+		start_button.hide()
 	start_countdown.rpc()
 
 @rpc("call_local")
