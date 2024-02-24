@@ -7,7 +7,6 @@ script = ExtResource("1_clsbq")
 platform_min_spacing = Vector2(100, 120)
 platform_max_spacing = Vector2(2000, 200)
 platform_motion_chance = 1.0
-platform_max_motion_delay = 1.0
 platform_min_speed = 0.25
 platform_max_speed = 1.25
 

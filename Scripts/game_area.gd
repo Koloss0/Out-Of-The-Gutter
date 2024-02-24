@@ -37,6 +37,7 @@ func generate_map(height : int, seed : int):
 	var random : RandomNumberGenerator = RandomNumberGenerator.new()
 	random.set_seed(seed)
 	
+	#Create background to provided height
 	for i in range(height):
 		var wall : Node2D = SEWER_WALL.instantiate()
 		background.add_child(wall)
@@ -45,16 +46,18 @@ func generate_map(height : int, seed : int):
 	
 	var map_height : float = -height * BACKGROUND_TILE_SIZE.y
 	
+	#create platforms
 	var platform_y : float = 0.0
 	while platform_y > map_height:
 		platform_y -= random.randf_range(platform_min_spacing.y, platform_max_spacing.y)
+		var platform_x = random.randf_range(platform_min_spacing.x, platform_max_spacing.x)
+		var pos : Vector2 = Vector2(platform_x, platform_y)
 		#var num_side_by_side : int = roundi(random.randf() * platform_max_side_by_side)
 		#for platform in range(num_side_by_side):
 		var moving_platform : bool = random.randf() < platform_motion_chance
 		if moving_platform:
-			instanciate_moving_platform(platform_y, random.randf_range(platform_min_speed, platform_max_speed), random.randf() * platform_max_motion_delay)
+			instanciate_moving_platform(pos, random.randf_range(platform_min_speed, platform_max_speed))
 		else:
-			var pos : Vector2 = Vector2(random.randf_range(platform_min_spacing.x, platform_max_spacing.x), platform_y)
 			instanciate_static_platform(pos) #TODO: Rotation?
 
 func instanciate_static_platform(pos : Vector2):
@@ -63,11 +66,10 @@ func instanciate_static_platform(pos : Vector2):
 	# instance.set_position(pos)
 	pass
 
-func instanciate_moving_platform(pos_y : float, speed_scale : float, start_delay : float):
+func instanciate_moving_platform(pos : Vector2, speed_scale : float):
 	var instance = MOVING_PLATFORM.instantiate()
 	platforms.add_child(instance)
-	instance.position.y = pos_y
-	instance.start_animation_delayed(start_delay, speed_scale)
+	instance.position = pos
 
 func get_player_spawn(index : int) -> Vector2:
 	return player_spawns[index]
