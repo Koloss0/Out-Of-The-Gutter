@@ -24,14 +24,6 @@ offset_bottom = 1438.0
 [node name="Label" parent="Host" index="0"]
 text = "Host"
 
-[node name="IP" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 880.0
-offset_right = 1000.0
-offset_bottom = 952.0
-placeholder_text = "IP Address"
-
 [node name="Port" type="LineEdit" parent="."]
 layout_mode = 0
 offset_left = 96.0
