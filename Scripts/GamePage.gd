@@ -5,6 +5,8 @@ extends Node
 @onready var counter: Control = $Control/Counter
 @onready var platform_generator: Node2D = $World/PlatformGenerator
 @onready var leader_board: Control = $Control/LeaderBoard
+@onready var players = $World/Players
+@onready var player_tracker = $World/PlayerTracker
 
 const MAP_HEIGHT : int = 10
 
@@ -80,5 +82,4 @@ func start_countdown():
 	counter.play_countdown()
 	get_tree().call_group("platform", "set_collision", true)
 	get_tree().call_group("platform", "start_moving", true)
-	$World/PlayerTracker.start_tracking_target($Players.get_node(str(multiplayer.get_unique_id())))
-	
+	player_tracker.start_following_target(players.get_node(str(multiplayer.get_unique_id())))
