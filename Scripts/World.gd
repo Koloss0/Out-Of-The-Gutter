@@ -1,6 +1,6 @@
 extends Node2D
 
-const player_scene = preload("res://Scenes/player.tscn")
+const player_scene = preload("res://scenes/entities/player.tscn")
 @onready var spawnpoint: Node2D = $Spawnpoint
 @onready var players: Node2D = $Players
 

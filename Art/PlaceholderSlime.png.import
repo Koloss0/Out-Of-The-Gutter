@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c807howv6glap"
-path="res://.godot/imported/PlaceholderSlime.png-2de6618058a77fad6847515a32ec899f.ctex"
+path="res://.godot/imported/PlaceholderSlime.png-820494fb3cb021b0cdc47d6d5f96b830.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/PlaceholderSlime.png"
-dest_files=["res://.godot/imported/PlaceholderSlime.png-2de6618058a77fad6847515a32ec899f.ctex"]
+source_file="res://art/PlaceholderSlime.png"
+dest_files=["res://.godot/imported/PlaceholderSlime.png-820494fb3cb021b0cdc47d6d5f96b830.ctex"]
 
 [params]
 

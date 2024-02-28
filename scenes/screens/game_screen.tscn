@@ -1,0 +1,141 @@
+[gd_scene load_steps=10 format=3 uid="uid://df4t3gsc8yiwa"]
+
+[ext_resource type="Script" path="res://scripts/game_screen.gd" id="1_fbtns"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="2_tgof3"]
+[ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://art/sewer_bg.png" id="3_8o8x5"]
+[ext_resource type="Script" path="res://scripts/player_tracker.gd" id="4_t6401"]
+[ext_resource type="Script" path="res://scripts/platform_generator.gd" id="5_tf215"]
+[ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://scenes/countdown.tscn" id="6_6fcsw"]
+[ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://scenes/ui/labeled_texture_button.tscn" id="7_lcato"]
+[ext_resource type="PackedScene" uid="uid://cwtn7efq8he32" path="res://scenes/ui/leaderboard.tscn" id="8_kw4vr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47dww"]
+size = Vector2(2013.85, 263.98)
+
+[node name="GamePage" type="Node"]
+script = ExtResource("1_fbtns")
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("2_tgof3")
+
+[node name="Floor" type="StaticBody2D" parent="World"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/Floor"]
+position = Vector2(511, 1947)
+shape = SubResource("RectangleShape2D_47dww")
+one_way_collision_margin = 0.0
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="Ground" type="ColorRect" parent="World/Floor/CollisionShape2D2"]
+offset_left = -563.0
+offset_top = -132.0
+offset_right = 637.0
+offset_bottom = 139.0
+color = Color(0.231373, 0.231373, 0.231373, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="World"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="World/ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="BG" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer"]
+visible = false
+texture_repeat = 2
+position = Vector2(540, -17280)
+scale = Vector2(15, 15)
+texture = ExtResource("3_8o8x5")
+region_enabled = true
+region_rect = Rect2(0, 0, 72, 2560)
+
+[node name="Offset" type="Node2D" parent="World/ParallaxBackground/ParallaxLayer"]
+position = Vector2(540, 960)
+
+[node name="Spawnpoint" type="Marker2D" parent="World"]
+position = Vector2(540, 736)
+
+[node name="PlayerTracker" type="Node2D" parent="World"]
+position = Vector2(0, -1)
+script = ExtResource("4_t6401")
+
+[node name="Walls" type="StaticBody2D" parent="World/PlayerTracker"]
+
+[node name="Left" type="CollisionShape2D" parent="World/PlayerTracker/Walls"]
+position = Vector2(-141, 973)
+rotation = 1.57152
+shape = SubResource("RectangleShape2D_47dww")
+one_way_collision_margin = 0.0
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="ColorRect" type="TextureRect" parent="World/PlayerTracker/Walls/Left"]
+offset_left = -977.097
+offset_top = -133.293
+offset_right = 720.903
+offset_bottom = 33.707
+
+[node name="Right" type="CollisionShape2D" parent="World/PlayerTracker/Walls"]
+position = Vector2(1211, 928)
+rotation = -1.57346
+shape = SubResource("RectangleShape2D_47dww")
+one_way_collision_margin = 0.0
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="ColorRect2" type="TextureRect" parent="World/PlayerTracker/Walls/Right"]
+offset_left = -770.675
+offset_top = -123.053
+offset_right = 934.325
+offset_bottom = 39.9469
+
+[node name="Camera2D" type="Camera2D" parent="World/PlayerTracker"]
+unique_name_in_owner = true
+anchor_mode = 0
+
+[node name="Players" type="Node2D" parent="World"]
+
+[node name="Platforms" type="Node2D" parent="World"]
+position = Vector2(0, 1920)
+
+[node name="PlatformGenerator" type="Node2D" parent="World" node_paths=PackedStringArray("background_node", "platform_node")]
+script = ExtResource("5_tf215")
+platform_min_spacing = Vector2(200, 300)
+platform_max_spacing = Vector2(1080, 500)
+background_node = NodePath("../ParallaxBackground/ParallaxLayer/Offset")
+platform_node = NodePath("../Platforms")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Counter" parent="Control" instance=ExtResource("6_6fcsw")]
+visible = false
+mouse_filter = 2
+
+[node name="StartButton" parent="Control" instance=ExtResource("7_lcato")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -417.5
+offset_top = -124.5
+offset_right = 417.5
+offset_bottom = 124.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" parent="Control/StartButton" index="0"]
+text = "Start"
+
+[node name="LeaderBoard" parent="Control" instance=ExtResource("8_kw4vr")]
+visible = false
+
+[connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
+
+[editable path="Control/StartButton"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dynm24vcgkmr6"]
 
-[ext_resource type="Script" path="res://Scripts/MusicPlayer.gd" id="1_7fi2i"]
-[ext_resource type="AudioStream" uid="uid://ds65q3guv0xyn" path="res://Art/Music/MainMenuMusicSJ.mp3" id="2_l1dp2"]
-[ext_resource type="AudioStream" uid="uid://cbrmbq1o5ivkg" path="res://Art/Music/ActualGameMusicSJ.mp3" id="3_tx5uu"]
-[ext_resource type="AudioStream" uid="uid://b51rwcnlvpb47" path="res://Art/Music/LobbyMusicSJ.mp3" id="4_jurnf"]
-[ext_resource type="AudioStream" uid="uid://c0dv0a3e1mwdx" path="res://Art/Music/JumpEffect.mp3" id="5_ggbmu"]
-[ext_resource type="AudioStream" uid="uid://b1uljv8loq4ko" path="res://Art/Music/FallEffect.mp3" id="6_snef4"]
+[ext_resource type="Script" path="res://scripts/music_player.gd" id="1_7fi2i"]
+[ext_resource type="AudioStream" uid="uid://ds65q3guv0xyn" path="res://art/music/MainMenuMusicSJ.mp3" id="2_l1dp2"]
+[ext_resource type="AudioStream" uid="uid://cbrmbq1o5ivkg" path="res://art/music/ActualGameMusicSJ.mp3" id="3_tx5uu"]
+[ext_resource type="AudioStream" uid="uid://b51rwcnlvpb47" path="res://art/music/LobbyMusicSJ.mp3" id="4_jurnf"]
+[ext_resource type="AudioStream" uid="uid://c0dv0a3e1mwdx" path="res://art/music/JumpEffect.mp3" id="5_ggbmu"]
+[ext_resource type="AudioStream" uid="uid://b1uljv8loq4ko" path="res://art/music/FallEffect.mp3" id="6_snef4"]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource("1_7fi2i")

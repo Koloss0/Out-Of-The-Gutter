@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://b612srpjtt8mm"]
+
+[ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://themes/ui.tres" id="1_r1d6d"]
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="2_358hs"]
+[ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://art/sewer_bg.png" id="3_fg63g"]
+[ext_resource type="Texture2D" uid="uid://1xcpfnd0omw7" path="res://art/MainPageBJ.png" id="4_rmnm2"]
+[ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://scenes/ui/labeled_texture_button.tscn" id="5_al55n"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b60gh"]
+
+[node name="TitlePage" type="Control"]
+material = SubResource("CanvasItemMaterial_b60gh")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_r1d6d")
+script = ExtResource("2_358hs")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+texture_repeat = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_fg63g")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 57.0
+offset_top = 229.0
+offset_right = 1016.0
+offset_bottom = 753.0
+texture = ExtResource("4_rmnm2")
+
+[node name="Start" parent="." instance=ExtResource("5_al55n")]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 1020.0
+offset_right = 985.0
+offset_bottom = 1267.5
+
+[node name="Label" parent="Start" index="0"]
+text = "Start"
+
+[node name="Quit" parent="." instance=ExtResource("5_al55n")]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 1346.0
+offset_right = 985.0
+offset_bottom = 1593.5
+
+[node name="Label" parent="Quit" index="0"]
+text = "Quit"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+
+[editable path="Start"]
+[editable path="Quit"]

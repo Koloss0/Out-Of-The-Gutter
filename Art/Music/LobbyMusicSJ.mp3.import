@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://b51rwcnlvpb47"
-path="res://.godot/imported/LobbyMusicSJ.mp3-ea15fcb0232d11b28e19e8f3f62ff315.mp3str"
+path="res://.godot/imported/LobbyMusicSJ.mp3-d06f83e803daa7b300cd8d5901f162fb.mp3str"
 
 [deps]
 
-source_file="res://Art/Music/LobbyMusicSJ.mp3"
-dest_files=["res://.godot/imported/LobbyMusicSJ.mp3-ea15fcb0232d11b28e19e8f3f62ff315.mp3str"]
+source_file="res://art/music/LobbyMusicSJ.mp3"
+dest_files=["res://.godot/imported/LobbyMusicSJ.mp3-d06f83e803daa7b300cd8d5901f162fb.mp3str"]
 
 [params]
 

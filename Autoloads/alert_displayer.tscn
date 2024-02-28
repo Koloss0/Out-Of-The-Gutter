@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dvt0uyaj5qqdb"]
 
-[ext_resource type="Script" path="res://Scripts/AlertDisplayer.gd" id="1_ej67q"]
+[ext_resource type="Script" path="res://scripts/alert_displayer.gd" id="1_ej67q"]
 
 [sub_resource type="Animation" id="Animation_6w6xa"]
 resource_name = "Alert"

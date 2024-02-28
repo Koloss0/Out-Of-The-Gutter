@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfqekb8g0mjqk"]
 
-[ext_resource type="Script" path="res://Scripts/PlatformGenerator.gd" id="1_cfum5"]
+[ext_resource type="Script" path="res://scripts/platform_generator.gd" id="1_cfum5"]
 
 [node name="GameArea" type="Node2D" node_paths=PackedStringArray("background_node", "platform_node")]
 script = ExtResource("1_cfum5")

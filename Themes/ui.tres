@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://b8amwfp2xjd5v"]
 
-[ext_resource type="FontFile" uid="uid://bbsihsv58dw5x" path="res://Art/public-pixel-font/PublicPixel-z84yD.ttf" id="1_xmf4o"]
+[ext_resource type="FontFile" uid="uid://bbsihsv58dw5x" path="res://art/public_pixel_font/PublicPixel-z84yD.ttf" id="1_xmf4o"]
 
 [resource]
 Label/font_sizes/font_size = 95
