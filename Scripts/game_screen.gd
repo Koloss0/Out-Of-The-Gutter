@@ -30,8 +30,8 @@ func _ready():
 		#world.spawn_player(my_player_info)
 		
 	# Only for testing
-	get_tree().call_group("platform", "set_collision", true)
-	get_tree().call_group("platform", "start_moving", true)
+	#get_tree().call_group("platform", "set_collision", true)
+	#get_tree().call_group("platform", "start_moving", true)
 
 func on_peer_connected(peer_id: int):
 	pass
