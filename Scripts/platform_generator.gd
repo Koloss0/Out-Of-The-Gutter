@@ -37,10 +37,10 @@ func generate_map(height : int, seed : int):
 	print(platform_node)
 	
 	#Create background to provided height
-	for i in range(height):
-		var wall : Node2D = SEWER_WALL.instantiate()
-		background_node.add_child(wall)
-		wall.position.y = -i * BACKGROUND_TILE_SIZE.y
+	#for i in range(height):
+		#var wall : Node2D = SEWER_WALL.instantiate()
+		#background_node.add_child(wall)
+		#wall.position.y = -i * BACKGROUND_TILE_SIZE.y
 	
 	var map_height : float = -height * BACKGROUND_TILE_SIZE.y
 	
@@ -58,7 +58,7 @@ func generate_map(height : int, seed : int):
 	var end = END.instantiate()
 	end.position = Vector2(0, map_height)
 	end.game_finished.connect(on_game_fin)
-	background_node.add_child(end)
+	#background_node.add_child(end)
 
 func on_game_fin(l: Array):
 	game_finished.emit(l)
