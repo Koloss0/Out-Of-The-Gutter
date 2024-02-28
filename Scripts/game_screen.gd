@@ -2,11 +2,11 @@ extends Node
 
 @onready var world: Node2D = $World
 @onready var start_button: TextureButton = $Control/StartButton
-@onready var counter: Control = $Control/Counter
+@onready var countdown: Control = $Control/Countdown
 @onready var platform_generator: Node2D = $World/PlatformGenerator
 @onready var leader_board: Control = $Control/LeaderBoard
 @onready var players = $World/Players
-@onready var camera = $World/Players/Camera2D
+@onready var camera_offset = $World/Players/CameraOffset
 
 const MAP_HEIGHT : int = 10
 
@@ -24,10 +24,14 @@ func _ready():
 	Net.start()
 	MusicPlayer.play_Lobby_music()
 	
-	$World/PlatformGenerator.game_finished.connect(on_game_finished)
+	platform_generator.game_finished.connect(on_game_finished)
 	#if is_multiplayer_authority():
 		#var my_player_info = Net.player_data[multiplayer.get_unique_id()]
 		#world.spawn_player(my_player_info)
+		
+	# Only for testing
+	#get_tree().call_group("platform", "set_collision", true)
+	#get_tree().call_group("platform", "start_moving", true)
 
 func on_peer_connected(peer_id: int):
 	pass
@@ -77,10 +81,10 @@ func on_server_disconnected():
 	pass
 
 func camera_start_tracking(player : Node2D):
-	camera.reparent(player)
+	camera_offset.reparent(player)
 	
 func camera_stop_tracking():
-	camera.reparent(players)
+	camera_offset.reparent(players)
 
 func _on_start_button_pressed() -> void:
 	if Net.is_multiplayer_authority():
@@ -89,6 +93,6 @@ func _on_start_button_pressed() -> void:
 
 @rpc("call_local")
 func start_countdown():
-	counter.play_countdown()
+	countdown.play_countdown()
 	get_tree().call_group("platform", "set_collision", true)
 	get_tree().call_group("platform", "start_moving", true)

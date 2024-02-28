@@ -32,7 +32,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6t3g4")
 sources/1 = SubResource("TileSetAtlasSource_oj8ca")
 
-[node name="GamePage" type="Node"]
+[node name="GameScreen" type="Node"]
 script = ExtResource("1_fbtns")
 
 [node name="World" type="Node2D" parent="."]
@@ -51,20 +51,24 @@ position = Vector2(540, 736)
 
 [node name="Players" type="Node2D" parent="World"]
 
-[node name="Camera2D" type="Camera2D" parent="World/Players"]
+[node name="CameraOffset" type="Node2D" parent="World/Players"]
+position = Vector2(0, -600)
+
+[node name="Camera2D" type="Camera2D" parent="World/Players/CameraOffset"]
 position = Vector2(0, 960)
 limit_left = 0
 limit_right = 1080
 limit_bottom = 1920
+position_smoothing_enabled = true
+drag_bottom_margin = 0.0
 
 [node name="Platforms" type="Node2D" parent="World"]
 position = Vector2(0, 1920)
 
-[node name="PlatformGenerator" type="Node2D" parent="World" node_paths=PackedStringArray("background_node", "platform_node")]
+[node name="PlatformGenerator" type="Node2D" parent="World" node_paths=PackedStringArray("platform_node")]
 script = ExtResource("5_tf215")
 platform_min_spacing = Vector2(200, 300)
 platform_max_spacing = Vector2(1080, 500)
-background_node = NodePath("")
 platform_node = NodePath("../Platforms")
 
 [node name="Control" type="Control" parent="."]
@@ -76,7 +80,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Counter" parent="Control" instance=ExtResource("6_6fcsw")]
+[node name="Countdown" parent="Control" instance=ExtResource("6_6fcsw")]
 visible = false
 mouse_filter = 2
 
