@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnfubdqfxefer"
-path="res://.godot/imported/sewer_bg.png-4ac95abd79c042c56c17a9fb4149c725.ctex"
+path="res://.godot/imported/sewer_bg.png-eb46aabd4be0fa4c73af0162863bfdfe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/sewer_bg.png"
-dest_files=["res://.godot/imported/sewer_bg.png-4ac95abd79c042c56c17a9fb4149c725.ctex"]
+source_file="res://art/sewer_bg.png"
+dest_files=["res://.godot/imported/sewer_bg.png-eb46aabd4be0fa4c73af0162863bfdfe.ctex"]
 
 [params]
 

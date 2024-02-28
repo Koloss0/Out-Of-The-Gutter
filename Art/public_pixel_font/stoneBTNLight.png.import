@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bslspu1mx13xh"
-path="res://.godot/imported/laederboard_sprite.png-b435c083a6b10e589deb4faffa2f6e84.ctex"
+uid="uid://gnqffxjsqkok"
+path="res://.godot/imported/stoneBTNLight.png-1ff5f13ab079d68f0872af03a5eaa71b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/laederboard_sprite.png"
-dest_files=["res://.godot/imported/laederboard_sprite.png-b435c083a6b10e589deb4faffa2f6e84.ctex"]
+source_file="res://art/public_pixel_font/stoneBTNLight.png"
+dest_files=["res://.godot/imported/stoneBTNLight.png-1ff5f13ab079d68f0872af03a5eaa71b.ctex"]
 
 [params]
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://d06y0af7layko"]
+
+[ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://themes/ui.tres" id="1_285mj"]
+[ext_resource type="Texture2D" uid="uid://tdgrnhhj3d4d" path="res://art/Illustration-B.png" id="2_ksjs0"]
+
+[node name="LabeledTextureButton" type="TextureButton"]
+texture_filter = 1
+custom_minimum_size = Vector2(600, 150)
+offset_right = 900.0
+offset_bottom = 247.5
+theme = ExtResource("1_285mj")
+texture_normal = ExtResource("2_ksjs0")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true

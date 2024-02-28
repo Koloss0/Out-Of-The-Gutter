@@ -11,17 +11,17 @@ config_version=5
 [application]
 
 config/name="Hackathon 2024"
-run/main_scene="res://Scenes/title_page.tscn"
+run/main_scene="res://scenes/screens/start_screen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SceneManager="*res://Autoloads/SceneManager.gd"
-SceneTransitioner="*res://Autoloads/scene_transitioner.tscn"
-Net="*res://Autoloads/Net.gd"
-AlertDisplayer="*res://Autoloads/alert_displayer.tscn"
-MusicPlayer="*res://Autoloads/music_player.tscn"
+SceneManager="*res://autoloads/scene_manager.gd"
+SceneTransitioner="*res://autoloads/scene_transitioner.tscn"
+Net="*res://autoloads/net.gd"
+AlertDisplayer="*res://autoloads/alert_displayer.tscn"
+MusicPlayer="*res://autoloads/music_player.tscn"
 
 [debug]
 
