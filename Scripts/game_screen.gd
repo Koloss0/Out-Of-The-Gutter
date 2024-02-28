@@ -8,7 +8,7 @@ extends Node
 @onready var players = $World/Players
 @onready var camera_offset = $World/Players/CameraOffset
 
-const MAP_HEIGHT : int = 10
+const MAP_AREA : Rect2i = Rect2i(0, -9, 1, 10)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,8 +30,8 @@ func _ready():
 		#world.spawn_player(my_player_info)
 		
 	# Only for testing
-	#get_tree().call_group("platform", "set_collision", true)
-	#get_tree().call_group("platform", "start_moving", true)
+	get_tree().call_group("platform", "set_collision", true)
+	get_tree().call_group("platform", "start_moving", true)
 
 func on_peer_connected(peer_id: int):
 	pass
@@ -65,7 +65,7 @@ func on_player_deregistered(peer_id: int):
 		start_button.set_disabled(true)
 
 func on_map_seed_received(seed: int):
-	platform_generator.generate_map(MAP_HEIGHT, seed)
+	platform_generator.generate_map(MAP_AREA, seed)
 	get_tree().call_group("platform", "set_collision", false)
 
 func on_peer_disconnected(peer_id: int):
