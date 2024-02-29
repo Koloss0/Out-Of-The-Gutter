@@ -67,7 +67,7 @@ func _input(event):
 				set_held_down(false)
 		if event is InputEventMouseMotion:
 			if held_down:
-				hold_delta = event.position - position
+				hold_delta = get_local_mouse_position()
 
 func set_held_down(new_held_down: bool):
 	held_down = new_held_down
