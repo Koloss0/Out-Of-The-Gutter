@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var jump_force := 1000.0
+@export var jump_force := 2000.0
 @export var friction := 0.95
 
 var peer_id: int
@@ -36,7 +36,7 @@ func _physics_process(delta):
 	if is_multiplayer_authority():
 		if on_ground():
 			if jump_velocity.length() > 0.0:
-				velocity += jump_velocity;
+				velocity = jump_velocity;
 				jump_velocity = Vector2.ZERO
 			velocity.x *= friction
 		else:
@@ -52,6 +52,7 @@ func update_pos(pos: Vector2):
 
 func _process(delta):
 	if is_multiplayer_authority() and held_down:
+		hold_delta = get_local_mouse_position()
 		$Arrow.rotation = hold_delta.angle()
 
 func on_touch_box_input(viewport: Node, event: InputEvent, shape_idx: int):
@@ -65,9 +66,6 @@ func _input(event):
 				if held_down:
 					jump_velocity = hold_delta.normalized() * jump_force
 				set_held_down(false)
-		if event is InputEventMouseMotion:
-			if held_down:
-				hold_delta = get_local_mouse_position()
 
 func set_held_down(new_held_down: bool):
 	held_down = new_held_down

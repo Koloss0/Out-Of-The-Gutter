@@ -1,12 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbgwc3rium27x"]
+[gd_scene load_steps=4 format=3 uid="uid://dbgwc3rium27x"]
 
 [ext_resource type="Script" path="res://scripts/moving_platform.gd" id="1_b5p1q"]
 [ext_resource type="Texture2D" uid="uid://v3t1aswmd872" path="res://art/shiny_pipe.png" id="2_oiplf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_852gm"]
 size = Vector2(42.25, 6.5)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ynmq7"]
 
 [node name="moving" type="AnimatableBody2D" groups=["platform"]]
 process_mode = 3
@@ -29,8 +27,3 @@ region_rect = Rect2(0, 0, 32, 4)
 position = Vector2(0.875001, -3.41667)
 shape = SubResource("RectangleShape2D_852gm")
 one_way_collision = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ynmq7")
-}

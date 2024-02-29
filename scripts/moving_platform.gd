@@ -1,7 +1,7 @@
 
 extends AnimatableBody2D
 
-const SPEED = 13.00
+const SPEED = 480.00
 var speed_multiplier = 1
 
 var left_bound = 240
@@ -13,10 +13,9 @@ var moving_right = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _ready():
-	set_process(false)
+	set_physics_process(false)
 
-func _process(delta):
-	
+func _physics_process(delta):
 	if(position.x > right_bound):
 		moving_right = false
 	
@@ -24,16 +23,15 @@ func _process(delta):
 		moving_right = true
 	
 	if(moving_right): 
-		translate(Vector2(SPEED*speed_multiplier, 0))
+		position.x += delta*SPEED*speed_multiplier
 	else:
-		translate((Vector2(-SPEED*speed_multiplier, 0)))
-		
+		position.x -= delta*SPEED*speed_multiplier
 
 
 func set_collision(choice : bool):
 	$CollisionShape2D.disabled = not choice
 
 func start_moving(choice : bool):
-	set_process(choice)
+	set_physics_process(choice)
 	
 

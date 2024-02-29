@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/platform_generator.gd" id="1_cfum5"]
 
-[node name="GameArea" type="Node2D" node_paths=PackedStringArray("background_node", "platform_node")]
+[node name="GameArea" type="Node2D" node_paths=PackedStringArray("platform_node")]
 script = ExtResource("1_cfum5")
 platform_initial_height = 1800.0
-background_node = NodePath("Background")
 platform_node = NodePath("Platforms")
 
 [node name="Background" type="Node2D" parent="."]
