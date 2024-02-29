@@ -70,6 +70,7 @@ animation = &"jump"
 shape = SubResource("RectangleShape2D_jbuoc")
 
 [node name="Arrow" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 scale = Vector2(0.217309, 0.212891)
 texture = ExtResource("3_vfvn3")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bixaqsafcn71m"]
+
+[ext_resource type="PackedScene" uid="uid://bgrr60hlm211y" path="res://scenes/entities/player.tscn" id="1_5m337"]
+[ext_resource type="PackedScene" uid="uid://cxonf107w3okg" path="res://scenes/environment/platforms/static_platform.tscn" id="1_i2hfg"]
+[ext_resource type="PackedScene" uid="uid://dbgwc3rium27x" path="res://scenes/environment/platforms/moving_platform.tscn" id="2_4k25d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06sfx"]
+size = Vector2(1112, 72)
+
+[node name="Player Tests" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(541, 1920)
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(7, -20)
+shape = SubResource("RectangleShape2D_06sfx")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -549.0
+offset_top = -56.0
+offset_right = 563.0
+offset_bottom = 20.0
+
+[node name="StationaryPlatform" parent="." instance=ExtResource("1_i2hfg")]
+position = Vector2(190, 1539)
+
+[node name="StationaryPlatform2" parent="." instance=ExtResource("1_i2hfg")]
+position = Vector2(880, 1369)
+
+[node name="StationaryPlatform3" parent="." instance=ExtResource("1_i2hfg")]
+position = Vector2(528, 988)
+
+[node name="moving" parent="." instance=ExtResource("2_4k25d")]
+position = Vector2(544, 625)
+
+[node name="Player" parent="." instance=ExtResource("1_5m337")]

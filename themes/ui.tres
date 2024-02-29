@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b8amwfp2xjd5v"]
+
+[ext_resource type="FontFile" uid="uid://bbsihsv58dw5x" path="res://art/public_pixel_font/PublicPixel-z84yD.ttf" id="1_xmf4o"]
+
+[resource]
+Label/font_sizes/font_size = 95
+Label/fonts/font = ExtResource("1_xmf4o")
+LineEdit/constants/minimum_character_width = 14
+LineEdit/font_sizes/font_size = 64
+LineEdit/fonts/font = ExtResource("1_xmf4o")
