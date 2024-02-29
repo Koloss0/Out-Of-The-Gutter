@@ -46,7 +46,3 @@ enabled=PackedStringArray("res://addons/multirun/plugin.cfg")
 
 2d_physics/layer_1="Ground"
 2d_physics/layer_2="Player"
-
-[physics]
-
-2d/default_gravity=2940.0
