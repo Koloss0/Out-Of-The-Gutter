@@ -1,18 +1,22 @@
 extends Node
 
+@onready var game : AudioStreamPlayer = $Game
+@onready var main_menu : AudioStreamPlayer = $MainMenu
+@onready var lobby : AudioStreamPlayer = $Lobby
+
 func play_main_menu_music():
 	stop_music()
-	$MainMenu.play()
+	main_menu.play()
 
 func play_Lobby_music():
 	stop_music()
-	$Lobby.play()
+	lobby.play()
 
 func play_in_Game_music():
 	stop_music()
-	$Game.play()
-	
+	game.play()
+
 func stop_music():
-	$Game.stop()
-	$Lobby.stop()
-	$MainMenu.stop()
+	game.stop()
+	lobby.stop()
+	main_menu.stop()

@@ -34,7 +34,7 @@ func generate_map(playable_area : Rect2i, seed : int):
 	boundry.size += Vector2i(2, 2)
 	
 	#Create background to provided height
-	var coord : Vector2i = playable_area.position
+	var coord : Vector2i = boundry.position
 	var update_direction : Vector2i = Vector2i.RIGHT
 	while boundry.has_point(coord):
 		if playable_area.has_point(coord):

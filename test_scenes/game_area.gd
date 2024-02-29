@@ -1,8 +1,8 @@
 extends Node2D
 
-const SEWER_WALL = preload("res://Scenes/sewer_wall.tscn")
-const MOVING_PLATFORM = preload("res://scenes/platforms/moving_platform.tscn")
-const STATIC_PLATFORM = preload("res://scenes/platforms/static_platform.tscn")
+const SEWER_WALL = preload("res://scenes/environment/sewer_wall.tscn")
+const MOVING_PLATFORM = preload("res://scenes/environment/platforms/moving_platform.tscn")
+const STATIC_PLATFORM = preload("res://scenes/environment/platforms/static_platform.tscn")
 const BACKGROUND_TILE_SIZE : Vector2i = Vector2i(1080, 1920)
 
 @export_group("Platforms", "platform")

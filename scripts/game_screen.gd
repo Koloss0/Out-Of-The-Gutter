@@ -94,7 +94,7 @@ func _on_start_button_pressed() -> void:
 @rpc("call_local")
 func start_countdown():
 	MusicPlayer.stop_music()
-	await countdown.play_countdown()
 	MusicPlayer.play_in_Game_music()
+	await countdown.play_countdown()
 	get_tree().call_group("platform", "set_collision", true)
 	get_tree().call_group("platform", "start_moving", true)
