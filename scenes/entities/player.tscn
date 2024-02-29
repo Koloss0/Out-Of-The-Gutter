@@ -58,6 +58,8 @@ radius = 395.032
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
+floor_constant_speed = true
+platform_on_leave = 2
 script = ExtResource("1_won12")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
@@ -81,11 +83,11 @@ offset = Vector2(600, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TouchBox"]
 shape = SubResource("CircleShape2D_eo8gd")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(-59, 22)
 
-[node name="RayCast2D2" type="RayCast2D" parent="."]
+[node name="RayCastCenter" type="RayCast2D" parent="."]
 position = Vector2(0, 21)
 
-[node name="RayCast2D3" type="RayCast2D" parent="."]
+[node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(60, 21)
