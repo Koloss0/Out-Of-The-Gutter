@@ -2,6 +2,15 @@ extends RigidBody2D
 
 @export var jump_force := 1800.0
 
+@onready var player_sprite = $Sprite2D
+@onready var arrow_sprite = $Arrow
+@onready var touch_box = $TouchBox
+
+@onready var ray_cast_left = $RayCastLeft
+@onready var ray_cast_center = $RayCastCenter
+@onready var ray_cast_right = $RayCastRight
+
+
 var peer_id: int
 
 var held_down := false : set = set_held_down
@@ -13,24 +22,24 @@ var hold_delta := Vector2.ZERO
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	$TouchBox.input_event.connect(on_touch_box_input)
+	touch_box.input_event.connect(on_touch_box_input)
 
 # called directly by player spawner
 func init(info: PlayerInfo):
 	set_multiplayer_authority(info.peer_id)
 	peer_id = info.peer_id
-	$Sprite2D.modulate = info.color
+	player_sprite.modulate = info.color
 
 
 func _physics_process(delta):
 	if not held_down:
 		if on_ground():
-			$Sprite2D.play("idle")
+			player_sprite.play("idle")
 		else:
-			$Sprite2D.play("jump")
+			player_sprite.play("jump")
 	
 	if held_down and on_ground():
-		$Sprite2D.play("squish")
+		player_sprite.play("squish")
 		
 	if is_multiplayer_authority():
 		if on_ground():
@@ -47,7 +56,7 @@ func update_pos(pos: Vector2):
 func _process(delta):
 	if is_multiplayer_authority() and held_down:
 		hold_delta = get_local_mouse_position()
-		$Arrow.rotation = hold_delta.angle()
+		arrow_sprite.rotation = hold_delta.angle()
 
 func on_touch_box_input(viewport: Node, event: InputEvent, shape_idx: int):
 	if is_multiplayer_authority() and event is InputEventMouseButton:
@@ -63,17 +72,17 @@ func _input(event):
 
 func set_held_down(new_held_down: bool):
 	held_down = new_held_down
-	$Arrow.visible = held_down
+	arrow_sprite.visible = held_down
 	
 	if not held_down:
-		$Sprite2D.play("idle")
+		player_sprite.play("idle")
 
 @rpc
 func update_held_down(new_held_down: bool):
 	held_down = new_held_down
 	
 	if not held_down:
-		$Sprite2D.play("idle")
+		player_sprite.play("idle")
 
 func on_ground() -> bool:
-	return $RayCast2D.is_colliding() or $RayCast2D2.is_colliding() or $RayCast2D3.is_colliding()
+	return ray_cast_left.is_colliding() or ray_cast_center.is_colliding() or ray_cast_right.is_colliding()
