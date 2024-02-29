@@ -3,6 +3,9 @@ extends Node
 
 const MAX_PLAYERS = 4
 
+const DEFAULT_PORT : int = 6005
+const DEFAULT_ADDRESS : String = "localhost"
+
 var player_data: Dictionary
 var num_players: int = 0
 

@@ -1,5 +1,11 @@
 extends Control
 
+@onready var port : LineEdit = $Port
+
+func _ready():
+	if OS.is_debug_build():
+		port.set_text(str(Net.DEFAULT_PORT))
+
 func on_connect_pressed():
 	Net.server_port = $Port.text
 	Net.is_host = true

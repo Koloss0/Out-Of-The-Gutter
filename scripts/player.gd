@@ -1,6 +1,7 @@
-extends RigidBody2D
+extends CharacterBody2D
 
-@export var jump_force := 1800.0
+@export var jump_force := 1000.0
+@export var friction := 0.95
 
 @onready var player_sprite = $Sprite2D
 @onready var arrow_sprite = $Arrow
@@ -44,8 +45,13 @@ func _physics_process(delta):
 	if is_multiplayer_authority():
 		if on_ground():
 			if jump_velocity.length() > 0.0:
-				apply_central_impulse(jump_velocity)
+				velocity += jump_velocity;
 				jump_velocity = Vector2.ZERO
+			velocity.x *= friction
+		else:
+			velocity.y += gravity * delta
+
+		move_and_slide()
 		
 		update_pos.rpc(position)
 
