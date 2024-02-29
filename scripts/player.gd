@@ -1,7 +1,6 @@
-extends CharacterBody2D
+extends RigidBody2D
 
-@export var jump_force := 2000.0
-@export var friction := 0.95
+@export var jump_force := 1800.0
 
 var peer_id: int
 
@@ -36,13 +35,8 @@ func _physics_process(delta):
 	if is_multiplayer_authority():
 		if on_ground():
 			if jump_velocity.length() > 0.0:
-				velocity = jump_velocity;
+				apply_central_impulse(jump_velocity)
 				jump_velocity = Vector2.ZERO
-			velocity.x *= friction
-		else:
-			velocity.y += gravity * delta
-
-		move_and_slide()
 		
 		update_pos.rpc(position)
 
