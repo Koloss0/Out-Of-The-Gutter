@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgrr60hlm211y"]
+[gd_scene load_steps=12 format=3 uid="uid://bgrr60hlm211y"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_won12"]
 [ext_resource type="Texture2D" uid="uid://bffpw037fjn2f" path="res://art/slimes.png" id="2_txeoe"]
 [ext_resource type="Texture2D" uid="uid://vtv7hux7gof2" path="res://art/right.png" id="3_vfvn3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bsfk1"]
+friction = 0.95
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wobwv"]
 atlas = ExtResource("2_txeoe")
@@ -58,8 +61,13 @@ radius = 395.032
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
+
 floor_constant_speed = true
 platform_on_leave = 2
+
+physics_material_override = SubResource("PhysicsMaterial_bsfk1")
+lock_rotation = true
+
 script = ExtResource("1_won12")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
