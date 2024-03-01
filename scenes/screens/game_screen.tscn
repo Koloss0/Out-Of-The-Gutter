@@ -70,6 +70,7 @@ position = Vector2(0, 1920)
 script = ExtResource("5_tf215")
 platform_min_spacing = Vector2(200, 300)
 platform_max_spacing = Vector2(1080, 500)
+platform_motion_chance = 0.35
 tile_map = NodePath("../TileMap")
 platform_node = NodePath("../Platforms")
 

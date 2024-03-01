@@ -4,13 +4,9 @@ extends AnimatableBody2D
 const SPEED = 480.00
 var speed_multiplier = 1
 
-var left_bound = 240
-var motion_distance : float
-
 @onready var movement_path : Path2D = $MovementPath
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var path_follow: PathFollow2D = $MovementPath/PathFollow
-@onready var right_bound  = get_viewport_rect().size.x - 240
 # Called when the node enters the scene tree for the first time.
 
 var moving_right = false
@@ -21,8 +17,10 @@ func _ready():
 
 func _physics_process(delta):
 	path_follow.progress += delta * SPEED * speed_multiplier
-	position = path_follow.get_position()
+	update_position()
 
+func update_position():
+	position = path_follow.get_position()
 
 func disable_collision(disabled : bool = true):
 	collision_shape.disabled = disabled
@@ -41,8 +39,7 @@ func set_movement_path(start : Vector2, end : Vector2, initial_pos : Vector2 = s
 		new_path.add_point(initial_pos)
 	
 	movement_path.set_curve(new_path)
-	
-	motion_distance = start.distance_to(end) * 2
+	update_position()
 
 
 func get_collision_rect() -> Rect2:
