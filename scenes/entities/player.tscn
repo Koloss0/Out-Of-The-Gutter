@@ -61,6 +61,7 @@ collision_layer = 2
 floor_constant_speed = true
 platform_on_leave = 2
 script = ExtResource("1_won12")
+jump_force = null
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

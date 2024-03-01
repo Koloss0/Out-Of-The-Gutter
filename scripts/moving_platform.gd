@@ -5,7 +5,11 @@ const SPEED = 480.00
 var speed_multiplier = 1
 
 var left_bound = 240
+var motion_distance : float
 
+@onready var movement_path : Path2D = $MovementPath
+@onready var collision_shape: CollisionShape2D = $CollisionShape
+@onready var path_follow: PathFollow2D = $MovementPath/PathFollow
 @onready var right_bound  = get_viewport_rect().size.x - 240
 # Called when the node enters the scene tree for the first time.
 
@@ -16,22 +20,30 @@ func _ready():
 	set_physics_process(false)
 
 func _physics_process(delta):
-	if(position.x > right_bound):
-		moving_right = false
-	
-	if(position.x < left_bound):
-		moving_right = true
-	
-	if(moving_right): 
-		position.x += delta*SPEED*speed_multiplier
-	else:
-		position.x -= delta*SPEED*speed_multiplier
+	path_follow.progress += delta * SPEED * speed_multiplier
+	position = path_follow.get_position()
 
 
-func set_collision(choice : bool):
-	$CollisionShape2D.disabled = not choice
+func disable_collision(disabled : bool = true):
+	collision_shape.disabled = disabled
 
-func start_moving(choice : bool):
-	set_physics_process(choice)
+func enable_motion(enabled : bool = true):
+	set_physics_process(enabled)
 	
 
+func set_movement_path(start : Vector2, end : Vector2, initial_pos : Vector2 = start):
+	var new_path : Curve2D = Curve2D.new()
+	
+	new_path.add_point(initial_pos)
+	new_path.add_point(end)
+	new_path.add_point(start)
+	if initial_pos != start:
+		new_path.add_point(initial_pos)
+	
+	movement_path.set_curve(new_path)
+	
+	motion_distance = start.distance_to(end) * 2
+
+
+func get_collision_rect() -> Rect2:
+	return collision_shape.shape.get_rect()

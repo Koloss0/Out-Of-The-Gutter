@@ -20,6 +20,7 @@ signal game_finished(leaderboard: Array)
 
 
 var player_spawns : Array[Vector2]
+var screen_width = ProjectSettings.get_setting("display/window/size/viewport_width")
 
 
 func _ready() -> void:
@@ -76,4 +77,6 @@ func instanciate_moving_platform(pos : Vector2, speed_scale : float):
 	var instance = MOVING_PLATFORM.instantiate()
 	platform_node.add_child(instance)
 	instance.speed_multiplier = speed_scale
-	instance.position = pos
+	var height = pos.y
+	var instance_half_width = instance.get_collision_rect().size.x / 2.0
+	instance.set_movement_path(Vector2(screen_width - instance_half_width, height), Vector2(instance_half_width, height), pos)

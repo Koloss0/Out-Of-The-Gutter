@@ -1,29 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbgwc3rium27x"]
+[gd_scene load_steps=5 format=3 uid="uid://dbgwc3rium27x"]
 
 [ext_resource type="Script" path="res://scripts/moving_platform.gd" id="1_b5p1q"]
 [ext_resource type="Texture2D" uid="uid://v3t1aswmd872" path="res://art/shiny_pipe.png" id="2_oiplf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_852gm"]
-size = Vector2(42.25, 6.5)
+size = Vector2(507, 78)
+
+[sub_resource type="Curve2D" id="Curve2D_qgry8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1080, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
 
 [node name="moving" type="AnimatableBody2D" groups=["platform"]]
 process_mode = 3
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(0, -6)
-scale = Vector2(12, 12)
 script = ExtResource("1_b5p1q")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0.791666, -3.425)
-scale = Vector2(1.32552, 3.1625)
+scale = Vector2(15.912, 37.944)
 texture = ExtResource("2_oiplf")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 4)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0.875001, -3.41667)
 shape = SubResource("RectangleShape2D_852gm")
 one_way_collision = true
+
+[node name="MovementPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_qgry8")
+
+[node name="PathFollow" type="PathFollow2D" parent="MovementPath"]
+rotates = false

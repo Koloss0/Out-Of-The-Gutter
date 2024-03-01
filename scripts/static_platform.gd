@@ -1,5 +1,6 @@
 extends StaticBody2D
 
+@onready var collision_shape: CollisionShape2D = $CollisionShape
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,5 +12,8 @@ func _process(delta):
 	pass
 	
 
-func set_collision(choice : bool):
-	$CollisionShape2D.disabled = not choice
+func disable_collision(disabled : bool = true):
+	collision_shape.disabled = disabled
+
+func get_collision_rect() -> Rect2:
+	return collision_shape.shape.get_rect()
