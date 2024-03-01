@@ -2,7 +2,7 @@ extends Control
 
 @onready var port : LineEdit = $Port
 
-func _ready():
+func _ready() -> void:
 	if OS.is_debug_build():
 		port.set_text(str(Net.DEFAULT_PORT))
 

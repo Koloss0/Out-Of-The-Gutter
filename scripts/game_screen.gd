@@ -66,7 +66,7 @@ func on_player_deregistered(peer_id: int):
 
 func on_map_seed_received(seed: int):
 	platform_generator.generate_map(MAP_AREA, seed)
-	get_tree().call_group("platform", "set_collision", false)
+	get_tree().call_group("platform", "disable_collision", true)
 
 func on_peer_disconnected(peer_id: int):
 	pass
@@ -96,5 +96,5 @@ func start_countdown():
 	MusicPlayer.stop_music()
 	MusicPlayer.play_in_Game_music()
 	await countdown.play_countdown()
-	get_tree().call_group("platform", "set_collision", true)
-	get_tree().call_group("platform", "start_moving", true)
+	get_tree().call_group("platform", "disable_collision", false)
+	get_tree().call_group("platform", "enable_motion", true)
