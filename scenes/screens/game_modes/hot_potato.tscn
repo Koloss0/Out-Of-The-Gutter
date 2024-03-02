@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bclrnyr70xi6s"]
+
+[ext_resource type="Script" path="res://scripts/player_spawner.gd" id="1_giwyl"]
+[ext_resource type="PackedScene" uid="uid://dwo7wk4hco7er" path="res://scenes/components/playable_area.tscn" id="1_oxxn2"]
+[ext_resource type="PackedScene" uid="uid://cqiaq6id1ysvd" path="res://scenes/components/platform_generator.tscn" id="3_pdwfq"]
+
+[node name="HotPotato" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="TileMap" parent="World" instance=ExtResource("1_oxxn2")]
+
+[node name="Players" type="Node2D" parent="World"]
+
+[node name="Platforms" type="Node2D" parent="World"]
+
+[node name="PlayerSpawner" type="Node" parent="World" node_paths=PackedStringArray("spawn_node")]
+script = ExtResource("1_giwyl")
+spawn_node = NodePath("../Players")
+
+[node name="PlatformGenerator" parent="World" node_paths=PackedStringArray("platform_node") instance=ExtResource("3_pdwfq")]
+platform_node = NodePath("../Platforms")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Overlays" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

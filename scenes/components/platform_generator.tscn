@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqiaq6id1ysvd"]
+
+[ext_resource type="Script" path="res://scripts/platform_generator.gd" id="1_3axfy"]
+
+[node name="PlatformGenerator" type="Node"]
+script = ExtResource("1_3axfy")
+platform_min_spacing = Vector2(200, 300)
+platform_max_spacing = Vector2(1080, 500)
+platform_motion_chance = 0.35

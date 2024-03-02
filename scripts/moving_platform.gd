@@ -17,17 +17,16 @@ func _ready():
 
 func _physics_process(delta):
 	path_follow.progress += delta * SPEED * speed_multiplier
-	update_position()
+	position = path_follow.get_position()
 
 func update_position():
-	position = path_follow.get_position()
+	_physics_process(0)
 
 func disable_collision(disabled : bool = true):
 	collision_shape.disabled = disabled
 
 func enable_motion(enabled : bool = true):
 	set_physics_process(enabled)
-	
 
 func set_movement_path(start : Vector2, end : Vector2, initial_pos : Vector2 = start):
 	var new_path : Curve2D = Curve2D.new()
