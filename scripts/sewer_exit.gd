@@ -1,11 +1,11 @@
 extends Area2D
 
-var scoreboard: Array
+var scoreboard: Array = []
 var time: float = 0.0
 var started: bool = false
 var count: int = 0
 
-signal game_finished(scoreboard)
+signal game_finished(scoreboard : Array)
 
 func _on_body_entered(body):
 	if is_multiplayer_authority() and body.is_in_group("Player"):

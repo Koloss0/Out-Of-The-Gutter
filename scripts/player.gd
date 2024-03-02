@@ -38,7 +38,7 @@ func init(info: PlayerInfo):
 func _physics_process(delta):
 	if is_multiplayer_authority():
 		var new_on_ground : bool = check_on_ground()
-	
+		
 		if new_on_ground != on_ground:
 			set_on_ground.rpc(new_on_ground)
 		

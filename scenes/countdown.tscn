@@ -71,6 +71,23 @@ tracks/4/keys = {
 "method": &"hide"
 }]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"started"],
+"method": &"emit_signal"
+}, {
+"args": [&"finished"],
+"method": &"emit_signal"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_hg730"]
 length = 0.001
@@ -138,6 +155,7 @@ script = ExtResource("1_6bvma")
 
 [node name="1" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 257.0
 offset_top = 338.0
 offset_right = 847.0
@@ -150,6 +168,7 @@ uppercase = true
 
 [node name="2" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 257.0
 offset_top = 338.0
 offset_right = 847.0
@@ -161,6 +180,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="3" type="Label" parent="."]
+layout_mode = 0
 offset_left = 257.0
 offset_top = 338.0
 offset_right = 847.0
@@ -173,6 +193,7 @@ uppercase = true
 
 [node name="Go" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 257.0
 offset_top = 338.0
 offset_right = 847.0

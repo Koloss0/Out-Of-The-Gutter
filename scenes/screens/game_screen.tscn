@@ -1,80 +1,41 @@
-[gd_scene load_steps=13 format=3 uid="uid://df4t3gsc8yiwa"]
+[gd_scene load_steps=9 format=3 uid="uid://df4t3gsc8yiwa"]
 
 [ext_resource type="Script" path="res://scripts/game_screen.gd" id="1_fbtns"]
-[ext_resource type="Script" path="res://scripts/world.gd" id="2_tgof3"]
-[ext_resource type="Texture2D" uid="uid://be4xldphturmu" path="res://art/sewer_wall.png" id="3_vxx5e"]
-[ext_resource type="Texture2D" uid="uid://bt8niwuodfi0e" path="res://art/solid_black.png" id="4_ysx6j"]
-[ext_resource type="Script" path="res://scripts/tile_map.gd" id="5_iikik"]
-[ext_resource type="Script" path="res://scripts/platform_generator.gd" id="5_tf215"]
+[ext_resource type="PackedScene" uid="uid://dwo7wk4hco7er" path="res://scenes/components/playable_area.tscn" id="3_lr83o"]
+[ext_resource type="PackedScene" uid="uid://cqiaq6id1ysvd" path="res://scenes/components/platform_generator.tscn" id="3_pu26u"]
+[ext_resource type="PackedScene" uid="uid://ca2lwhpbodphy" path="res://scenes/components/player_spawner.tscn" id="4_j4vos"]
+[ext_resource type="PackedScene" uid="uid://j0723m1rkhhl" path="res://scenes/components/tracking_camera.tscn" id="5_tsipc"]
 [ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://scenes/countdown.tscn" id="6_6fcsw"]
 [ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://scenes/ui/labeled_texture_button.tscn" id="7_lcato"]
 [ext_resource type="PackedScene" uid="uid://cwtn7efq8he32" path="res://scenes/ui/leaderboard.tscn" id="8_kw4vr"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6t3g4"]
-resource_name = "background"
-texture = ExtResource("3_vxx5e")
-texture_region_size = Vector2i(72, 128)
-0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oj8ca"]
-resource_name = "border"
-texture = ExtResource("4_ysx6j")
-texture_region_size = Vector2i(72, 128)
-0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-36, -64, 36, -64, 36, 64, -36, 64)
-
-[sub_resource type="TileSet" id="TileSet_ql3uw"]
-tile_size = Vector2i(72, 128)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_6t3g4")
-sources/1 = SubResource("TileSetAtlasSource_oj8ca")
 
 [node name="GameScreen" type="Node"]
 script = ExtResource("1_fbtns")
 
 [node name="World" type="Node2D" parent="."]
-script = ExtResource("2_tgof3")
 
-[node name="TileMap" type="TileMap" parent="World"]
-scale = Vector2(15, 15)
-tile_set = SubResource("TileSet_ql3uw")
-rendering_quadrant_size = 4
-collision_visibility_mode = 1
-format = 2
-script = ExtResource("5_iikik")
+[node name="PlayableArea" parent="World" instance=ExtResource("3_lr83o")]
 
 [node name="Spawnpoint" type="Marker2D" parent="World"]
 position = Vector2(540, 736)
 
 [node name="Players" type="Node2D" parent="World"]
 
-[node name="CameraOffset" type="Node2D" parent="World/Players"]
-position = Vector2(0, -600)
-
-[node name="Camera2D" type="Camera2D" parent="World/Players/CameraOffset"]
-position = Vector2(0, 960)
-limit_left = 0
-limit_right = 1080
-limit_bottom = 1920
-position_smoothing_enabled = true
-drag_bottom_margin = 0.0
-
 [node name="Platforms" type="Node2D" parent="World"]
 position = Vector2(0, 1920)
 
-[node name="PlatformGenerator" type="Node2D" parent="World" node_paths=PackedStringArray("tile_map", "platform_node")]
-script = ExtResource("5_tf215")
-platform_min_spacing = Vector2(200, 300)
-platform_max_spacing = Vector2(1080, 500)
-platform_motion_chance = 0.35
-tile_map = NodePath("../TileMap")
+[node name="PlatformGenerator" parent="World" node_paths=PackedStringArray("platform_node") instance=ExtResource("3_pu26u")]
 platform_node = NodePath("../Platforms")
 
-[node name="Control" type="Control" parent="."]
+[node name="PlayerSpawner" parent="World" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_j4vos")]
+spawn_node = NodePath("../Players")
+
+[node name="TrackingCamera" parent="World" node_paths=PackedStringArray("default_target") instance=ExtResource("5_tsipc")]
+default_target = NodePath("../Players")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Overlays" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,11 +44,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Countdown" parent="Control" instance=ExtResource("6_6fcsw")]
+[node name="Countdown" parent="CanvasLayer/Overlays" instance=ExtResource("6_6fcsw")]
 visible = false
 mouse_filter = 2
 
-[node name="StartButton" parent="Control" instance=ExtResource("7_lcato")]
+[node name="StartButton" parent="CanvasLayer/Overlays" instance=ExtResource("7_lcato")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -102,12 +63,13 @@ offset_bottom = 124.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="Control/StartButton" index="0"]
+[node name="Label" parent="CanvasLayer/Overlays/StartButton" index="0"]
 text = "Start"
 
-[node name="LeaderBoard" parent="Control" instance=ExtResource("8_kw4vr")]
+[node name="LeaderBoard" parent="CanvasLayer/Overlays" instance=ExtResource("8_kw4vr")]
 visible = false
 
-[connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="finished" from="CanvasLayer/Overlays/Countdown" to="." method="_on_countdown_finished"]
+[connection signal="pressed" from="CanvasLayer/Overlays/StartButton" to="." method="_on_start_button_pressed"]
 
-[editable path="Control/StartButton"]
+[editable path="CanvasLayer/Overlays/StartButton"]
