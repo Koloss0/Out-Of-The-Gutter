@@ -29,22 +29,23 @@ limit_bottom = 1920
 position_smoothing_enabled = true
 drag_bottom_margin = 0.0
 
-[node name="SpawnpointSupplier" parent="World" index="2" instance=ExtResource("4_iumc5")]
+[node name="Platforms" type="Node2D" parent="World" index="2"]
+position = Vector2(0, 1920)
+
+[node name="PlayerSpawner" parent="World" index="3" node_paths=PackedStringArray("spawnpoint_supplier", "spawn_node") instance=ExtResource("4_cnanw")]
+spawnpoint_supplier = NodePath("SpawnpointSupplier")
+spawn_node = NodePath("../Players")
+
+[node name="SpawnpointSupplier" parent="World/PlayerSpawner" index="0" instance=ExtResource("4_iumc5")]
 sequential = true
 
-[node name="Spawnpoint" type="Marker2D" parent="World/SpawnpointSupplier" index="0"]
+[node name="Spawnpoint" type="Marker2D" parent="World/PlayerSpawner/SpawnpointSupplier" index="0"]
 position = Vector2(540, 736)
-
-[node name="Platforms" type="Node2D" parent="World" index="3"]
-position = Vector2(0, 1920)
 
 [node name="PlatformGenerator" parent="World" index="4" node_paths=PackedStringArray("platform_node") instance=ExtResource("3_qtgcp")]
 platform_node = NodePath("../Platforms")
 
-[node name="PlayerSpawner" parent="World" index="5" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_cnanw")]
-spawn_node = NodePath("../Players")
-
-[node name="TrackingCamera" parent="World" index="6" node_paths=PackedStringArray("camera_pivot", "default_target") instance=ExtResource("5_m02hc")]
+[node name="TrackingCamera" parent="World" index="5" node_paths=PackedStringArray("camera_pivot", "default_target") instance=ExtResource("5_m02hc")]
 camera_pivot = NodePath("../Players/CameraOffset")
 default_target = NodePath("../Players")
 

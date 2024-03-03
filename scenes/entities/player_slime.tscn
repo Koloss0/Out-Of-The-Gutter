@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1m7csh8qaq31"]
+
+[ext_resource type="PackedScene" uid="uid://bgrr60hlm211y" path="res://scenes/entities/slime_entity.tscn" id="1_x2yoh"]
+[ext_resource type="Script" path="res://scripts/player_slime.gd" id="2_8v3cq"]
+[ext_resource type="Texture2D" uid="uid://vtv7hux7gof2" path="res://art/right.png" id="3_cqpnb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdsys"]
+radius = 395.032
+
+[node name="PlayerSlime" instance=ExtResource("1_x2yoh")]
+script = ExtResource("2_8v3cq")
+jump_force = null
+friction = null
+
+[node name="TouchBox" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchBox" index="0"]
+shape = SubResource("CircleShape2D_fdsys")
+
+[node name="Arrow" type="Sprite2D" parent="." index="3"]
+visible = false
+texture_filter = 1
+scale = Vector2(0.217309, 0.212891)
+texture = ExtResource("3_cqpnb")
+offset = Vector2(600, 0)

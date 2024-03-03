@@ -1,4 +1,5 @@
 @tool
+class_name SpawnpointSupplier
 extends Node
 
 @export var sequential : bool
@@ -71,5 +72,12 @@ func _on_child_order_changed() -> void:
 func _on_child_entered_tree(node: Node) -> void:
 	if is_marker(node):
 		add_marker(node.get_index(), node)
+		if Engine.is_editor_hint():
+			update_configuration_warnings()
+
+
+func _on_child_exiting_tree(node: Node) -> void:
+	if markers.has(node):
+		markers.erase(node)
 		if Engine.is_editor_hint():
 			update_configuration_warnings()
