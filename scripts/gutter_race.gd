@@ -10,7 +10,6 @@ extends GameScreen
 @onready var playable_area: TileMap = $World/PlayableArea
 @onready var tracking_camera: Node = $World/TrackingCamera
 @onready var camera: Camera2D = $World/Players/CameraOffset/Camera2D
-@onready var spawnpoint_supplier: Node = $World/SpawnpointSupplier
 
 const MAP_HEIGHT : int = 2
 const MAP_AREA : Rect2i = Rect2i(0, -(MAP_HEIGHT - 1), 1, MAP_HEIGHT)
@@ -38,7 +37,7 @@ func show_leaderboard(l: Array):
 
 func on_player_registered(peer_id: int):
 	var player_info = Net.player_data[peer_id]
-	var player_character = player_spawner.spawn_player(player_info, spawnpoint_supplier.next())
+	var player_character = player_spawner.spawn_player(player_info)
 	
 	# if player is controlled by local machine
 	if peer_id == multiplayer.get_unique_id():
