@@ -25,9 +25,6 @@ signal game_finished(leaderboard : Array)
 var player_spawns : Array[Vector2]
 var screen_width = ProjectSettings.get_setting("display/window/size/viewport_width")
 
-func _ready() -> void:
-	pass
-
 func generate_platforms(height : float, seed : int):
 	var random : RandomNumberGenerator = RandomNumberGenerator.new()
 	random.set_seed(seed)

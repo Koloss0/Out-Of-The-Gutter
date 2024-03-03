@@ -48,6 +48,9 @@ spawn_node = NodePath("../Players")
 camera_pivot = NodePath("../Players/CameraOffset")
 default_target = NodePath("../Players")
 
+[node name="CanvasLayer" parent="." index="1"]
+visible = true
+
 [node name="Countdown" parent="CanvasLayer/Overlays" index="0" instance=ExtResource("6_ejf1w")]
 visible = false
 mouse_filter = 2

@@ -8,7 +8,8 @@ extends GameScreen
 @onready var leader_board: Control = $CanvasLayer/Overlays/LeaderBoard
 @onready var players = $World/Players
 @onready var playable_area: TileMap = $World/PlayableArea
-@onready var camera: Node = $World/TrackingCamera
+@onready var tracking_camera: Node = $World/TrackingCamera
+@onready var camera: Camera2D = $World/Players/CameraOffset/Camera2D
 @onready var spawnpoint_supplier: Node = $World/SpawnpointSupplier
 
 const MAP_HEIGHT : int = 2
@@ -39,11 +40,11 @@ func on_player_registered(peer_id: int):
 	var player_info = Net.player_data[peer_id]
 	var player_character = player_spawner.spawn_player(player_info, spawnpoint_supplier.next())
 	
+	# if player is controlled by local machine
 	if peer_id == multiplayer.get_unique_id():
-		camera.start_tracking(player_character)
+		tracking_camera.start_tracking(player_character)
 	
 	if is_multiplayer_authority():
-		
 		if Net.num_players > 1:
 			start_button.show()
 			start_button.set_disabled(false)
@@ -54,7 +55,7 @@ func on_player_deregistered(peer_id: int):
 	AlertDisplayer.alert("Player %s Disconnected" % peer_id)
 	
 	if peer_id == multiplayer.get_unique_id():
-		camera.stop_tracking()
+		tracking_camera.stop_tracking()
 	
 	if is_multiplayer_authority() and Net.num_players <= 1:
 		start_button.hide()
@@ -66,8 +67,8 @@ func on_map_seed_received(seed: int):
 	platform_generator.generate_platforms(playable_hight, seed)
 	platform_generator.create_finish_area(playable_hight)
 	platform_generator.game_finished.connect(on_game_finished)
-	print(multiplayer.get_unique_id())
 	get_tree().call_group("platform", "disable_collision", true)
+	playable_area.limit_camera_to_area(camera)
 
 func _on_start_button_pressed() -> void:
 	if is_multiplayer_authority():
