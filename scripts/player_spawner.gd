@@ -3,7 +3,7 @@ extends Node
 
 const PLAYER_SCENE = preload("res://scenes/entities/player_slime.tscn")
 
-@export var spawnpoint_supplier : SpawnpointSupplier
+var spawnpoint_supplier : SpawnpointSupplier
 
 @export var spawn_node: Node2D :
 	set = set_spawn_node

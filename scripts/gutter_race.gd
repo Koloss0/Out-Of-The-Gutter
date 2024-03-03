@@ -28,10 +28,19 @@ func _ready():
 		register_map_seed(map_seed)
 
 
+func _on_start_button_pressed() -> void:
+	if is_multiplayer_authority():
+		start_button.hide()
+		start_countdown.rpc()
+
 func on_game_finished(l: Array):
 	show_leaderboard.rpc(l)
 
-@rpc("call_local", "reliable")
+func _on_countdown_finished() -> void:
+	get_tree().call_group("platform", "disable_collision", false)
+	get_tree().call_group("platform", "enable_motion", true)
+
+@rpc("any_peer", "call_local", "reliable")
 func show_leaderboard(l: Array):
 	leader_board.show()
 
@@ -69,22 +78,13 @@ func on_map_seed_received(seed: int):
 	get_tree().call_group("platform", "disable_collision", true)
 	playable_area.limit_camera_to_area(camera)
 
-func _on_start_button_pressed() -> void:
-	if is_multiplayer_authority():
-		start_button.hide()
-		start_countdown.rpc()
-
-@rpc("call_local")
+@rpc("authority", "call_local", "reliable")
 func start_countdown():
 	MusicPlayer.stop_music()
 	MusicPlayer.play_in_Game_music()
 	countdown.play_countdown()
 
-func _on_countdown_finished() -> void:
-	get_tree().call_group("platform", "disable_collision", false)
-	get_tree().call_group("platform", "enable_motion", true)
-
-@rpc("authority", "reliable", "call_remote")
+@rpc("authority", "call_remote", "reliable")
 func register_map_seed(seed: int):
 	map_seed = seed
 	on_map_seed_received(seed)
