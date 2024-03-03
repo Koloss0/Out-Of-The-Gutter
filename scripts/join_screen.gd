@@ -12,7 +12,7 @@ func on_connect_pressed():
 	Net.server_ip = $IP.text
 	Net.server_port = $Port.text
 	Net.is_host = false
-	SceneManager.fade_to_scene("game_screen")
+	SceneManager.fade_to_scene("gutter_race")
 	MusicPlayer.stop_music()
 
 

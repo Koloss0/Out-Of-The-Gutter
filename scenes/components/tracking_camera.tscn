@@ -4,14 +4,3 @@
 
 [node name="TrackingCamera" type="Node"]
 script = ExtResource("1_4n3op")
-
-[node name="CameraOffset" type="Node2D" parent="."]
-position = Vector2(0, -600)
-
-[node name="Camera2D" type="Camera2D" parent="CameraOffset"]
-position = Vector2(0, 960)
-limit_left = 0
-limit_right = 1080
-limit_bottom = 1920
-position_smoothing_enabled = true
-drag_bottom_margin = 0.0

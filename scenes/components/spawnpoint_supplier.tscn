@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bie0e0wy387gb"]
+
+[ext_resource type="Script" path="res://scripts/spawnpoint_supplier.gd" id="1_cc5i8"]
+
+[node name="SpawnpointSupplier" type="Node"]
+script = ExtResource("1_cc5i8")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_order_changed" from="." to="." method="_on_child_order_changed"]

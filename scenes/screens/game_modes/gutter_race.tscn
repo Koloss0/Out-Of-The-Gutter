@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://df4t3gsc8yiwa"]
+
+[ext_resource type="Script" path="res://scripts/gutter_race.gd" id="1_28ccb"]
+[ext_resource type="PackedScene" uid="uid://bclrnyr70xi6s" path="res://scenes/screens/game_screen.tscn" id="1_bsi3x"]
+[ext_resource type="PackedScene" uid="uid://dwo7wk4hco7er" path="res://scenes/components/playable_area.tscn" id="3_ntman"]
+[ext_resource type="PackedScene" uid="uid://cqiaq6id1ysvd" path="res://scenes/components/platform_generator.tscn" id="3_qtgcp"]
+[ext_resource type="PackedScene" uid="uid://ca2lwhpbodphy" path="res://scenes/components/player_spawner.tscn" id="4_cnanw"]
+[ext_resource type="PackedScene" uid="uid://bie0e0wy387gb" path="res://scenes/components/spawnpoint_supplier.tscn" id="4_iumc5"]
+[ext_resource type="PackedScene" uid="uid://j0723m1rkhhl" path="res://scenes/components/tracking_camera.tscn" id="5_m02hc"]
+[ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://scenes/countdown.tscn" id="6_ejf1w"]
+[ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://scenes/ui/labeled_texture_button.tscn" id="7_ivdkr"]
+[ext_resource type="PackedScene" uid="uid://cwtn7efq8he32" path="res://scenes/ui/leaderboard.tscn" id="8_sg2fo"]
+
+[node name="GutterRace" instance=ExtResource("1_bsi3x")]
+script = ExtResource("1_28ccb")
+
+[node name="PlayableArea" parent="World" index="0" instance=ExtResource("3_ntman")]
+
+[node name="Players" type="Node2D" parent="World" index="1"]
+
+[node name="CameraOffset" type="Node2D" parent="World/Players" index="0"]
+position = Vector2(0, -600)
+
+[node name="Camera2D" type="Camera2D" parent="World/Players/CameraOffset" index="0"]
+position = Vector2(0, 960)
+limit_left = 0
+limit_right = 1080
+limit_bottom = 1920
+position_smoothing_enabled = true
+drag_bottom_margin = 0.0
+
+[node name="SpawnpointSupplier" parent="World" index="2" instance=ExtResource("4_iumc5")]
+sequential = true
+
+[node name="Spawnpoint" type="Marker2D" parent="World/SpawnpointSupplier" index="0"]
+position = Vector2(540, 736)
+
+[node name="Platforms" type="Node2D" parent="World" index="3"]
+position = Vector2(0, 1920)
+
+[node name="PlatformGenerator" parent="World" index="4" node_paths=PackedStringArray("platform_node") instance=ExtResource("3_qtgcp")]
+platform_node = NodePath("../Platforms")
+
+[node name="PlayerSpawner" parent="World" index="5" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_cnanw")]
+spawn_node = NodePath("../Players")
+
+[node name="TrackingCamera" parent="World" index="6" node_paths=PackedStringArray("camera_pivot", "default_target") instance=ExtResource("5_m02hc")]
+camera_pivot = NodePath("../Players/CameraOffset")
+default_target = NodePath("../Players")
+
+[node name="Countdown" parent="CanvasLayer/Overlays" index="0" instance=ExtResource("6_ejf1w")]
+visible = false
+mouse_filter = 2
+
+[node name="StartButton" parent="CanvasLayer/Overlays" index="1" instance=ExtResource("7_ivdkr")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -417.5
+offset_top = -124.5
+offset_right = 417.5
+offset_bottom = 124.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" parent="CanvasLayer/Overlays/StartButton" index="0"]
+text = "Start"
+
+[node name="LeaderBoard" parent="CanvasLayer/Overlays" index="2" instance=ExtResource("8_sg2fo")]
+visible = false
+
+[connection signal="finished" from="CanvasLayer/Overlays/Countdown" to="." method="_on_countdown_finished"]
+[connection signal="pressed" from="CanvasLayer/Overlays/StartButton" to="." method="_on_start_button_pressed"]
+
+[editable path="CanvasLayer/Overlays/StartButton"]
