@@ -13,6 +13,7 @@ extends CharacterBody2D
 
 
 var peer_id: int
+var initialized : bool = false
 
 var ready_to_jump : bool = false :
 	set = set_ready_to_jump
@@ -27,12 +28,18 @@ var on_ground : bool = true
 
 func _ready():
 	touch_box.input_event.connect(on_touch_box_input)
+	if not initialized:
+		set_process(false)
+		set_physics_process(false)
 
 # called directly by player spawner
 func init(info: PlayerInfo):
 	set_multiplayer_authority(info.peer_id)
 	peer_id = info.peer_id
 	player_sprite.modulate = info.color
+	initialized = true
+	set_process(true)
+	set_physics_process(true)
 
 
 func _physics_process(delta):
@@ -50,6 +57,7 @@ func _physics_process(delta):
 		move_and_slide()
 		
 		update_pos.rpc(position)
+
 
 @rpc("call_remote", "unreliable")
 func update_pos(pos: Vector2):

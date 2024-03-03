@@ -8,8 +8,8 @@ const PLAYER_SCENE = preload("res://scenes/entities/player.tscn")
 func spawn_player(player_info: PlayerInfo, spawnpoint: Vector2) -> Node2D:
 	var player = PLAYER_SCENE.instantiate()
 	player.name = str(player_info.peer_id)
-	spawn_node.add_child(player)
 	player.position = spawnpoint
+	spawn_node.add_child(player)
 	player.init(player_info)
 	return player
 
