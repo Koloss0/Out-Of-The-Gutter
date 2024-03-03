@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccaig6cilosn2"]
+
+[ext_resource type="PackedScene" uid="uid://bclrnyr70xi6s" path="res://scenes/screens/game_screen.tscn" id="1_74x16"]
+[ext_resource type="Script" path="res://scripts/hot_potato.gd" id="2_oei4v"]
+[ext_resource type="PackedScene" uid="uid://dwo7wk4hco7er" path="res://scenes/components/playable_area.tscn" id="3_r2uet"]
+[ext_resource type="PackedScene" uid="uid://ca2lwhpbodphy" path="res://scenes/components/player_spawner.tscn" id="4_wfit2"]
+[ext_resource type="PackedScene" uid="uid://bie0e0wy387gb" path="res://scenes/components/spawnpoint_supplier.tscn" id="5_60nou"]
+[ext_resource type="PackedScene" uid="uid://cqiaq6id1ysvd" path="res://scenes/components/platform_generator.tscn" id="6_o28lo"]
+[ext_resource type="PackedScene" uid="uid://j0723m1rkhhl" path="res://scenes/components/tracking_camera.tscn" id="7_ckeug"]
+[ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://scenes/countdown.tscn" id="7_hdyr5"]
+
+[node name="HotPotato" instance=ExtResource("1_74x16")]
+script = ExtResource("2_oei4v")
+
+[node name="PlayableArea" parent="World" index="0" instance=ExtResource("3_r2uet")]
+
+[node name="Players" type="Node2D" parent="World" index="1"]
+
+[node name="CameraOffset" type="Node2D" parent="World/Players" index="0"]
+
+[node name="Camera2D" type="Camera2D" parent="World/Players/CameraOffset" index="0"]
+
+[node name="Platforms" type="Node2D" parent="World" index="2"]
+
+[node name="PlayerSpawner" parent="World" index="3" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_wfit2")]
+spawn_node = NodePath("../Players")
+
+[node name="SpawnpointSupplier" parent="World/PlayerSpawner" index="0" instance=ExtResource("5_60nou")]
+
+[node name="PlatformGenerator" parent="World" index="4" node_paths=PackedStringArray("platform_node") instance=ExtResource("6_o28lo")]
+platform_node = NodePath("../Platforms")
+
+[node name="TrackingCamera" parent="World" index="5" node_paths=PackedStringArray("camera_pivot", "default_target") instance=ExtResource("7_ckeug")]
+camera_pivot = NodePath("../Players/CameraOffset")
+default_target = NodePath("../Players")
+
+[node name="Countdown" parent="CanvasLayer/Overlays" index="0" instance=ExtResource("7_hdyr5")]

@@ -9,8 +9,6 @@ radius = 395.032
 
 [node name="PlayerSlime" instance=ExtResource("1_x2yoh")]
 script = ExtResource("2_8v3cq")
-jump_force = null
-friction = null
 
 [node name="TouchBox" type="Area2D" parent="." index="2"]
 

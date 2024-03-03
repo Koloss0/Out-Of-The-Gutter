@@ -8,9 +8,7 @@ var initialized : bool = false
 
 func _ready():
 	touch_box.input_event.connect(on_touch_box_input)
-	if not initialized:
-		set_process(false)
-		set_physics_process(false)
+	set_process_locally(initialized)
 
 # called directly by player spawner
 func init(info: PlayerInfo):
@@ -18,9 +16,12 @@ func init(info: PlayerInfo):
 	peer_id = info.peer_id
 	player_sprite.modulate = info.color
 	initialized = true
-	if is_multiplayer_authority():
-		set_process(true)
-		set_physics_process(true)
+	
+	set_process_locally(is_multiplayer_authority())
+
+func set_process_locally(enabled : bool):
+	set_process(enabled)
+	set_physics_process(enabled)
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
