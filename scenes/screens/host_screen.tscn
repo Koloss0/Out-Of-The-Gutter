@@ -15,38 +15,48 @@ grow_vertical = 2
 theme = ExtResource("1_oi5vj")
 script = ExtResource("2_bcmjm")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
-layout_mode = 0
-offset_right = 1080.0
-offset_bottom = 1920.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_tpfbm")
 
 [node name="Port" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 631.0
-offset_right = 1023.0
-offset_bottom = 803.0
+anchor_left = 0.0796296
+anchor_top = 0.328646
+anchor_right = 0.947222
+anchor_bottom = 0.418229
 placeholder_text = "Port"
 alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Host" parent="." instance=ExtResource("4_h1sen")]
 layout_mode = 0
-offset_left = 94.0
-offset_top = 983.0
-offset_right = 994.0
-offset_bottom = 1230.5
+anchor_left = 0.087037
+anchor_top = 0.511979
+anchor_right = 0.92037
+anchor_bottom = 0.640885
+offset_right = -6.10352e-05
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" parent="Host" index="0"]
 text = "Host"
 
 [node name="Back" parent="." instance=ExtResource("4_h1sen")]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 1313.0
-offset_right = 986.0
-offset_bottom = 1560.5
+anchor_left = 0.0796296
+anchor_top = 0.683854
+anchor_right = 0.912963
+anchor_bottom = 0.81276
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" parent="Back" index="0"]
 text = "Back"

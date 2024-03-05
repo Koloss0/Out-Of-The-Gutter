@@ -39,45 +39,47 @@ script = SubResource("GDScript_xwxs2")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
-layout_mode = 0
-offset_right = 1115.0
-offset_bottom = 1954.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_7msqp")
 
 [node name="Host" parent="." instance=ExtResource("2_eej0x")]
 layout_mode = 0
-offset_left = 109.0
-offset_top = 576.0
-offset_right = 1009.0
-offset_bottom = 823.5
-
-[node name="Label" parent="Host" index="0"]
+anchor_left = 0.100926
+anchor_top = 0.3
+anchor_right = 0.934259
+anchor_bottom = 0.428906
+offset_right = 0.0
+offset_bottom = 0.0
 text = "Host"
+metadata/_edit_use_anchors_ = true
 
 [node name="Join" parent="." instance=ExtResource("2_eej0x")]
 layout_mode = 0
-offset_left = 102.0
-offset_top = 910.0
-offset_right = 1002.0
-offset_bottom = 1157.5
-
-[node name="Label" parent="Join" index="0"]
+anchor_left = 0.0944444
+anchor_top = 0.473958
+anchor_right = 0.927778
+anchor_bottom = 0.602865
+offset_right = 0.0
+offset_bottom = 0.0
 text = "Join"
+metadata/_edit_use_anchors_ = true
 
 [node name="Back" parent="." instance=ExtResource("2_eej0x")]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 1267.0
-offset_right = 992.0
-offset_bottom = 1514.5
-
-[node name="Label" parent="Back" index="0"]
+anchor_left = 0.0851852
+anchor_top = 0.659896
+anchor_right = 0.918519
+anchor_bottom = 0.788802
+offset_right = 0.0
+offset_bottom = 0.0
 text = "Back"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Host" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="Join" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_button_pressed"]
-
-[editable path="Host"]
-[editable path="Join"]
-[editable path="Back"]

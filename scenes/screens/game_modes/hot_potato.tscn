@@ -13,6 +13,7 @@
 script = ExtResource("2_oei4v")
 
 [node name="PlayableArea" parent="World" index="0" instance=ExtResource("3_r2uet")]
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 1, 0, 0, 2, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -131070, 0, 0, -131071, 0, 0, -131072, 0, 0, -65537, 0, 0, -65538, 0, 0, -65539, 0, 0, 131068, 1, 0, 65532, 1, 0, -4, 1, 0, -65540, 1, 0, -131076, 1, 0, -131075, 1, 0, -131074, 1, 0, -131073, 1, 0, -196608, 1, 0, -196607, 1, 0, -196606, 1, 0, -196605, 1, 0, -131069, 1, 0, -65533, 1, 0, 3, 1, 0, 65539, 1, 0, 65538, 1, 0, 65537, 1, 0, 65536, 1, 0, 131071, 1, 0, 131070, 1, 0, 131069, 1, 0)
 
 [node name="Players" type="Node2D" parent="World" index="1"]
 
@@ -29,6 +30,7 @@ spawn_node = NodePath("../Players")
 
 [node name="PlatformGenerator" parent="World" index="4" node_paths=PackedStringArray("platform_node") instance=ExtResource("6_o28lo")]
 platform_node = NodePath("../Platforms")
+platform_motion_chance = 0.0
 
 [node name="TrackingCamera" parent="World" index="5" node_paths=PackedStringArray("camera_pivot", "default_target") instance=ExtResource("7_ckeug")]
 camera_pivot = NodePath("../Players/CameraOffset")

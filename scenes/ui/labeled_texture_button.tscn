@@ -11,15 +11,19 @@ offset_bottom = 247.5
 theme = ExtResource("1_285mj")
 texture_normal = ExtResource("2_ksjs0")
 stretch_mode = 0
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.106667
+anchor_top = 0.258586
+anchor_right = 0.897778
+anchor_bottom = 0.743434
 grow_horizontal = 2
 grow_vertical = 2
 text = "Label"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
+clip_text = true
+metadata/_edit_use_anchors_ = true
