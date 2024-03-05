@@ -14,7 +14,8 @@
 [node name="GutterRace" instance=ExtResource("1_bsi3x")]
 script = ExtResource("1_28ccb")
 
-[node name="PlayableArea" parent="World" index="0" instance=ExtResource("3_ntman")]
+[node name="PlayableArea" parent="World" index="0" node_paths=PackedStringArray("initial_cameras") instance=ExtResource("3_ntman")]
+initial_cameras = [NodePath("../Players/CameraOffset/Camera2D")]
 
 [node name="Players" type="Node2D" parent="World" index="1"]
 

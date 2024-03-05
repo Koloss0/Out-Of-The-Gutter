@@ -76,7 +76,6 @@ func on_map_seed_received(seed: int):
 	platform_generator.create_finish_area(playable_hight)
 	platform_generator.game_finished.connect(on_game_finished)
 	get_tree().call_group("platform", "disable_collision", true)
-	playable_area.limit_camera_to_area(camera)
 
 @rpc("authority", "call_local", "reliable")
 func start_countdown():
