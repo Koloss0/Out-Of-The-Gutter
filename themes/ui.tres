@@ -1,10 +1,24 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b8amwfp2xjd5v"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b8amwfp2xjd5v"]
 
+[ext_resource type="Texture2D" uid="uid://vh0js2156jlo" path="res://art/button_rusty_upscaled.png" id="1_5r216"]
 [ext_resource type="FontFile" uid="uid://bbsihsv58dw5x" path="res://art/public_pixel_font/PublicPixel-z84yD.ttf" id="1_xmf4o"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_67460"]
+content_margin_left = 44.0
+content_margin_top = 49.0
+content_margin_right = 44.0
+content_margin_bottom = 49.0
+texture = ExtResource("1_5r216")
+region_rect = Rect2(0, 0, 1080, 313)
+
 [resource]
+default_font = ExtResource("1_xmf4o")
+default_font_size = 64
+Button/font_sizes/font_size = 96
+Button/styles/disabled = SubResource("StyleBoxTexture_67460")
+Button/styles/focus = SubResource("StyleBoxTexture_67460")
+Button/styles/hover = SubResource("StyleBoxTexture_67460")
+Button/styles/normal = SubResource("StyleBoxTexture_67460")
+Button/styles/pressed = SubResource("StyleBoxTexture_67460")
 Label/font_sizes/font_size = 95
 Label/fonts/font = ExtResource("1_xmf4o")
-LineEdit/constants/minimum_character_width = 14
-LineEdit/font_sizes/font_size = 64
-LineEdit/fonts/font = ExtResource("1_xmf4o")

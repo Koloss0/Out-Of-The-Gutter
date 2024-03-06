@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b612srpjtt8mm"]
+[gd_scene load_steps=6 format=3 uid="uid://b612srpjtt8mm"]
 
 [ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://themes/ui.tres" id="1_r1d6d"]
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="2_358hs"]
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://art/sewer_bg.png" id="3_fg63g"]
 [ext_resource type="Texture2D" uid="uid://1xcpfnd0omw7" path="res://art/title_text.png" id="4_rmnm2"]
-[ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://scenes/ui/labeled_texture_button.tscn" id="5_al55n"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b60gh"]
 
@@ -40,34 +39,23 @@ anchor_bottom = 0.392188
 texture = ExtResource("4_rmnm2")
 metadata/_edit_use_anchors_ = true
 
-[node name="Start" parent="." instance=ExtResource("5_al55n")]
+[node name="StartButton" type="Button" parent="."]
 layout_mode = 0
 anchor_left = 0.0787037
 anchor_top = 0.53125
 anchor_right = 0.912037
-anchor_bottom = 0.660156
-offset_right = 0.0
-offset_bottom = 0.0
+anchor_bottom = 0.659896
+text = "Start"
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" parent="Start" index="0"]
-text = "Start"
-
-[node name="Quit" parent="." instance=ExtResource("5_al55n")]
+[node name="QuitButton" type="Button" parent="."]
 layout_mode = 0
 anchor_left = 0.0787037
 anchor_top = 0.701042
 anchor_right = 0.912037
-anchor_bottom = 0.829948
-offset_right = 0.0
-offset_bottom = 0.0
+anchor_bottom = 0.830208
+text = "Quit"
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" parent="Quit" index="0"]
-text = "Quit"
-
-[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
-
-[editable path="Start"]
-[editable path="Quit"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

@@ -64,6 +64,7 @@ _data = {
 }
 
 [node name="AlertDisplayer" type="CanvasLayer"]
+layer = 2
 visible = false
 script = ExtResource("1_ej67q")
 

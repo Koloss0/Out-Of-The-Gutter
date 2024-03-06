@@ -16,8 +16,9 @@ script = ExtResource("2_8v3cq")
 shape = SubResource("CircleShape2D_fdsys")
 
 [node name="Arrow" type="Sprite2D" parent="." index="3"]
-visible = false
 texture_filter = 1
 scale = Vector2(0.217309, 0.212891)
 texture = ExtResource("3_cqpnb")
 offset = Vector2(600, 0)
+
+[connection signal="input_event" from="TouchBox" to="." method="_on_touch_box_input"]

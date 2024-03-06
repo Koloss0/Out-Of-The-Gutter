@@ -6,9 +6,8 @@ extends CharacterBody2D
 
 @onready var player_sprite = $Sprite2D
 
-@onready var ray_cast_left = $RayCastLeft
-@onready var ray_cast_center = $RayCastCenter
-@onready var ray_cast_right = $RayCastRight
+@onready var ground_detector: ShapeCast2D = $GroundDetector
+
 
 var ready_to_jump : bool = false :
 	set = set_ready_to_jump
@@ -65,4 +64,4 @@ func set_on_ground(state : bool):
 	update_animation()
 
 func check_on_ground() -> bool:
-	return ray_cast_left.is_colliding() or ray_cast_center.is_colliding() or ray_cast_right.is_colliding()
+	return ground_detector.is_colliding()

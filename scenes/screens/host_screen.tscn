@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwchq5nxc4mdf"]
+[gd_scene load_steps=6 format=3 uid="uid://bwchq5nxc4mdf"]
 
 [ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://themes/ui.tres" id="1_oi5vj"]
 [ext_resource type="Script" path="res://scripts/host_screen.gd" id="2_bcmjm"]
 [ext_resource type="Texture2D" uid="uid://be4xldphturmu" path="res://art/sewer_wall.png" id="3_tpfbm"]
-[ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://scenes/ui/labeled_texture_button.tscn" id="4_h1sen"]
+[ext_resource type="PackedScene" uid="uid://cqys8unw4grsp" path="res://scenes/screens/race_settings.tscn" id="4_3k6ha"]
+[ext_resource type="PackedScene" uid="uid://s6a7oe0rjegr" path="res://scenes/screens/hot_potato_settings.tscn" id="5_a1yed"]
 
 [node name="HostPage" type="Control"]
 layout_mode = 3
@@ -26,43 +27,72 @@ grow_vertical = 2
 texture = ExtResource("3_tpfbm")
 
 [node name="Port" type="LineEdit" parent="."]
-layout_mode = 0
-anchor_left = 0.0796296
-anchor_top = 0.328646
-anchor_right = 0.947222
-anchor_bottom = 0.418229
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0787037
+anchor_top = 0.0739583
+anchor_right = 0.921296
+anchor_bottom = 0.178125
 placeholder_text = "Port"
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Host" parent="." instance=ExtResource("4_h1sen")]
-layout_mode = 0
-anchor_left = 0.087037
-anchor_top = 0.511979
-anchor_right = 0.92037
-anchor_bottom = 0.640885
-offset_right = -6.10352e-05
-offset_bottom = 0.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" parent="Host" index="0"]
-text = "Host"
-
-[node name="Back" parent="." instance=ExtResource("4_h1sen")]
-layout_mode = 0
-anchor_left = 0.0796296
-anchor_top = 0.683854
+[node name="HostButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 247)
+layout_mode = 2
+anchor_left = 0.0925926
+anchor_top = 0.631771
 anchor_right = 0.912963
-anchor_bottom = 0.81276
-offset_right = 0.0
-offset_bottom = 0.0
+anchor_bottom = 0.760417
+text = "Host"
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" parent="Back" index="0"]
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0925926
+anchor_top = 0.789063
+anchor_right = 0.912963
+anchor_bottom = 0.917708
 text = "Back"
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Host" to="." method="on_connect_pressed"]
-[connection signal="pressed" from="Back" to="." method="_on_back_button_pressed"]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.194792
+anchor_right = 1.0
+anchor_bottom = 0.599479
+metadata/_edit_use_anchors_ = true
 
-[editable path="Host"]
-[editable path="Back"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 85
+theme_override_constants/margin_top = 65
+theme_override_constants/margin_right = 85
+
+[node name="Panel" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="ModeOption" type="OptionButton" parent="ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+alignment = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="RaceSettings" parent="ScrollContainer/MarginContainer/Panel" instance=ExtResource("4_3k6ha")]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+
+[node name="HotPotatoSettings" parent="ScrollContainer/MarginContainer/Panel" instance=ExtResource("5_a1yed")]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="item_selected" from="ScrollContainer/MarginContainer/Panel/ModeOption" to="." method="_on_mode_option_item_selected"]
