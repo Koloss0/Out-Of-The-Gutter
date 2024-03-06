@@ -16,25 +16,33 @@ func fade_to_scene(scene_path : String) -> Error:
 	
 	if SCENES.has(scene_path): scene_path = SCENES[scene_path]
 	
-	var error = ResourceLoader.load_threaded_request(scene_path)
-	if error != OK: return error
+	
+	var status : Error
+	if ResourceLoader.exists(scene_path):
+		status = ResourceLoader.load_threaded_request(scene_path)
+	else:
+		status = ERR_DOES_NOT_EXIST
 		
 	var loaded : bool = false
 	var progress : Array = []
-	while not loaded:
+	
+	while status == OK:
 		match ResourceLoader.load_threaded_get_status(scene_path, progress):
 			ResourceLoader.ThreadLoadStatus.THREAD_LOAD_INVALID_RESOURCE:
-				return ERR_CANT_RESOLVE
+				status = ERR_CANT_RESOLVE
 			ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
 				load_progress_updated.emit(progress[0])
 			ResourceLoader.ThreadLoadStatus.THREAD_LOAD_FAILED:
-				return ERR_CANT_RESOLVE
+				status = ERR_CANT_RESOLVE
 			ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
-				loaded = true
+				break
 	
-	get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(scene_path))
-	
+	if status == OK:
+		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(scene_path))
+	else:
+		await AlertDisplayer.alert("ERROR: Unable to load requested scene.\n%s (%0d)" % [error_string(status), status])
+		
 	await SceneTransitioner.fade_out()
 	
-	return OK
+	return status
 

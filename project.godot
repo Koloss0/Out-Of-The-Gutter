@@ -42,7 +42,19 @@ window/handheld/orientation=1
 
 enabled=PackedStringArray("res://addons/multirun/plugin.cfg")
 
+[gui]
+
+theme/default_theme_scale=2.0
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 2d_physics/layer_1="Ground"
 2d_physics/layer_2="Player"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
