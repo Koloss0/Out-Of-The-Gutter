@@ -65,3 +65,14 @@ func set_on_ground(state : bool):
 
 func check_on_ground() -> bool:
 	return ground_detector.is_colliding()
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func synch_state(peer_id : int):
+	update_pos.rpc_id(peer_id, position)
+	if not on_ground:
+		set_on_ground.rpc_id(peer_id, false)
+	elif ready_to_jump:
+		set_ready_to_jump.rpc_id(peer_id, true)
+	else:
+		set_on_ground.rpc_id(peer_id, true)

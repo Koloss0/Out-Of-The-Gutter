@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dynm24vcgkmr6"]
+[gd_scene load_steps=11 format=3 uid="uid://dynm24vcgkmr6"]
 
 [ext_resource type="Script" path="res://scripts/music_player.gd" id="1_7fi2i"]
 [ext_resource type="AudioStream" uid="uid://ds65q3guv0xyn" path="res://art/music/start_screen_music.mp3" id="2_l1dp2"]
@@ -6,6 +6,10 @@
 [ext_resource type="AudioStream" uid="uid://b51rwcnlvpb47" path="res://art/music/lobby_music.mp3" id="4_jurnf"]
 [ext_resource type="AudioStream" uid="uid://c0dv0a3e1mwdx" path="res://art/music/jump_sfx.mp3" id="5_ggbmu"]
 [ext_resource type="AudioStream" uid="uid://b1uljv8loq4ko" path="res://art/music/fall_sfx.mp3" id="6_snef4"]
+[ext_resource type="AudioStream" uid="uid://cjomis0imhu67" path="res://art/music/gameplay_music_intro.mp3" id="7_npvo0"]
+[ext_resource type="AudioStream" uid="uid://dv7wwfpo020kq" path="res://art/music/gameplay_music_chorus_1.mp3" id="8_wqa0d"]
+[ext_resource type="AudioStream" uid="uid://vh2qnp2pnhu0" path="res://art/music/gameplay_music_chorus_2.mp3" id="9_m06ux"]
+[ext_resource type="AudioStream" uid="uid://b6nff5mprljyt" path="res://art/music/gameplay_music_outro.mp3" id="10_h1ntw"]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource("1_7fi2i")
@@ -24,3 +28,19 @@ stream = ExtResource("5_ggbmu")
 
 [node name="Fall" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_snef4")
+
+[node name="GameplayIntro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_npvo0")
+
+[node name="GameplayChorus1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_wqa0d")
+
+[node name="GameplayChorus2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_m06ux")
+
+[node name="GameplayOutro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_h1ntw")
+
+[connection signal="finished" from="GameplayChorus1" to="." method="_on_gameplay_chorus_1_finished"]
+[connection signal="finished" from="GameplayChorus2" to="." method="_on_gameplay_chorus_2_finished"]
+[connection signal="finished" from="GameplayOutro" to="." method="_on_gameplay_outro_finished"]

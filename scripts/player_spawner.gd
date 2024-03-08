@@ -14,6 +14,11 @@ func spawn_player(player_info: PlayerInfo) -> Node2D:
 	player.position = spawnpoint_supplier.next()
 	spawn_node.add_child(player)
 	player.init(player_info)
+	
+	# synch other player's character state
+	if player_info.peer_id != multiplayer.get_unique_id():
+		player.synch_state.rpc_id(player_info.peer_id, multiplayer.get_unique_id())
+		
 	return player
 
 func remove_player(peer_id: int):
