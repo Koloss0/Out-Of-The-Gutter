@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_osewe"]
 size = Vector2(384, 60)
 
-[node name="StationaryPlatform" type="StaticBody2D" groups=["platform"]]
+[node name="StationaryPlatform" type="StaticBody2D" groups=["platforms"]]
 script = ExtResource("1_1oho1")
 
 [node name="Sprite" type="Sprite2D" parent="."]

@@ -33,11 +33,6 @@ func _ready():
 	multiplayer.server_disconnected.connect(on_server_disconnected)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func start():
 	var error = OK
 	if is_host:
@@ -106,3 +101,5 @@ func on_server_disconnected():
 	AlertDisplayer.alert("Server Disconnected")
 	pass
 
+func get_player_info(peer_id : int) -> PlayerInfo:
+	return player_data[peer_id]

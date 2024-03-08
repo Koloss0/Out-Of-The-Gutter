@@ -22,10 +22,9 @@ func fade_to_scene(scene_path : String) -> Error:
 		status = ResourceLoader.load_threaded_request(scene_path)
 	else:
 		status = ERR_DOES_NOT_EXIST
-		
-	var loaded : bool = false
-	var progress : Array = []
 	
+	
+	var progress : Array = []
 	while status == OK:
 		match ResourceLoader.load_threaded_get_status(scene_path, progress):
 			ResourceLoader.ThreadLoadStatus.THREAD_LOAD_INVALID_RESOURCE:

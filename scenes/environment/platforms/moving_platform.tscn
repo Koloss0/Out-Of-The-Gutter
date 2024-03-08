@@ -12,7 +12,7 @@ _data = {
 }
 point_count = 3
 
-[node name="moving" type="AnimatableBody2D" groups=["platform"]]
+[node name="moving" type="AnimatableBody2D" groups=["moving_platforms", "platforms"]]
 process_mode = 3
 texture_filter = 1
 texture_repeat = 3

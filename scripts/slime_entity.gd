@@ -1,8 +1,10 @@
 class_name SlimeEntity
 extends CharacterBody2D
 
-@export var jump_force := 1000.0
+@export var max_jump_force := 1000.0
 @export var friction := 0.95
+
+var min_jump_force : float = max_jump_force / 5.0
 
 @onready var player_sprite = $Sprite2D
 
@@ -42,7 +44,9 @@ func update_pos(pos: Vector2):
 	position = pos
 
 
-func jump(direction : Vector2, force : float):
+func jump(direction : Vector2, input_strenght : float):
+	input_strenght = clampf(input_strenght, 0, 1)
+	var force := lerpf(min_jump_force, max_jump_force, input_strenght)
 	velocity = direction.normalized() * force
 
 func update_animation():

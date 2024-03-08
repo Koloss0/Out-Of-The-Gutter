@@ -11,16 +11,19 @@ func _ready():
 	Net.connection_failed.connect(on_connection_failed)
 	Net.server_disconnected.connect(on_server_disconnected)
 
-
+@warning_ignore("unused_parameter")
 func on_peer_connected(peer_id: int):
 	pass
 
+@warning_ignore("unused_parameter")
 func on_player_registered(peer_id: int):
 	pass
 
+@warning_ignore("unused_parameter")
 func on_player_deregistered(peer_id: int):
 	pass
 
+@warning_ignore("unused_parameter")
 func on_peer_disconnected(peer_id: int):
 	pass
 

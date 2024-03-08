@@ -7,7 +7,7 @@ extends GameScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	super._ready()
+	super._ready() #NOTE: Do not delete this line. This connects the signals. 
 
 # Called when a client connects to the server.
 func on_peer_connected(peer_id: int):
