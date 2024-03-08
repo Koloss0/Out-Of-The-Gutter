@@ -31,7 +31,6 @@ position_smoothing_enabled = true
 drag_bottom_margin = 0.0
 
 [node name="Platforms" type="Node2D" parent="World" index="2"]
-position = Vector2(0, 1920)
 
 [node name="PlayerSpawner" parent="World" index="3" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_cnanw")]
 spawn_node = NodePath("../Players")

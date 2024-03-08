@@ -76,9 +76,9 @@ func on_player_deregistered(peer_id: int):
 @rpc("authority", "call_remote", "reliable")
 func register_settings(height : int, seed : int):
 	playable_area.generate_map(get_map_area(height))
-	var playable_hight = -playable_area.get_playable_rect().size.y
-	platform_generator.generate_platforms(playable_hight, seed)
-	platform_generator.create_finish_area(playable_hight)
+	var playable_rect = playable_area.get_playable_rect()
+	platform_generator.generate_platforms(playable_rect, seed)
+	platform_generator.create_finish_area(playable_rect.position.y)
 	platform_generator.game_finished.connect(on_game_finished)
 	get_tree().call_group("platforms", "disable_collision", true)
 
