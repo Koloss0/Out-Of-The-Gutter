@@ -3,8 +3,8 @@
 [ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://themes/ui.tres" id="1_oi5vj"]
 [ext_resource type="Script" path="res://scripts/host_screen.gd" id="2_bcmjm"]
 [ext_resource type="Texture2D" uid="uid://be4xldphturmu" path="res://art/sewer_wall.png" id="3_tpfbm"]
-[ext_resource type="PackedScene" uid="uid://cqys8unw4grsp" path="res://scenes/screens/race_settings.tscn" id="4_3k6ha"]
-[ext_resource type="PackedScene" uid="uid://s6a7oe0rjegr" path="res://scenes/screens/hot_potato_settings.tscn" id="5_a1yed"]
+[ext_resource type="PackedScene" uid="uid://cqys8unw4grsp" path="res://scenes/screens/race_host_menu.tscn" id="4_3k6ha"]
+[ext_resource type="PackedScene" uid="uid://s6a7oe0rjegr" path="res://scenes/screens/hot_potato_host_menu.tscn" id="5_a1yed"]
 
 [node name="HostPage" type="Control"]
 layout_mode = 3
@@ -74,25 +74,30 @@ theme_override_constants/margin_left = 85
 theme_override_constants/margin_top = 65
 theme_override_constants/margin_right = 85
 
-[node name="Panel" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+[node name="GameModes" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="ModeOption" type="OptionButton" parent="ScrollContainer/MarginContainer/Panel"]
+[node name="ModeOption" type="OptionButton" parent="ScrollContainer/MarginContainer/GameModes"]
 custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
 alignment = 1
 clip_text = true
 metadata/_edit_use_anchors_ = true
 
-[node name="RaceSettings" parent="ScrollContainer/MarginContainer/Panel" instance=ExtResource("4_3k6ha")]
+[node name="RaceSettings" parent="ScrollContainer/MarginContainer/GameModes" instance=ExtResource("4_3k6ha")]
+visible = false
 custom_minimum_size = Vector2(0, 175)
 layout_mode = 2
 
-[node name="HotPotatoSettings" parent="ScrollContainer/MarginContainer/Panel" instance=ExtResource("5_a1yed")]
+[node name="HotPotatoSettings" parent="ScrollContainer/MarginContainer/GameModes" instance=ExtResource("5_a1yed")]
+visible = false
 custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 
 [connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="item_selected" from="ScrollContainer/MarginContainer/Panel/ModeOption" to="." method="_on_mode_option_item_selected"]
+[connection signal="child_entered_tree" from="ScrollContainer/MarginContainer/GameModes" to="." method="_on_game_modes_child_entered_tree"]
+[connection signal="child_exiting_tree" from="ScrollContainer/MarginContainer/GameModes" to="." method="_on_game_modes_child_exiting_tree"]
+[connection signal="child_order_changed" from="ScrollContainer/MarginContainer/GameModes" to="." method="_on_game_modes_child_order_changed"]
+[connection signal="item_selected" from="ScrollContainer/MarginContainer/GameModes/ModeOption" to="." method="_on_mode_option_item_selected"]

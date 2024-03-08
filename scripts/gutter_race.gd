@@ -11,10 +11,7 @@ extends GameScreen
 @onready var tracking_camera: Node = $World/TrackingCamera
 @onready var camera: Camera2D = $World/Players/CameraOffset/Camera2D
 
-const MAP_HEIGHT : int = 2
-const MAP_AREA : Rect2i = Rect2i(0, -(MAP_HEIGHT - 1), 1, MAP_HEIGHT)
-
-var map_seed: int
+var settings : RaceSettings
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,9 +21,11 @@ func _ready():
 	MusicPlayer.play_Lobby_music()
 	
 	if is_multiplayer_authority():
-		map_seed = randi()
-		register_map_seed(map_seed)
+		settings = ResourceHolder.take()
+		register_settings(settings.map_height, settings.map_seed)
 
+func get_map_area(height : int) -> Rect2i:
+	return Rect2i(0, -(height - 1), 1, height)
 
 func _on_start_button_pressed() -> void:
 	if is_multiplayer_authority():
@@ -42,6 +41,7 @@ func _on_countdown_finished() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func show_leaderboard(l: Array):
+	MusicPlayer.stop_in_game_music()
 	leader_board.show()
 
 func on_player_registered(peer_id: int):
@@ -50,7 +50,7 @@ func on_player_registered(peer_id: int):
 	
 	# if player is controlled by local machine
 	if peer_id == multiplayer.get_unique_id():
-		tracking_camera.start_tracking(player_character)
+		tracking_camera.start_tracking(players.get_node(str(peer_id)))
 	
 	if is_multiplayer_authority():
 		if Net.num_players > 1:
@@ -69,8 +69,9 @@ func on_player_deregistered(peer_id: int):
 		start_button.hide()
 		start_button.set_disabled(true)
 
-func on_map_seed_received(seed: int):
-	playable_area.generate_map(MAP_AREA)
+@rpc("authority", "call_remote", "reliable")
+func register_settings(height : int, seed : int):
+	playable_area.generate_map(get_map_area(height))
 	var playable_hight = -playable_area.get_playable_rect().size.y
 	platform_generator.generate_platforms(playable_hight, seed)
 	platform_generator.create_finish_area(playable_hight)
@@ -83,15 +84,9 @@ func start_countdown():
 	MusicPlayer.play_in_Game_music()
 	countdown.play_countdown()
 
-@rpc("authority", "call_remote", "reliable")
-func register_map_seed(seed: int):
-	map_seed = seed
-	on_map_seed_received(seed)
-
 func on_peer_connected(peer_id: int):
 	if is_multiplayer_authority():
-		register_map_seed.rpc_id(peer_id, map_seed)
-	pass
+		register_settings.rpc_id(peer_id, settings.map_height, settings.map_seed)
 
 func on_peer_disconnected(peer_id: int):
 	pass

@@ -64,7 +64,7 @@ func set_cell_background(coords : Vector2i) -> void:
 func set_cell_boundry(coords : Vector2i) -> void:
 	set_cell(0, coords, 1, Vector2i.ZERO)
 
-func get_boundry(offset_margin : Rect2 = limits_offset) -> Rect2:
+func get_boundery(offset_margin : Rect2 = limits_offset) -> Rect2:
 	var limits := get_playable_rect()
 	limits.position += offset_margin.position
 	limits.size += offset_margin.size - offset_margin.position
@@ -81,13 +81,13 @@ func get_tile_size() -> Vector2:
 	return Vector2(tile_set.get_tile_size()) * scale
 
 func limit_camera_to_area(camera : Camera2D, offset_margin : Rect2 = limits_offset) -> void:
-	var limits := get_boundry(offset_margin)
+	var limits := get_boundery(offset_margin)
 	set_camera_limits(camera, limits)
 
 func update_assigned_cameras() -> void:
 	_camera_array_mutex.lock()
 	if _assigned_cameras.size() > 0:
-		var limits = get_boundry()
+		var limits = get_boundery()
 		for camera in _assigned_cameras:
 			set_camera_limits(camera, limits)
 	_camera_array_mutex.unlock()
@@ -95,12 +95,11 @@ func update_assigned_cameras() -> void:
 func set_camera_limits(camera : Camera2D, limits : Rect2):
 	camera.limit_left = limits.position.x
 	camera.limit_top = limits.position.y
-	camera.limit_right = limits.size.x
-	camera.limit_bottom = limits.size.y - get_tile_size().y
+	camera.limit_right = limits.position.x + limits.size.x
+	camera.limit_bottom = limits.position.y + limits.size.y
 
 func get_playable_rect() -> Rect2:
 	var used : Rect2i = get_used_rect()
-	
 	#assumes the outer edge is unplayable (boundery)
 	used.position += Vector2i.ONE
 	used.size -= Vector2i(2, 2)

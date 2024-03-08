@@ -1,14 +1,10 @@
 extends Control
 
 @onready var port : LineEdit = $Port
-@onready var mode_option: OptionButton = $ScrollContainer/MarginContainer/Panel/ModeOption
-@onready var race_settings: Control = $ScrollContainer/MarginContainer/Panel/RaceSettings
-@onready var hot_potato_settings: Control = $ScrollContainer/MarginContainer/Panel/HotPotatoSettings
+@onready var mode_option: OptionButton = $ScrollContainer/MarginContainer/GameModes/ModeOption
+@onready var game_modes: VBoxContainer = $ScrollContainer/MarginContainer/GameModes
 
-enum GameMode {
-	GUTTER_RACE,
-	HOT_POTATO
-}
+var host_menus : Array[HostMenu] = []
 
 func _ready() -> void:
 	refresh_game_modes()
@@ -18,46 +14,57 @@ func _ready() -> void:
 
 
 func _on_host_button_pressed() -> void:
-	var mode : String
-	match mode_option.get_selected_id():
-		GameMode.GUTTER_RACE:
-			mode = "gutter_race"
-		GameMode.HOT_POTATO:
-			mode = "hot_potato"
-			
+	var menu : HostMenu = mode_option.get_selected_metadata()
+	
 	Net.server_port = $Port.text
 	Net.is_host = true
-	if await SceneManager.fade_to_scene(mode) == OK:
+	
+	ResourceHolder.put(menu.get_settings())
+	
+	if await SceneManager.fade_to_scene(menu.get_game_screen_path()) == OK:
 		MusicPlayer.stop_music()
-
 
 
 func _on_back_button_pressed() -> void:
 	SceneManager.fade_to_scene("host_or_join")
 
-
-func get_pretty_name(mode : GameMode):
-	match mode:
-		GameMode.GUTTER_RACE:
-			return "Gutter Race"
-		GameMode.HOT_POTATO:
-			return "Hot Potato"
-
-
 func refresh_game_modes():
+	var children = game_modes.get_children()
+	
+	host_menus.clear()
+	host_menus.append_array(children.filter(func(child): return child is HostMenu))
+	
 	mode_option.clear()
 	
-	for mode in GameMode.values():
-		mode_option.add_item(get_pretty_name(mode), mode)
+	for menu : HostMenu in host_menus:
+		register_menu(menu)
 	
 	_on_mode_option_item_selected(0)
 
+func register_menu(menu : HostMenu) -> void:
+	var pretty_name : String = menu.get_pretty_name()
+	var index : int = mode_option.item_count
+	mode_option.add_item(pretty_name, index)
+	mode_option.set_item_metadata(index, menu)
 
 func _on_mode_option_item_selected(index: int) -> void:
-	match mode_option.get_item_id(index):
-		GameMode.GUTTER_RACE:
-			hot_potato_settings.hide()
-			race_settings.show()
-		GameMode.HOT_POTATO:
-			race_settings.hide()
-			hot_potato_settings.show()
+	if index >= mode_option.item_count: return
+	var selected_menu = mode_option.get_item_metadata(index)
+	for mode in host_menus:
+		mode.hide()
+	selected_menu.show()
+
+
+func _on_game_modes_child_entered_tree(node: Node) -> void:
+	if not is_node_ready(): return
+	if node is HostMenu:
+		register_menu(node)
+
+func _on_game_modes_child_exiting_tree(node: Node) -> void:
+	if not is_node_ready(): return
+	if node is HostMenu:
+		refresh_game_modes()
+
+func _on_game_modes_child_order_changed() -> void:
+	if not is_node_ready(): return
+	refresh_game_modes()

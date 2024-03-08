@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://s6a7oe0rjegr"]
+
+[ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://themes/ui.tres" id="1_m0g0f"]
+[ext_resource type="Script" path="res://scripts/hot_potato_host_menu.gd" id="2_brucl"]
+
+[node name="HotPotatoHostMenu" type="VBoxContainer"]
+offset_right = 1080.0
+offset_bottom = 670.0
+size_flags_horizontal = 3
+theme = ExtResource("1_m0g0f")
+theme_override_constants/separation = 40
+script = ExtResource("2_brucl")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 71
+text = "Map size"
+
+[node name="Width" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Width"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+text = "Width:"
+vertical_alignment = 1
+
+[node name="WidthOption" type="SpinBox" parent="Width"]
+layout_mode = 2
+min_value = 4.0
+max_value = 20.0
+value = 4.0
+
+[node name="Height" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Height"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+text = "Height:"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HeightOption" type="SpinBox" parent="Height"]
+layout_mode = 2
+min_value = 1.0
+max_value = 20.0
+value = 2.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Time" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+text = "Timeout:"
+vertical_alignment = 1
+
+[node name="TimeOption" type="SpinBox" parent="Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 2.0
+max_value = 20.0
+value = 2.0
+suffix = "sec"

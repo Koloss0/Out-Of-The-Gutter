@@ -77,12 +77,15 @@ func on_peer_connected(peer_id: int):
 	peer_connected.emit(peer_id)
 	if is_multiplayer_authority():
 		var color: Color = Color(randf(), randf(), randf())
-		register_player(peer_id, color)
 		
+		# Register existing players on new peer
 		for player_info in player_data.values():
 			register_player.rpc_id(peer_id, player_info.peer_id, player_info.color)
+		
+		# Register new peer on all peers (including itself)
+		register_player.rpc(peer_id, color)
 
-@rpc("authority", "reliable")
+@rpc("authority", "call_local", "reliable")
 func register_player(peer_id: int, color: Color):
 	var player_info: PlayerInfo = PlayerInfo.new(peer_id, color)
 	

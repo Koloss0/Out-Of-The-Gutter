@@ -22,6 +22,7 @@ SceneTransitioner="*res://autoloads/scene_transitioner.tscn"
 Net="*res://autoloads/net.gd"
 AlertDisplayer="*res://autoloads/alert_displayer.tscn"
 MusicPlayer="*res://autoloads/music_player.tscn"
+ResourceHolder="*res://autoloads/resource_holder.gd"
 
 [debug]
 
@@ -33,6 +34,7 @@ multirun/window_args=["listen", "join"]
 
 window/size/viewport_width=1080
 window/size/viewport_height=1920
+window/size/always_on_top=true
 window/size/window_width_override=400
 window/size/window_height_override=711
 window/stretch/mode="viewport"
