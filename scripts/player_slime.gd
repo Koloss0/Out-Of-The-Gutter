@@ -44,7 +44,7 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if ready_to_jump and not event.pressed:
 			if on_ground:
-				var input_radius : float = (position - event.position).length()
+				var input_radius : float = hold_delta.length()
 				if input_radius >= min_jump_radius.shape.radius: 
 					input_radius -= min_jump_radius.shape.radius
 					var input_strength : float = input_radius / (max_jump_radius.shape.radius - min_jump_radius.shape.radius)

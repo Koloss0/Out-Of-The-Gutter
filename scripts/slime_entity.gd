@@ -44,9 +44,9 @@ func update_pos(pos: Vector2):
 	position = pos
 
 
-func jump(direction : Vector2, input_strenght : float):
-	input_strenght = clampf(input_strenght, 0, 1)
-	var force := lerpf(min_jump_force, max_jump_force, input_strenght)
+func jump(direction : Vector2, input_strength : float):
+	input_strength = clampf(input_strength, 0, 1)
+	var force := lerpf(min_jump_force, max_jump_force, input_strength)
 	velocity = direction.normalized() * force
 
 func update_animation():
