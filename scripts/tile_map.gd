@@ -11,7 +11,7 @@ var _camera_array_mutex : Mutex = Mutex.new()
 
 func _ready() -> void:
 	_assigned_cameras.clear()
-	initial_cameras.filter(func(camera): camera != null)
+	initial_cameras = initial_cameras.filter(func(camera): return camera != null)
 	_assigned_cameras.append_array(initial_cameras)
 	update_assigned_cameras()
 
@@ -92,6 +92,7 @@ func update_assigned_cameras() -> void:
 			set_camera_limits(camera, limits)
 	_camera_array_mutex.unlock()
 
+@warning_ignore("narrowing_conversion")
 func set_camera_limits(camera : Camera2D, limits : Rect2):
 	camera.limit_left = limits.position.x
 	camera.limit_top = limits.position.y

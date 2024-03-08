@@ -36,9 +36,10 @@ func on_game_finished(l: Array):
 	show_leaderboard.rpc(l)
 
 func _on_countdown_finished() -> void:
-	get_tree().call_group("platform", "disable_collision", false)
-	get_tree().call_group("platform", "enable_motion", true)
+	get_tree().call_group("platforms", "disable_collision", false)
+	get_tree().call_group("moving_platforms", "enable_motion", true)
 
+@warning_ignore("unused_parameter")
 @rpc("any_peer", "call_local", "reliable")
 func show_leaderboard(l: Array):
 	MusicPlayer.stop_in_game_music()
@@ -71,6 +72,7 @@ func on_player_deregistered(peer_id: int):
 		start_button.hide()
 		start_button.set_disabled(true)
 
+@warning_ignore("shadowed_global_identifier")
 @rpc("authority", "call_remote", "reliable")
 func register_settings(height : int, seed : int):
 	playable_area.generate_map(get_map_area(height))
@@ -78,7 +80,7 @@ func register_settings(height : int, seed : int):
 	platform_generator.generate_platforms(playable_hight, seed)
 	platform_generator.create_finish_area(playable_hight)
 	platform_generator.game_finished.connect(on_game_finished)
-	get_tree().call_group("platform", "disable_collision", true)
+	get_tree().call_group("platforms", "disable_collision", true)
 
 @rpc("authority", "call_local", "reliable")
 func start_countdown():

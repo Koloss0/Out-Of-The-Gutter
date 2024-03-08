@@ -8,7 +8,7 @@ var count: int = 0
 signal game_finished(scoreboard : Array)
 
 func _on_body_entered(body):
-	if is_multiplayer_authority() and body.is_in_group("Player"):
+	if is_multiplayer_authority() and body.is_in_group("players"):
 		scoreboard.append({peer_id = body.peer_id, time = time})
 		count += 1
 		game_finished.emit(scoreboard)

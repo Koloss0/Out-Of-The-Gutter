@@ -55,7 +55,7 @@ size = Vector2(120, 120)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhxt4"]
 size = Vector2(120, 5)
 
-[node name="SlimeEntity" type="CharacterBody2D" groups=["Player"]]
+[node name="SlimeEntity" type="CharacterBody2D" groups=["slime_entities"]]
 collision_layer = 2
 floor_constant_speed = true
 platform_on_leave = 2

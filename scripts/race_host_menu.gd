@@ -5,6 +5,7 @@ extends HostMenu
 
 var map_seed : int
 
+@warning_ignore("narrowing_conversion")
 func get_map_height() -> int:
 	return height_option.value
 

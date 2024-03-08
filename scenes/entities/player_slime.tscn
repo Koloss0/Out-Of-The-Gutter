@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1m7csh8qaq31"]
+[gd_scene load_steps=7 format=3 uid="uid://b1m7csh8qaq31"]
 
 [ext_resource type="PackedScene" uid="uid://bgrr60hlm211y" path="res://scenes/entities/slime_entity.tscn" id="1_x2yoh"]
 [ext_resource type="Script" path="res://scripts/player_slime.gd" id="2_8v3cq"]
@@ -7,18 +7,48 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fdsys"]
 radius = 395.032
 
-[node name="PlayerSlime" instance=ExtResource("1_x2yoh")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_pt76k"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7rke6"]
+radius = 599.008
+
+[node name="PlayerSlime" groups=["players"] instance=ExtResource("1_x2yoh")]
 script = ExtResource("2_8v3cq")
 
-[node name="TouchBox" type="Area2D" parent="." index="2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchBox" index="0"]
-shape = SubResource("CircleShape2D_fdsys")
-
-[node name="Arrow" type="Sprite2D" parent="." index="3"]
+[node name="Arrow" type="Sprite2D" parent="." index="2"]
 texture_filter = 1
 scale = Vector2(0.217309, 0.212891)
 texture = ExtResource("3_cqpnb")
 offset = Vector2(600, 0)
 
-[connection signal="input_event" from="TouchBox" to="." method="_on_touch_box_input"]
+[node name="InputAreas" type="Node2D" parent="." index="4"]
+
+[node name="GestureStartArea" type="Area2D" parent="InputAreas" index="0"]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputAreas/GestureStartArea" index="0"]
+shape = SubResource("CircleShape2D_fdsys")
+
+[node name="MinJumpInput" type="Area2D" parent="InputAreas" index="1"]
+input_pickable = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputAreas/MinJumpInput" index="0"]
+shape = SubResource("CircleShape2D_pt76k")
+disabled = true
+debug_color = Color(0.956863, 0.105882, 0.462745, 0.419608)
+
+[node name="MaxJummpInput" type="Area2D" parent="InputAreas" index="2"]
+input_pickable = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputAreas/MaxJummpInput" index="0"]
+shape = SubResource("CircleShape2D_7rke6")
+disabled = true
+debug_color = Color(0.956863, 0.105882, 0.462745, 0.419608)
+
+[connection signal="input_event" from="InputAreas/GestureStartArea" to="." method="_on_touch_box_input"]
