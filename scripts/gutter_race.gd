@@ -50,13 +50,15 @@ func on_player_registered(peer_id: int):
 	
 	# if player is controlled by local machine
 	if peer_id == multiplayer.get_unique_id():
-		tracking_camera.start_tracking(players.get_node(str(peer_id)))
+		tracking_camera.start_tracking(player_character)
 	
 	if is_multiplayer_authority():
 		if Net.num_players > 1:
 			start_button.show()
 			start_button.set_disabled(false)
 
+func get_player(peer_id : int):
+	return players.get_node(str(peer_id))
 
 func on_player_deregistered(peer_id: int):
 	player_spawner.remove_player(peer_id)
