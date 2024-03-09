@@ -6,6 +6,15 @@ extends SlimeEntity
 @onready var max_jump_radius: CollisionShape2D = $InputAreas/MaxJummpInput/CollisionShape2D
 
 var peer_id: int
+var jump_input_strength : float
+
+# Used to shake the jump indicator arrow
+@export_group("Arrow Input Feedback", "jitter_")
+@export var jitter_max_offset : float = PI / 42.0
+@export var jitter_speed_scale : float = 9
+@export_range(0, 1) var jitter_start_thresh : float = 0.5
+@export var jitter_intensity_curve : Curve
+var jitter_time : float
 
 func _ready():
 	set_process_locally(false)
@@ -31,7 +40,20 @@ func _physics_process(delta: float) -> void:
 func _process(_delta):
 	if ready_to_jump:
 		hold_delta = get_local_mouse_position()
-		arrow_sprite.rotation = hold_delta.angle()
+		jump_input_strength = clamp(get_input_strength(), 0.0, 1.0)
+		
+		var above_thresh : bool = jump_input_strength > 0
+		if above_thresh != arrow_sprite.visible:
+			arrow_sprite.visible = above_thresh
+			jitter_time = 0
+		if above_thresh:
+			if jump_input_strength > jitter_start_thresh:
+				jitter_time += _delta * jitter_speed_scale * jitter_intensity_curve.sample(jump_input_strength)
+				arrow_sprite.rotation = oscillate(hold_delta.angle(), jitter_max_offset * jump_input_strength, jitter_time)
+			else:
+				jitter_time = 0
+				arrow_sprite.rotation = hold_delta.angle()
+
 
 @warning_ignore("unused_parameter")
 func _on_touch_box_input(viewport: Node, event: InputEvent, shape_idx: int):
@@ -52,3 +74,9 @@ func _input(event):
 			
 			set_ready_to_jump.rpc(false)
 			arrow_sprite.set_visible(false)
+
+func get_input_strength() -> float:
+	return (hold_delta.length() - min_jump_radius.shape.radius) / (max_jump_radius.shape.radius - min_jump_radius.shape.radius)
+
+func oscillate(value : float, radius : float, time : float):
+	return value + radius * sin(time * PI * 2)

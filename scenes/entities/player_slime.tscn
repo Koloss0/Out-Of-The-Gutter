@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1m7csh8qaq31"]
+[gd_scene load_steps=8 format=3 uid="uid://b1m7csh8qaq31"]
 
 [ext_resource type="PackedScene" uid="uid://bgrr60hlm211y" path="res://scenes/entities/slime_entity.tscn" id="1_x2yoh"]
 [ext_resource type="Script" path="res://scripts/player_slime.gd" id="2_8v3cq"]
 [ext_resource type="Texture2D" uid="uid://vtv7hux7gof2" path="res://art/right.png" id="3_cqpnb"]
+
+[sub_resource type="Curve" id="Curve_4y3f1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.17814, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fdsys"]
 radius = 395.032
@@ -15,6 +19,10 @@ radius = 599.008
 
 [node name="PlayerSlime" groups=["players"] instance=ExtResource("1_x2yoh")]
 script = ExtResource("2_8v3cq")
+jitter_max_offset = 0.0747998
+jitter_speed_scale = 9.0
+jitter_start_thresh = 0.5
+jitter_intensity_curve = SubResource("Curve_4y3f1")
 
 [node name="Arrow" type="Sprite2D" parent="." index="2"]
 texture_filter = 1
