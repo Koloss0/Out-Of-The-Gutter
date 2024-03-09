@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bclrnyr70xi6s" path="res://scenes/screens/game_screen.tscn" id="1_74x16"]
 [ext_resource type="Script" path="res://scripts/hot_potato.gd" id="2_oei4v"]
 [ext_resource type="PackedScene" uid="uid://dwo7wk4hco7er" path="res://scenes/components/playable_area.tscn" id="3_r2uet"]
-[ext_resource type="PackedScene" uid="uid://ca2lwhpbodphy" path="res://scenes/components/player_spawner.tscn" id="4_wfit2"]
+[ext_resource type="PackedScene" uid="uid://ca2lwhpbodphy" path="res://scenes/components/entity_spawner.tscn" id="4_wfit2"]
 [ext_resource type="PackedScene" uid="uid://bie0e0wy387gb" path="res://scenes/components/spawnpoint_supplier.tscn" id="5_60nou"]
 [ext_resource type="PackedScene" uid="uid://cqiaq6id1ysvd" path="res://scenes/components/platform_generator.tscn" id="6_o28lo"]
 [ext_resource type="PackedScene" uid="uid://j0723m1rkhhl" path="res://scenes/components/tracking_camera.tscn" id="7_ckeug"]
@@ -13,28 +13,32 @@
 script = ExtResource("2_oei4v")
 
 [node name="PlayableArea" parent="World" index="0" node_paths=PackedStringArray("initial_cameras") instance=ExtResource("3_r2uet")]
-layer_0/tile_data = PackedInt32Array(0, 0, 0, 65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 1, 0, 0, 2, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -131070, 0, 0, -131071, 0, 0, -131072, 0, 0, -65537, 0, 0, -65538, 0, 0, -65539, 0, 0, 131068, 1, 0, 65532, 1, 0, -4, 1, 0, -65540, 1, 0, -131076, 1, 0, -131075, 1, 0, -131074, 1, 0, -131073, 1, 0, -196608, 1, 0, -196607, 1, 0, -196606, 1, 0, -196605, 1, 0, -131069, 1, 0, -65533, 1, 0, 3, 1, 0, 65539, 1, 0, 65538, 1, 0, 65537, 1, 0, 65536, 1, 0, 131071, 1, 0, 131070, 1, 0, 131069, 1, 0)
-initial_cameras = [NodePath("../Players/CameraOffset/Camera2D")]
+initial_cameras = [NodePath("../Entities/CameraOffset/Camera2D")]
 
-[node name="Players" type="Node2D" parent="World" index="1"]
+[node name="Entities" type="Node2D" parent="World" index="1"]
 
-[node name="CameraOffset" type="Node2D" parent="World/Players" index="0"]
+[node name="CameraOffset" type="Node2D" parent="World/Entities" index="0"]
+position = Vector2(540, 600)
 
-[node name="Camera2D" type="Camera2D" parent="World/Players/CameraOffset" index="0"]
+[node name="Camera2D" type="Camera2D" parent="World/Entities/CameraOffset" index="0"]
 
 [node name="Platforms" type="Node2D" parent="World" index="2"]
 
-[node name="PlayerSpawner" parent="World" index="3" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_wfit2")]
-spawn_node = NodePath("../Players")
+[node name="EntitySpawner" parent="World" index="3" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_wfit2")]
+spawn_node = NodePath("../Entities")
 
-[node name="SpawnpointSupplier" parent="World/PlayerSpawner" index="0" instance=ExtResource("5_60nou")]
+[node name="SpawnpointSupplier" parent="World/EntitySpawner" index="0" instance=ExtResource("5_60nou")]
+
+[node name="Marker2D" type="Marker2D" parent="World/EntitySpawner/SpawnpointSupplier" index="0"]
+position = Vector2(559, 967)
 
 [node name="PlatformGenerator" parent="World" index="4" node_paths=PackedStringArray("platform_node") instance=ExtResource("6_o28lo")]
 platform_node = NodePath("../Platforms")
 platform_motion_chance = 0.0
 
-[node name="TrackingCamera" parent="World" index="5" node_paths=PackedStringArray("camera_pivot", "default_target") instance=ExtResource("7_ckeug")]
-camera_pivot = NodePath("../Players/CameraOffset")
-default_target = NodePath("../Players")
+[node name="CameraManager" parent="World" index="5" node_paths=PackedStringArray("camera_pivot", "default_target", "entity_spawner") instance=ExtResource("7_ckeug")]
+camera_pivot = NodePath("../Entities/CameraOffset")
+default_target = NodePath("../Entities")
+entity_spawner = NodePath("../EntitySpawner")
 
 [node name="Countdown" parent="CanvasLayer/Overlays" index="0" instance=ExtResource("7_hdyr5")]

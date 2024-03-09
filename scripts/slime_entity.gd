@@ -11,16 +11,17 @@ var min_jump_force : float = max_jump_force / 5.0
 @onready var ground_detector: ShapeCast2D = $GroundDetector
 
 
-var ready_to_jump : bool = false :
-	set = set_ready_to_jump
-
-var jump_velocity := Vector2.ZERO
-var hold_delta := Vector2.ZERO
+var hold_delta := Vector2.UP
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var on_ground : bool = true
+
+var ready_to_jump : bool = false :
+	set = set_ready_to_jump
+
+var on_ground : bool = true :
+	set = set_on_ground
 
 
 func _physics_process(delta):
@@ -70,13 +71,23 @@ func set_on_ground(state : bool):
 func check_on_ground() -> bool:
 	return ground_detector.is_colliding()
 
+## requests the authority to send the entity's state to the local machine
+func synch_state() -> void:
+	var authority = get_multiplayer_authority()
+	_on_refresh_requested.rpc_id(authority, multiplayer.get_unique_id())
+	
+@rpc("any_peer", "reliable")
+func _on_refresh_requested(peer_id : int) -> void:
+	if not multiplayer.get_peers().has(peer_id): return
+	if is_multiplayer_authority():
+		refresh_state.rpc_id(peer_id, position, on_ground, ready_to_jump)
 
-@rpc("any_peer", "call_remote", "reliable")
-func synch_state(peer_id : int):
-	update_pos.rpc_id(peer_id, position)
-	if not on_ground:
-		set_on_ground.rpc_id(peer_id, false)
-	elif ready_to_jump:
-		set_ready_to_jump.rpc_id(peer_id, true)
+@rpc("authority", "call_remote", "reliable")
+func refresh_state(pos : Vector2, grounded : bool, jump_ready : bool) -> void:
+	position = pos
+	if not grounded:
+		on_ground = grounded
+	elif jump_ready:
+		ready_to_jump = jump_ready
 	else:
-		set_on_ground.rpc_id(peer_id, true)
+		on_ground = grounded
