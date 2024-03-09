@@ -1,15 +1,14 @@
 
 extends GameScreen
 
-@onready var player_spawner: Node = $World/PlayerSpawner
+@onready var entity_spawner: EntitySpawner = $World/EntitySpawner
 @onready var start_button: TextureButton = $CanvasLayer/Overlays/StartButton
 @onready var countdown: Control = $CanvasLayer/Overlays/Countdown
-@onready var platform_generator: Node = $World/PlatformGenerator
+@onready var platform_generator: PlatformGenerator = $World/PlatformGenerator
 @onready var leader_board: Control = $CanvasLayer/Overlays/LeaderBoard
-@onready var players = $World/Players
-@onready var playable_area: TileMap = $World/PlayableArea
-@onready var tracking_camera: Node = $World/TrackingCamera
-@onready var camera: Camera2D = $World/Players/CameraOffset/Camera2D
+@onready var entities : Node2D = $World/Entities
+@onready var playable_area: PlayableArea = $World/PlayableArea
+@onready var camera_manager: CameraManager = $World/CameraManager
 
 var settings : RaceSettings
 
@@ -21,7 +20,7 @@ func _ready():
 	MusicPlayer.play_Lobby_music()
 	
 	if is_multiplayer_authority():
-		settings = ResourceHolder.take()
+		settings = ResourceHolder.take() as RaceSettings
 		register_settings(settings.map_height, settings.map_seed)
 
 func get_map_area(height : int) -> Rect2i:
@@ -47,11 +46,11 @@ func show_leaderboard(l: Array):
 
 func on_player_registered(peer_id: int):
 	var player_info = Net.player_data[peer_id]
-	var player_character = player_spawner.spawn_player(player_info)
+	var player_character = entity_spawner.spawn_player(player_info)
 	
 	# if player is controlled by local machine
 	if peer_id == multiplayer.get_unique_id():
-		tracking_camera.start_tracking(player_character)
+		camera_manager.start_tracking(player_character)
 	
 	if is_multiplayer_authority():
 		if Net.num_players > 1:
@@ -59,14 +58,14 @@ func on_player_registered(peer_id: int):
 			start_button.set_disabled(false)
 
 func get_player(peer_id : int):
-	return players.get_node(str(peer_id))
+	return entities.get_node(str(peer_id))
 
 func on_player_deregistered(peer_id: int):
-	player_spawner.remove_player(peer_id)
+	entity_spawner.remove_player(peer_id)
 	AlertDisplayer.alert("Player %s Disconnected" % peer_id)
 	
 	if peer_id == multiplayer.get_unique_id():
-		tracking_camera.stop_tracking()
+		camera_manager.stop_tracking()
 	
 	if is_multiplayer_authority() and Net.num_players <= 1:
 		start_button.hide()

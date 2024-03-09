@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwo7wk4hco7er"]
+[gd_scene load_steps=9 format=3 uid="uid://dwo7wk4hco7er"]
 
 [ext_resource type="Texture2D" uid="uid://be4xldphturmu" path="res://art/sewer_wall.png" id="1_xrrjb"]
 [ext_resource type="Texture2D" uid="uid://bt8niwuodfi0e" path="res://art/solid_black.png" id="2_cyhrc"]
 [ext_resource type="Script" path="res://scripts/tile_map.gd" id="3_6opks"]
+[ext_resource type="Texture2D" uid="uid://cg5ay8tl3m4bi" path="res://art/light_gray.png" id="3_d37jr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6t3g4"]
 resource_name = "background"
@@ -21,11 +22,21 @@ texture_region_size = Vector2i(72, 128)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-36, -64, 36, -64, 36, 64, -36, 64)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmj5h"]
+resource_name = "finish"
+texture = ExtResource("3_d37jr")
+texture_region_size = Vector2i(72, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-36, -64, 36, -64, 36, 64, 20.3064, 64, 20.4769, 38.4566, -20.4769, 38.4566, -21.3658, 64, -36, 64)
+
 [sub_resource type="TileSet" id="TileSet_ql3uw"]
 tile_size = Vector2i(72, 128)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6t3g4")
 sources/1 = SubResource("TileSetAtlasSource_oj8ca")
+sources/2 = SubResource("TileSetAtlasSource_wmj5h")
 
 [node name="PlayableArea" type="TileMap"]
 scale = Vector2(15, 15)

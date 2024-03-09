@@ -1,4 +1,5 @@
 @tool
+class_name PlatformGenerator
 extends Node
 
 const MOVING_PLATFORM = preload("res://scenes/environment/platforms/moving_platform.tscn")
@@ -38,6 +39,7 @@ func generate_platforms(area : Rect2, seed : int):
 	var center_x : float = area.position.x + area.size.x / 2.0
 	var max_side_by_side : int = roundi(area.size.x / platform_max_spacing.x)
 	var outer_limits : Boundery = Boundery.new(area)
+	
 	while platform_y > area.position.y:
 		var num_platforms = random.randi_range(1, max_side_by_side)
 		var occupied_left : float = center_x
@@ -67,7 +69,7 @@ func generate_platforms(area : Rect2, seed : int):
 			
 			if moving_platform:
 				instance.set_movement_path(Vector2(adjusted_boundery.max.x, pos.y), Vector2(adjusted_boundery.min.x, pos.y), pos)
-				instance.speed_multiplier = randf_range(platform_min_speed, platform_max_speed)
+				instance.speed_multiplier = random.randf_range(platform_min_speed, platform_max_speed)
 				
 		platform_y -= random.randf_range(platform_min_spacing.y, platform_max_spacing.y)
 
@@ -115,7 +117,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 func convert_area_to_limits(area : Rect2) -> Rect2:
 	return Rect2(area.position, area.position + area.size)
 
-
+@warning_ignore("shadowed_global_identifier")
 class Boundery:
 	var max : Vector2
 	var min : Vector2

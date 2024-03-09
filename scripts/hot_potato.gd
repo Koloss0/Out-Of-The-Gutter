@@ -1,16 +1,47 @@
 extends GameScreen
 
+@onready var playable_area: PlayableArea = $World/PlayableArea
+@onready var platform_generator: PlatformGenerator = $World/PlatformGenerator
+@onready var entity_spawner: EntitySpawner = $World/EntitySpawner
+@onready var camera_manager: CameraManager = $World/CameraManager
+
+var settings : HotPotatoSettings
+var map_rect : Rect2i
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
+	
+	Net.start()
+	MusicPlayer.play_Lobby_music()
+	
+	if is_multiplayer_authority():
+		settings = ResourceHolder.take() as HotPotatoSettings
+		map_rect = Rect2i(-settings.size / 2, settings.size)
+		register_settings(map_rect, settings.generator_seed, settings.player_timeout)
+		#TODO
+
+
+@rpc("authority", "call_remote", "reliable")
+func register_settings(map_size : Rect2i, map_seed : int, player_timeout : float):
+	playable_area.generate_map(map_size)
+	platform_generator.generate_platforms(playable_area.get_playable_rect(), map_seed)
+	pass
+
 
 # Called when a client connects to the server.
 func on_peer_connected(peer_id: int):
-	pass
+	if is_multiplayer_authority():
+		register_settings.rpc_id(peer_id, map_rect, settings.generator_seed, settings.player_timeout)
+
 
 # Called when a client successfully joins the session.
 func on_player_registered(peer_id: int):
 	var peer_info := Net.get_player_info(peer_id)
+	var player_entity = entity_spawner.spawn_player(peer_info)
+	
+	if peer_id == multiplayer.get_unique_id():
+		camera_manager.start_tracking(player_entity)
 
 # Called when a client leaves the session.
 func on_player_deregistered(peer_id: int):

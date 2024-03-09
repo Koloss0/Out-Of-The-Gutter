@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca2lwhpbodphy"]
+[gd_scene load_steps=3 format=3 uid="uid://ca2lwhpbodphy"]
 
-[ext_resource type="Script" path="res://scripts/player_spawner.gd" id="1_207q4"]
+[ext_resource type="Script" path="res://scripts/entity_spawner.gd" id="1_207q4"]
+[ext_resource type="PackedScene" uid="uid://b1m7csh8qaq31" path="res://scenes/entities/player_slime.tscn" id="2_1egnb"]
 
 [node name="PlayerSpawner" type="Node"]
 script = ExtResource("1_207q4")
+player_entity = ExtResource("2_1egnb")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

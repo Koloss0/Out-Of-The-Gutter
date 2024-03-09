@@ -37,7 +37,7 @@ func set_process_locally(enabled : bool):
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
-func _process(_delta):
+func _process(delta):
 	if ready_to_jump:
 		hold_delta = get_local_mouse_position()
 		jump_input_strength = clamp(get_input_strength(), 0.0, 1.0)
@@ -47,12 +47,7 @@ func _process(_delta):
 			arrow_sprite.visible = above_thresh
 			jitter_time = 0
 		if above_thresh:
-			if jump_input_strength > jitter_start_thresh:
-				jitter_time += _delta * jitter_speed_scale * jitter_intensity_curve.sample(jump_input_strength)
-				arrow_sprite.rotation = oscillate(hold_delta.angle(), jitter_max_offset * jump_input_strength, jitter_time)
-			else:
-				jitter_time = 0
-				arrow_sprite.rotation = hold_delta.angle()
+			update_jump_indicator(delta)
 
 
 @warning_ignore("unused_parameter")
@@ -77,6 +72,15 @@ func _input(event):
 
 func get_input_strength() -> float:
 	return (hold_delta.length() - min_jump_radius.shape.radius) / (max_jump_radius.shape.radius - min_jump_radius.shape.radius)
+
+func update_jump_indicator(delta : float):
+	if jump_input_strength > jitter_start_thresh:
+		var jitter_intensity : float = (jump_input_strength - jitter_start_thresh) / (1 - jitter_start_thresh)
+		jitter_time += delta * jitter_speed_scale * jitter_intensity_curve.sample(jitter_intensity)
+		arrow_sprite.rotation = oscillate(hold_delta.angle(), jitter_max_offset * jump_input_strength, jitter_time)
+	else:
+		jitter_time = 0
+		arrow_sprite.rotation = hold_delta.angle()
 
 func oscillate(value : float, radius : float, time : float):
 	return value + radius * sin(time * PI * 2)

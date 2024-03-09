@@ -1,3 +1,4 @@
+class_name PlayableArea
 extends TileMap
 
 @export_group("Assigned Cameras")
@@ -18,6 +19,8 @@ func _ready() -> void:
 
 
 func generate_map(playable_area : Rect2i) -> void:
+	clear()
+	
 	var boundery : Rect2i = Rect2i(playable_area)
 	boundery.position -= Vector2i.ONE
 	boundery.size += Vector2i(2, 2)
@@ -54,6 +57,8 @@ func deregister_camera(camera : Camera2D) -> bool:
 		_assigned_cameras.pop_at(index)
 	_camera_array_mutex.unlock()
 	return found
+
+
 
 #region Utility Functions
 
