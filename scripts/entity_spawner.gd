@@ -1,50 +1,28 @@
 @tool
 class_name EntitySpawner
-extends Node
+extends MultiplayerSpawner
 
 @export var player_entity : PackedScene:
 	set = set_player_entity
+	
 @export var bot_entity : PackedScene:
 	set = set_bot_entity
 
 var spawnpoint_supplier : SpawnpointSupplier
 
-var players : Dictionary = {}
 
-@export var spawn_node: Node2D :
-	set = set_spawn_node
+func _ready() -> void:
+	set_spawn_function(create_entity.bind())
+	clear_spawnable_scenes()
+	add_spawnable_scene(player_entity.resource_path)
+	if bot_entity: add_spawnable_scene(bot_entity.resource_path)
 
-func spawn_player(player_info: PlayerInfo) -> Node2D:
+func create_player(player_info: PlayerInfo) -> Node2D:
 	var player = player_entity.instantiate()
 	player.name = str(player_info.peer_id)
 	player.position = spawnpoint_supplier.next()
-	spawn_node.add_child(player)
-	player.init(player_info)
-	
-	players[player_info.peer_id] = player
-	
-	# synch other player's character state
-	if player_info.peer_id != multiplayer.get_unique_id():
-		player.synch_state()
-		
+	player.player_info = player_info
 	return player
-
-func remove_player(peer_id: int) -> bool:
-	var player = players.get(peer_id)
-	if player == null: return false
-	
-	players.erase(peer_id)
-	player.queue_free()
-	return true
-
-func get_player_character(peer_id : int) -> Node2D:
-	return players[peer_id]
-
-
-func set_spawn_node(node : Node2D):
-	spawn_node = node
-	if Engine.is_editor_hint():
-		update_configuration_warnings()
 
 func set_player_entity(scene : PackedScene):
 	player_entity = scene
@@ -60,7 +38,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings : PackedStringArray = []
 	if not player_entity: warnings.append("Spawner has no player entity assigned.")
 	# if not bot_entity: warnings.append("Spawner has no bot entity assigned.") TODO: Uncomment once bots are implemented
-	if not spawn_node: warnings.append("Spawner must have a spawn node assigned.")
 	if not spawnpoint_supplier: warnings.append("Spawner must have a SpawnpointProvider child.")
 	return warnings
 
@@ -68,6 +45,24 @@ func find_first_supplier() -> SpawnpointSupplier:
 	for node in get_children():
 		if node is SpawnpointSupplier:
 			return node
+	return null
+
+func create_entity(info) -> Node2D:
+	if not info is Dictionary:
+		push_error("Invalid data received to create entity. Obj: %s, Type: %s" % [info, info.type_string()])
+		return null
+		
+	var player_info = PlayerInfo.from_dictionary(info)
+	
+	if player_info:
+		match player_info.type:
+			PlayerInfo.EntityType.PLAYER:
+				return create_player(player_info)
+			PlayerInfo.EntityType.BOT:
+				pass #TODO
+	else:
+		push_error("Unable to create PlayerInfo from dictionary.\nObj: %s" % info)
+			
 	return null
 
 func refresh_spawnpoint_supplier():

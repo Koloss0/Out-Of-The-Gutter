@@ -8,6 +8,8 @@ extends GameScreen
 var settings : HotPotatoSettings
 var map_rect : Rect2i
 
+var tagged_player : Node
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
@@ -27,7 +29,6 @@ func register_settings(map_size : Rect2i, map_seed : int, player_timeout : float
 	playable_area.generate_map(map_size)
 	platform_generator.generate_platforms(playable_area.get_playable_rect(), map_seed)
 	pass
-
 
 # Called when a client connects to the server.
 func on_peer_connected(peer_id: int):

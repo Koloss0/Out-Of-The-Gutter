@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scripts/tracking_camera.gd" id="1_4n3op"]
 
-[node name="TrackingCamera" type="Node"]
+[node name="CameraManager" type="Node"]
 script = ExtResource("1_4n3op")

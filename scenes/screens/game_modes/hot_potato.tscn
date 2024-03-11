@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ca2lwhpbodphy" path="res://scenes/components/entity_spawner.tscn" id="4_wfit2"]
 [ext_resource type="PackedScene" uid="uid://bie0e0wy387gb" path="res://scenes/components/spawnpoint_supplier.tscn" id="5_60nou"]
 [ext_resource type="PackedScene" uid="uid://cqiaq6id1ysvd" path="res://scenes/components/platform_generator.tscn" id="6_o28lo"]
-[ext_resource type="PackedScene" uid="uid://j0723m1rkhhl" path="res://scenes/components/tracking_camera.tscn" id="7_ckeug"]
+[ext_resource type="PackedScene" uid="uid://j0723m1rkhhl" path="res://scenes/components/camera_manager.tscn" id="7_ckeug"]
 [ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://scenes/countdown.tscn" id="7_hdyr5"]
 
 [node name="HotPotato" instance=ExtResource("1_74x16")]
@@ -24,8 +24,8 @@ position = Vector2(540, 600)
 
 [node name="Platforms" type="Node2D" parent="World" index="2"]
 
-[node name="EntitySpawner" parent="World" index="3" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_wfit2")]
-spawn_node = NodePath("../Entities")
+[node name="EntitySpawner" parent="World" index="3" instance=ExtResource("4_wfit2")]
+_spawnable_scenes = PackedStringArray("res://scenes/entities/player_slime.tscn")
 
 [node name="SpawnpointSupplier" parent="World/EntitySpawner" index="0" instance=ExtResource("5_60nou")]
 
