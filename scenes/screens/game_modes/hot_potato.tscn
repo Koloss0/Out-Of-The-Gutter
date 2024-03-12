@@ -26,6 +26,7 @@ position = Vector2(540, 600)
 
 [node name="EntitySpawner" parent="World" index="3" instance=ExtResource("4_wfit2")]
 _spawnable_scenes = PackedStringArray("res://scenes/entities/player_slime.tscn")
+spawn_path = NodePath("../Entities")
 
 [node name="SpawnpointSupplier" parent="World/EntitySpawner" index="0" instance=ExtResource("5_60nou")]
 

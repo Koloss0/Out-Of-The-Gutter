@@ -73,13 +73,13 @@ func on_peer_connected(peer_id: int):
 	peer_connected.emit(peer_id)
 	if is_multiplayer_authority():
 		var color: Color = Color(randf(), randf(), randf())
-		var peer_info := PlayerInfo.new(peer_id, color)
+		var peer_info := PlayerInfo.new(peer_id, color, PlayerInfo.EntityType.PLAYER)
 		
 		# Register existing players on new peer
 		for player_info in player_data.values():
 			register_player.rpc_id(peer_id, player_info.to_dictionary())
 		
-		# Register new peer on all peers (including itself)
+		# Register new peer on all peers (including the host)
 		register_player.rpc(peer_info.to_dictionary())
 
 @rpc("authority", "call_local", "reliable")

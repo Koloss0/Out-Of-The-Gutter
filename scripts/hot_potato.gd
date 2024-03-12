@@ -1,5 +1,7 @@
 extends GameScreen
 
+const TAG_COMPONENT : PackedScene = preload("res://scenes/components/tag_component.tscn")
+
 @onready var playable_area: PlayableArea = $World/PlayableArea
 @onready var platform_generator: PlatformGenerator = $World/PlatformGenerator
 @onready var entity_spawner: EntitySpawner = $World/EntitySpawner
@@ -30,6 +32,11 @@ func register_settings(map_size : Rect2i, map_seed : int, player_timeout : float
 	platform_generator.generate_platforms(playable_area.get_playable_rect(), map_seed)
 	pass
 
+func attach_tag_component(player : Node2D):
+	var component = TAG_COMPONENT.instantiate()
+	# TODO: Connect player tagged signal
+	player.add_child(component)
+
 # Called when a client connects to the server.
 func on_peer_connected(peer_id: int):
 	if is_multiplayer_authority():
@@ -43,6 +50,7 @@ func on_player_registered(peer_id: int):
 	
 	if peer_id == multiplayer.get_unique_id():
 		camera_manager.start_tracking(player_entity)
+		
 
 # Called when a client leaves the session.
 func on_player_deregistered(peer_id: int):
