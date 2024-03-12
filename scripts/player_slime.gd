@@ -5,7 +5,7 @@ extends SlimeEntity
 @onready var min_jump_radius: CollisionShape2D = $InputAreas/MinJumpInput/CollisionShape2D
 @onready var max_jump_radius: CollisionShape2D = $InputAreas/MaxJummpInput/CollisionShape2D
 
-var peer_id: int
+var player_info : PlayerInfo
 var jump_input_strength : float
 
 # Used to shake the jump indicator arrow
@@ -16,17 +16,16 @@ var jump_input_strength : float
 @export var jitter_intensity_curve : Curve
 var jitter_time : float
 
-func _ready():
-	set_process_locally(false)
-	arrow_sprite.hide()
+func _enter_tree() -> void:
+	if player_info:
+		set_multiplayer_authority(player_info.peer_id)
 
-# called directly by player spawner
-func init(info: PlayerInfo):
-	set_multiplayer_authority(info.peer_id)
-	peer_id = info.peer_id
-	player_sprite.modulate = info.color
-	
+func _ready():
+	if player_info:
+		player_sprite.modulate = player_info.color
+		
 	set_process_locally(is_multiplayer_authority())
+	arrow_sprite.hide()
 
 func set_process_locally(enabled : bool):
 	set_process(enabled)
@@ -55,7 +54,8 @@ func _on_touch_box_input(viewport: Node, event: InputEvent, shape_idx: int):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
 			arrow_sprite.set_visible(true)
-			set_ready_to_jump.rpc(true)
+			#set_ready_to_jump.rpc(true)
+			ready_to_jump = true
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -67,7 +67,8 @@ func _input(event):
 					var input_strength : float = input_radius / (max_jump_radius.shape.radius - min_jump_radius.shape.radius)
 					jump(hold_delta, clamp(input_strength, 0.0, 1.0))
 			
-			set_ready_to_jump.rpc(false)
+			#set_ready_to_jump.rpc(false)
+			ready_to_jump = false
 			arrow_sprite.set_visible(false)
 
 func get_input_strength() -> float:

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cqiaq6id1ysvd" path="res://scenes/components/platform_generator.tscn" id="3_qtgcp"]
 [ext_resource type="PackedScene" uid="uid://ca2lwhpbodphy" path="res://scenes/components/entity_spawner.tscn" id="4_cnanw"]
 [ext_resource type="PackedScene" uid="uid://bie0e0wy387gb" path="res://scenes/components/spawnpoint_supplier.tscn" id="4_iumc5"]
-[ext_resource type="PackedScene" uid="uid://j0723m1rkhhl" path="res://scenes/components/tracking_camera.tscn" id="5_m02hc"]
+[ext_resource type="PackedScene" uid="uid://j0723m1rkhhl" path="res://scenes/components/camera_manager.tscn" id="5_m02hc"]
 [ext_resource type="PackedScene" uid="uid://flycxanwi2xc" path="res://scenes/countdown.tscn" id="6_ejf1w"]
 [ext_resource type="PackedScene" uid="uid://d06y0af7layko" path="res://scenes/ui/labeled_texture_button.tscn" id="7_ivdkr"]
 [ext_resource type="PackedScene" uid="uid://cwtn7efq8he32" path="res://scenes/ui/leaderboard.tscn" id="8_sg2fo"]
@@ -32,8 +32,9 @@ drag_bottom_margin = 0.0
 
 [node name="Platforms" type="Node2D" parent="World" index="2"]
 
-[node name="EntitySpawner" parent="World" index="3" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_cnanw")]
-spawn_node = NodePath("../Entities")
+[node name="EntitySpawner" parent="World" index="3" instance=ExtResource("4_cnanw")]
+_spawnable_scenes = PackedStringArray("res://scenes/entities/player_slime.tscn")
+spawn_path = NodePath("../Entities")
 
 [node name="SpawnpointSupplier" parent="World/EntitySpawner" index="0" instance=ExtResource("4_iumc5")]
 sequential = true
@@ -77,6 +78,8 @@ text = "Start"
 [node name="LeaderBoard" parent="CanvasLayer/Overlays" index="2" instance=ExtResource("8_sg2fo")]
 visible = false
 
+[connection signal="despawned" from="World/EntitySpawner" to="." method="_on_entity_despawned"]
+[connection signal="spawned" from="World/EntitySpawner" to="." method="_on_entity_spawned"]
 [connection signal="finished" from="CanvasLayer/Overlays/Countdown" to="." method="_on_countdown_finished"]
 [connection signal="pressed" from="CanvasLayer/Overlays/StartButton" to="." method="_on_start_button_pressed"]
 

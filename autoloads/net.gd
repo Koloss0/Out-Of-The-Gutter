@@ -43,7 +43,8 @@ func start():
 			AlertDisplayer.alert("Creating Server...")
 			
 			print("unique ID: %s" % multiplayer.get_unique_id())
-			register_player(multiplayer.get_unique_id(), Color.WHITE)
+			var info := PlayerInfo.new(multiplayer.get_unique_id(), Color.WHITE, PlayerInfo.EntityType.PLAYER)
+			register_player(info.to_dictionary())
 		else:
 			print("[Net] Failed to create server: %s" % error);
 			AlertDisplayer.alert("Failed to Create Server: %s" % error)
@@ -72,21 +73,22 @@ func on_peer_connected(peer_id: int):
 	peer_connected.emit(peer_id)
 	if is_multiplayer_authority():
 		var color: Color = Color(randf(), randf(), randf())
+		var peer_info := PlayerInfo.new(peer_id, color, PlayerInfo.EntityType.PLAYER)
 		
 		# Register existing players on new peer
 		for player_info in player_data.values():
-			register_player.rpc_id(peer_id, player_info.peer_id, player_info.color)
+			register_player.rpc_id(peer_id, player_info.to_dictionary())
 		
-		# Register new peer on all peers (including itself)
-		register_player.rpc(peer_id, color)
+		# Register new peer on all peers (including the host)
+		register_player.rpc(peer_info.to_dictionary())
 
 @rpc("authority", "call_local", "reliable")
-func register_player(peer_id: int, color: Color):
-	var player_info: PlayerInfo = PlayerInfo.new(peer_id, color)
+func register_player(info : Dictionary):
+	var player_info: PlayerInfo = PlayerInfo.from_dictionary(info)
 	
-	player_data[peer_id] = player_info
+	player_data[player_info.peer_id] = player_info
 	num_players += 1
-	player_registered.emit(peer_id)
+	player_registered.emit(player_info.peer_id)
 	pass
 
 func on_peer_disconnected(peer_id: int):

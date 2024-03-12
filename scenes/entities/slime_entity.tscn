@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgrr60hlm211y"]
+[gd_scene load_steps=11 format=3 uid="uid://bgrr60hlm211y"]
 
 [ext_resource type="Script" path="res://scripts/slime_entity.gd" id="1_3u5vv"]
 [ext_resource type="Texture2D" uid="uid://bffpw037fjn2f" path="res://art/slimes.png" id="2_5yoqg"]
@@ -55,6 +55,20 @@ size = Vector2(120, 120)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhxt4"]
 size = Vector2(120, 5)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_apkfx"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:ready_to_jump")
+properties/1/spawn = false
+properties/1/replication_mode = 0
+properties/2/path = NodePath(".:on_ground")
+properties/2/spawn = false
+properties/2/replication_mode = 0
+properties/3/path = NodePath("Sprite2D:animation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
 [node name="SlimeEntity" type="CharacterBody2D" groups=["slime_entities"]]
 collision_layer = 2
 floor_constant_speed = true
@@ -74,3 +88,6 @@ shape = SubResource("RectangleShape2D_jbuoc")
 position = Vector2(0, 50)
 shape = SubResource("RectangleShape2D_mhxt4")
 target_position = Vector2(0, 10)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_apkfx")

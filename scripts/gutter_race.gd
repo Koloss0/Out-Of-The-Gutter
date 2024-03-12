@@ -45,14 +45,11 @@ func show_leaderboard(l: Array):
 	leader_board.show()
 
 func on_player_registered(peer_id: int):
-	var player_info = Net.player_data[peer_id]
-	var player_character = entity_spawner.spawn_player(player_info)
-	
-	# if player is controlled by local machine
-	if peer_id == multiplayer.get_unique_id():
-		camera_manager.start_tracking(player_character)
-	
 	if is_multiplayer_authority():
+		var player_info = Net.player_data[peer_id]
+		var player_character = entity_spawner.spawn(player_info.to_dictionary())
+		_on_entity_spawned(player_character)
+		
 		if Net.num_players > 1:
 			start_button.show()
 			start_button.set_disabled(false)
@@ -61,15 +58,15 @@ func get_player(peer_id : int):
 	return entities.get_node(str(peer_id))
 
 func on_player_deregistered(peer_id: int):
-	entity_spawner.remove_player(peer_id)
 	AlertDisplayer.alert("Player %s Disconnected" % peer_id)
 	
-	if peer_id == multiplayer.get_unique_id():
-		camera_manager.stop_tracking()
-	
-	if is_multiplayer_authority() and Net.num_players <= 1:
-		start_button.hide()
-		start_button.set_disabled(true)
+	if is_multiplayer_authority():
+		if peer_id == multiplayer.get_unique_id():
+			camera_manager.stop_tracking()
+		if Net.num_players <= 1:
+			start_button.hide()
+			start_button.set_disabled(true)
+		get_player(peer_id).queue_free()
 
 @warning_ignore("shadowed_global_identifier")
 @rpc("authority", "call_remote", "reliable")
@@ -102,3 +99,12 @@ func on_connection_failed():
 
 func on_server_disconnected():
 	pass
+
+
+func _on_entity_spawned(node: Node) -> void:
+	if node.is_multiplayer_authority():
+		camera_manager.start_tracking(node)
+
+func _on_entity_despawned(node: Node) -> void:
+	if node.is_multiplayer_authority():
+		camera_manager.stop_tracking()

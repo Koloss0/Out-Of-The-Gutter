@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/entity_spawner.gd" id="1_207q4"]
 [ext_resource type="PackedScene" uid="uid://b1m7csh8qaq31" path="res://scenes/entities/player_slime.tscn" id="2_1egnb"]
 
-[node name="PlayerSpawner" type="Node"]
+[node name="PlayerSpawner" type="MultiplayerSpawner"]
 script = ExtResource("1_207q4")
 player_entity = ExtResource("2_1egnb")
 

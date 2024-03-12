@@ -15,12 +15,6 @@ extends Node
 func _ready() -> void:
 	stop_tracking()
 
-func start_tracking_player(peer_id : int) -> bool:
-	var character := entity_spawner.get_player_character(peer_id)
-	if character == null: return false
-	start_tracking(character)
-	return true
-
 func start_tracking(target : Node2D):
 	camera_pivot.reparent(target)
 	

@@ -1,6 +1,7 @@
 class_name SlimeEntity
 extends CharacterBody2D
 
+@export_category("Entity")
 @export var max_jump_force := 1000.0
 @export var friction := 0.95
 
@@ -16,7 +17,6 @@ var hold_delta := Vector2.UP
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-
 var ready_to_jump : bool = false :
 	set = set_ready_to_jump
 
@@ -28,7 +28,8 @@ func _physics_process(delta):
 	var new_on_ground : bool = check_on_ground()
 	
 	if new_on_ground != on_ground:
-		set_on_ground.rpc(new_on_ground)
+		#set_on_ground.rpc(new_on_ground)
+		on_ground = new_on_ground
 	
 	if on_ground:
 		velocity.x *= friction
@@ -36,14 +37,10 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	move_and_slide()
-	
-	update_pos.rpc(position)
-
 
 @rpc("call_remote", "unreliable")
 func update_pos(pos: Vector2):
 	position = pos
-
 
 func jump(direction : Vector2, input_strength : float):
 	input_strength = clampf(input_strength, 0, 1)
