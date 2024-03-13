@@ -94,9 +94,11 @@ func register_player(info : Dictionary):
 func on_peer_disconnected(peer_id: int):
 	if player_data.has(peer_id):
 		peer_disconnected.emit(peer_id)
-		player_data.erase(peer_id)
-		num_players -= 1
-		player_deregistered.emit(peer_id)
+		if player_data.has(peer_id):
+			player_data.erase(peer_id)
+			num_players -= 1
+			player_deregistered.emit(peer_id)
+		AlertDisplayer.alert("Player %s Disconnected" % peer_id)
 
 func on_server_disconnected():
 	server_disconnected.emit()

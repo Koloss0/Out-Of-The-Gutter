@@ -1,7 +1,7 @@
 class_name PlayerInfo
 
-## An empty dictionary shared by all instances to indicate the cache being unset
-## b/c typed variables are not nullable.
+## An empty dictionary shared by all instances to indicate the cache not being set
+## In use b/c typed variables are not nullable.
 static var __EMPTY : Dictionary = {}
 
 var peer_id : int: set = set_peer_id

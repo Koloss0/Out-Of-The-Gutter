@@ -13,10 +13,13 @@ const SCENES : Dictionary = {
 
 
 func fade_to_scene(scene_path : String) -> Error:
-	await SceneTransitioner.fade_in()
-	
+	await fade_to_black()
+	var error : Error = await switch_to_scene(scene_path)
+	await fade_from_black()
+	return error
+
+func switch_to_scene(scene_path : String) -> Error:
 	if SCENES.has(scene_path): scene_path = SCENES[scene_path]
-	
 	
 	var status : Error
 	if ResourceLoader.exists(scene_path):
@@ -41,8 +44,11 @@ func fade_to_scene(scene_path : String) -> Error:
 		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(scene_path))
 	else:
 		await AlertDisplayer.alert("ERROR: Unable to load requested scene.\n%s (%0d)" % [error_string(status), status])
-		
-	await SceneTransitioner.fade_out()
 	
 	return status
 
+func fade_to_black() -> Signal:
+	return SceneTransitioner.fade_in()
+
+func fade_from_black() -> Signal:
+	return SceneTransitioner.fade_out()

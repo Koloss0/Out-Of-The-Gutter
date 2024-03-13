@@ -15,13 +15,15 @@ func _ready() -> void:
 
 func _on_host_button_pressed() -> void:
 	var menu : HostMenu = mode_option.get_selected_metadata()
-	
-	Net.server_port = $Port.text
+	var game_screen_path : String = menu.get_game_screen_path()
+
+	Net.server_port = int(port.text)
 	Net.is_host = true
+	Net.game_mode = game_screen_path
 	
 	ResourceHolder.put(menu.get_settings())
 	
-	if await SceneManager.fade_to_scene(menu.get_game_screen_path()) == OK:
+	if await SceneManager.fade_to_scene(game_screen_path) == OK:
 		MusicPlayer.stop_music()
 
 

@@ -13,6 +13,7 @@ func _on_connect_button_pressed() -> void:
 	Net.server_ip = $IP.text
 	Net.server_port = $Port.text
 	Net.is_host = false
+	#TODO: switch to correct scene when joining.
 	SceneManager.fade_to_scene("gutter_race")
 	MusicPlayer.stop_music()
 
