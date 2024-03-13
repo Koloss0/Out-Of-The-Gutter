@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbt782w47jpbx"]
+
+[ext_resource type="Script" path="res://scripts/game_mode_synchronizer.gd" id="1_v683u"]
+
+[node name="GameModeSynchronizer" type="MultiplayerSpawner"]
+_spawnable_scenes = PackedStringArray("res://scenes/screens/game_modes/gutter_race.tscn", "res://scenes/screens/game_modes/hot_potato.tscn")
+spawn_path = NodePath(".")
+script = ExtResource("1_v683u")
+
+[connection signal="spawned" from="." to="." method="_on_spawned"]

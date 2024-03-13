@@ -8,6 +8,9 @@ extends MultiplayerSpawner
 @export var bot_entity : PackedScene:
 	set = set_bot_entity
 
+## Nodes to be assigned to the entities on spawn
+@export var entity_attachements : Array[PackedScene] = []
+
 var spawnpoint_supplier : SpawnpointSupplier
 
 
@@ -51,19 +54,25 @@ func create_entity(info) -> Node2D:
 	if not info is Dictionary:
 		push_error("Invalid data received to create entity. Obj: %s, Type: %s" % [info, info.type_string()])
 		return null
-		
+	
+	var entity : Node2D
 	var player_info = PlayerInfo.from_dictionary(info)
 	
 	if player_info:
-		match player_info.type:
+		match player_info.entity_type:
 			PlayerInfo.EntityType.PLAYER:
-				return create_player(player_info)
+				entity = create_player(player_info)
 			PlayerInfo.EntityType.BOT:
 				pass #TODO
 	else:
 		push_error("Unable to create PlayerInfo from dictionary.\nObj: %s" % info)
-			
-	return null
+	
+	if entity and is_multiplayer_authority():
+		for attachement in entity_attachements:
+			var instance = attachement.instantiate()
+			entity.add_child(instance)
+	
+	return entity
 
 func refresh_spawnpoint_supplier():
 	var first_supplier := find_first_supplier()

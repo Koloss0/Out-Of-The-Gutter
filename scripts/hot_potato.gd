@@ -16,7 +16,6 @@ var tagged_player : Node
 func _ready():
 	super._ready()
 	
-	Net.start()
 	MusicPlayer.play_Lobby_music()
 	
 	if is_multiplayer_authority():
@@ -24,6 +23,7 @@ func _ready():
 		map_rect = Rect2i(-settings.size / 2, settings.size)
 		register_settings(map_rect, settings.generator_seed, settings.player_timeout)
 		#TODO
+		Net.start()
 
 
 @rpc("authority", "call_remote", "reliable")
@@ -45,11 +45,10 @@ func on_peer_connected(peer_id: int):
 
 # Called when a client successfully joins the session.
 func on_player_registered(peer_id: int):
-	var peer_info := Net.get_player_info(peer_id)
-	var player_entity = entity_spawner.spawn_player(peer_info)
-	
-	if peer_id == multiplayer.get_unique_id():
-		camera_manager.start_tracking(player_entity)
+	if is_multiplayer_authority():
+		var player_info = Net.player_data[peer_id]
+		var player_character = entity_spawner.spawn(player_info.to_dictionary())
+		_on_entity_spawned(player_character)
 		
 
 # Called when a client leaves the session.
@@ -72,3 +71,11 @@ func on_connection_failed():
 func on_server_disconnected():
 	pass
 
+
+func _on_entity_spawned(node: Node) -> void:
+	if node.is_multiplayer_authority():
+		camera_manager.start_tracking(node)
+
+func _on_entity_despawned(node: Node) -> void:
+	if node.is_multiplayer_authority():
+		camera_manager.stop_tracking()

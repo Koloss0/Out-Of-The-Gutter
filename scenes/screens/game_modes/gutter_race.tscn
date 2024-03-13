@@ -33,7 +33,6 @@ drag_bottom_margin = 0.0
 [node name="Platforms" type="Node2D" parent="World" index="2"]
 
 [node name="EntitySpawner" parent="World" index="3" instance=ExtResource("4_cnanw")]
-_spawnable_scenes = PackedStringArray("res://scenes/entities/player_slime.tscn")
 spawn_path = NodePath("../Entities")
 
 [node name="SpawnpointSupplier" parent="World/EntitySpawner" index="0" instance=ExtResource("4_iumc5")]

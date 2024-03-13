@@ -16,12 +16,12 @@ var settings : RaceSettings
 func _ready():
 	super._ready()
 	
-	Net.start()
 	MusicPlayer.play_Lobby_music()
 	
 	if is_multiplayer_authority():
 		settings = ResourceHolder.take() as RaceSettings
 		register_settings(settings.map_height, settings.map_seed)
+		Net.start()
 
 func get_map_area(height : int) -> Rect2i:
 	return Rect2i(0, -(height - 1), 1, height)
@@ -58,8 +58,6 @@ func get_player(peer_id : int):
 	return entities.get_node(str(peer_id))
 
 func on_player_deregistered(peer_id: int):
-	AlertDisplayer.alert("Player %s Disconnected" % peer_id)
-	
 	if is_multiplayer_authority():
 		if peer_id == multiplayer.get_unique_id():
 			camera_manager.stop_tracking()

@@ -13,8 +13,14 @@ func _on_connect_button_pressed() -> void:
 	Net.server_ip = $IP.text
 	Net.server_port = $Port.text
 	Net.is_host = false
-	SceneManager.fade_to_scene("gutter_race")
-	MusicPlayer.stop_music()
+	#TODO: switch to correct scene when joining.
+	# SceneManager.fade_to_scene("gutter_race")
+	# MusicPlayer.stop_music()
+	await SceneManager.fade_to_black()
+	await SceneManager.switch_to_scene("res://scenes/components/game_mode_synchronizer.tscn")
+	if Net.start() != OK:
+		await SceneManager.switch_to_scene("host_or_join")
+		SceneManager.fade_from_black()
 
 func _on_back_button_pressed() -> void:
 	SceneManager.fade_to_scene("host_or_join")

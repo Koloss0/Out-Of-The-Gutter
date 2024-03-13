@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b1m7csh8qaq31" path="res://scenes/entities/player_slime.tscn" id="2_1egnb"]
 
 [node name="PlayerSpawner" type="MultiplayerSpawner"]
+_spawnable_scenes = PackedStringArray("res://scenes/entities/player_slime.tscn")
 script = ExtResource("1_207q4")
 player_entity = ExtResource("2_1egnb")
 
