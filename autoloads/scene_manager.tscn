@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj87xpldmdg5i"]
+
+[ext_resource type="Script" path="res://autoloads/scene_manager.gd" id="1_td4hk"]
+[ext_resource type="PackedScene" uid="uid://c8odylepaju05" path="res://scenes/screens/scene_transitioner.tscn" id="2_d0hh0"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_td4hk")
+
+[node name="SceneTransitioner" parent="." instance=ExtResource("2_d0hh0")]

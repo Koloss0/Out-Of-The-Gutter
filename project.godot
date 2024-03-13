@@ -17,11 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneManager="*res://autoloads/scene_manager.gd"
-SceneTransitioner="*res://autoloads/scene_transitioner.tscn"
-Net="*res://autoloads/net.gd"
+SceneManager="*res://autoloads/scene_manager.tscn"
 AlertDisplayer="*res://autoloads/alert_displayer.tscn"
 MusicPlayer="*res://autoloads/music_player.tscn"
+Net="*res://autoloads/net.gd"
 ResourceHolder="*res://autoloads/resource_holder.gd"
 
 [debug]

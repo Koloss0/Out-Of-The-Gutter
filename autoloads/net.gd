@@ -16,6 +16,8 @@ var is_host := false
 var server_ip: String
 var server_port: int
 
+var game_mode
+
 signal connected_to_server()
 signal connection_failed()
 signal player_registered(peer_id: int)
@@ -33,7 +35,7 @@ func _ready():
 	multiplayer.server_disconnected.connect(on_server_disconnected)
 
 
-func start():
+func start() -> Error:
 	var error = OK
 	if is_host:
 		error = network_peer.create_server(server_port, MAX_PLAYERS-1)
@@ -57,6 +59,7 @@ func start():
 		else:
 			print("[Net] Failed to create client: %s" % error);
 			AlertDisplayer.alert("Failed to Create Client: %s" % error)
+	return error
 
 func on_connected_to_server():
 	connected_to_server.emit()

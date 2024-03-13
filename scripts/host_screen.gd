@@ -23,8 +23,10 @@ func _on_host_button_pressed() -> void:
 	
 	ResourceHolder.put(menu.get_settings())
 	
-	if await SceneManager.fade_to_scene(game_screen_path) == OK:
-		MusicPlayer.stop_music()
+	await SceneManager.fade_to_black()
+
+	if await SceneManager.switch_to_scene("game_mode_synch") != OK:
+		SceneManager.fade_from_black()
 
 
 func _on_back_button_pressed() -> void:
