@@ -1,8 +1,8 @@
 extends Control
 
-@onready var name_edit: LineEdit = $MarginContainer/VBoxContainer/Settings/NameEdit
-@onready var port_edit: SpinBox = $MarginContainer/VBoxContainer/Settings/PortEdit
-@onready var advanced_button: Button = $MarginContainer/VBoxContainer/AdvancedButton
+@onready var name_edit: LineEdit = $VBoxContainer/MarginContainer/VBoxContainer/Settings/NameEdit
+@onready var port_edit: SpinBox = $VBoxContainer/MarginContainer/VBoxContainer/Settings/PortEdit
+@onready var advanced_button: Button = $VBoxContainer/MarginContainer/VBoxContainer/AdvancedButton
 
 var advanced_mode : bool = false
 

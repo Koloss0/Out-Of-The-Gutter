@@ -1,14 +1,14 @@
 extends Control
 
-@onready var ip = $Control/VBoxContainer/Manual/IP
-@onready var port = $Control/VBoxContainer/Manual/Port
-@onready var server_list: Control = $Control/VBoxContainer/Discovery/ServerList
+@onready var ip = $VBoxContainer/MarginContainer/VBoxContainer/Settings/Manual/IP
+@onready var port = $VBoxContainer/MarginContainer/VBoxContainer/Settings/Manual/Port
+@onready var server_list: Control = $VBoxContainer/MarginContainer/VBoxContainer/Settings/Discovery/ServerList
 
-@onready var manual_options: Control = $Control/VBoxContainer/Manual
-@onready var discovery: Control = $Control/VBoxContainer/Discovery
+@onready var manual_options: Control = $VBoxContainer/MarginContainer/VBoxContainer/Settings/Manual
+@onready var discovery: Control = $VBoxContainer/MarginContainer/VBoxContainer/Settings/Discovery
 
-@onready var advanced_button: Button = $Control/VBoxContainer/SearchOptions/AdvancedButton
-@onready var refresh_button: Button = $Control/VBoxContainer/SearchOptions/RefreshButton
+@onready var advanced_button: Button = $VBoxContainer/MarginContainer/VBoxContainer/SearchOptions/AdvancedButton
+@onready var refresh_button: Button = $VBoxContainer/MarginContainer/VBoxContainer/SearchOptions/RefreshButton
 
 
 var advanced_mode : bool = false : set = set_advanced_mode
