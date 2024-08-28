@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://fan4i03uds0m"]
+[gd_scene load_steps=5 format=3 uid="uid://fan4i03uds0m"]
 
 [ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://themes/ui.tres" id="1_ibnqj"]
 [ext_resource type="Script" path="res://scripts/join_screen.gd" id="2_ef8gm"]
 [ext_resource type="Texture2D" uid="uid://bnfubdqfxefer" path="res://art/sewer_bg.png" id="3_f66hd"]
+[ext_resource type="PackedScene" uid="uid://cuv4b31xbwsqh" path="res://scenes/ui/server_list.tscn" id="4_xaern"]
 
 [node name="JoinPage" type="Control"]
 layout_mode = 3
@@ -11,7 +12,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_ibnqj")
 script = ExtResource("2_ef8gm")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -25,43 +25,110 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_f66hd")
 
-[node name="IP" type="LineEdit" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Settings" type="Control" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_ibnqj")
+
+[node name="Manual" type="Control" parent="VBoxContainer/MarginContainer/VBoxContainer/Settings"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="IP" type="LineEdit" parent="VBoxContainer/MarginContainer/VBoxContainer/Settings/Manual"]
 layout_mode = 0
 anchor_left = 0.0574074
-anchor_top = 0.166667
-anchor_right = 0.944444
-anchor_bottom = 0.254687
-offset_bottom = 3.05176e-05
+anchor_top = 0.25464
+anchor_right = 0.95
+anchor_bottom = 0.414648
 placeholder_text = "IP Address"
 metadata/_edit_use_anchors_ = true
 
-[node name="Port" type="LineEdit" parent="."]
+[node name="Port" type="LineEdit" parent="VBoxContainer/MarginContainer/VBoxContainer/Settings/Manual"]
 layout_mode = 0
 anchor_left = 0.0527778
-anchor_top = 0.289063
+anchor_top = 0.496908
 anchor_right = 0.94537
-anchor_bottom = 0.368229
+anchor_bottom = 0.656916
 placeholder_text = "Port"
 metadata/_edit_use_anchors_ = true
 
-[node name="ConnectButton" type="Button" parent="."]
-layout_mode = 0
-anchor_left = 0.0972222
-anchor_top = 0.572396
-anchor_right = 0.930556
-anchor_bottom = 0.701042
+[node name="Discovery" type="Control" parent="VBoxContainer/MarginContainer/VBoxContainer/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="ServerList" parent="VBoxContainer/MarginContainer/VBoxContainer/Settings/Discovery" instance=ExtResource("4_xaern")]
+layout_mode = 1
+
+[node name="SearchOptions" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AdvancedButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/SearchOptions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Advanced"
+
+[node name="RefreshButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/SearchOptions"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 48
+text = "Refresh"
+
+[node name="MainUI" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ibnqj")
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 180
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainUI"]
+layout_mode = 2
+theme_override_constants/separation = 65
+
+[node name="ConnectButton" type="Button" parent="VBoxContainer/MainUI/VBoxContainer"]
+layout_mode = 2
 text = "Connect"
 metadata/_edit_use_anchors_ = true
 
-[node name="BackButton" type="Button" parent="."]
-layout_mode = 0
-anchor_left = 0.0925926
-anchor_top = 0.735417
-anchor_right = 0.925926
-anchor_bottom = 0.864062
+[node name="BackButton" type="Button" parent="VBoxContainer/MainUI/VBoxContainer"]
+layout_mode = 2
 text = "Back
 "
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="ConnectButton" to="." method="_on_connect_button_pressed"]
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/SearchOptions/AdvancedButton" to="." method="_on_advanced_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/SearchOptions/RefreshButton" to="." method="_on_refresh_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainUI/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainUI/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

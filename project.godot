@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Out of the Gutter"
 run/main_scene="res://scenes/screens/start_screen.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,6 +22,7 @@ AlertDisplayer="*res://autoloads/alert_displayer.tscn"
 MusicPlayer="*res://autoloads/music_player.tscn"
 Net="*res://autoloads/net.gd"
 ResourceHolder="*res://autoloads/resource_holder.gd"
+ServiceDiscovery="*res://addons/lan_servers_discovery/servers_discovery.gd"
 
 [debug]
 
@@ -41,7 +42,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/multirun/plugin.cfg")
+enabled=PackedStringArray("res://addons/lan_servers_discovery/plugin.cfg", "res://addons/multirun/plugin.cfg")
 
 [gui]
 

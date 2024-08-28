@@ -9,7 +9,7 @@ script/source = "extends Control
 
 
 func _on_host_button_pressed() -> void:
-	SceneManager.fade_to_scene(\"host_screen\")
+	SceneManager.fade_to_scene(\"server_settings\")
 
 func _on_join_button_pressed() -> void:
 	SceneManager.fade_to_scene(\"join_screen\")

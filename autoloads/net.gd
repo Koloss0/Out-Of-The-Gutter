@@ -3,7 +3,7 @@ extends Node
 
 const MAX_PLAYERS = 4
 
-const DEFAULT_PORT : int = 6005
+const DEFAULT_PORT : int = 43441
 const DEFAULT_ADDRESS : String = "localhost"
 
 var player_data: Dictionary
@@ -12,6 +12,7 @@ var num_players: int = 0
 var network_peer := ENetMultiplayerPeer.new()
 
 var is_host := false
+var server_name := "Local Party"
 
 var server_ip: String
 var server_port: int
@@ -35,6 +36,15 @@ func _ready():
 	multiplayer.server_disconnected.connect(on_server_disconnected)
 
 
+
+func set_server_name(value : String):
+	ServiceDiscovery.server_data["Name"] = value
+
+
+func get_server_name():
+	return ServiceDiscovery.server_data["Name"]
+
+
 func start() -> Error:
 	var error = OK
 	if is_host:
@@ -47,6 +57,8 @@ func start() -> Error:
 			print("unique ID: %s" % multiplayer.get_unique_id())
 			var info := PlayerInfo.new(multiplayer.get_unique_id(), Color.WHITE, PlayerInfo.EntityType.PLAYER)
 			register_player(info.to_dictionary())
+			ServiceDiscovery.server_data["Port"] = server_port
+			ServiceDiscovery.set_server()
 		else:
 			print("[Net] Failed to create server: %s" % error);
 			AlertDisplayer.alert("Failed to Create Server: %s" % error)

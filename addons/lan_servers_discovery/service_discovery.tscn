@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv4lv6ctdb6ya"]
+
+[ext_resource type="Script" path="res://addons/lan_servers_discovery/servers_discovery.gd" id="1_dq0m2"]
+
+[node name="ServiceDiscovery" type="Node"]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 1
+script = ExtResource("1_dq0m2")
