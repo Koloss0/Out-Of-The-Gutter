@@ -71,7 +71,7 @@ func generate_platforms(area : Rect2, seed : int):
 				
 		platform_y -= random.randf_range(platform_min_spacing.y, platform_max_spacing.y)
 
-
+## Moves `platform` horizontally to be a distance of `spacing` away from the nearest platform in `targets`, whilst avoiding overlapping with any `obstacles` and remaining within the `boundery`
 func _shift_into_range_h(platform : Rect2, targets : Array[Rect2], obstacles : Array[Rect2], spacing : float, boundery : Limit) -> Rect2:
 	# TODO: enforce boundery
 
@@ -95,7 +95,6 @@ func _shift_into_range_h(platform : Rect2, targets : Array[Rect2], obstacles : A
 	
 	shifted = _unclip_area_h(platform, obstacles, boundery)
 	return shifted
-	
 
 	
 ## Horizontally moves the area to have the least possible overlap with the obstacles, whilst also having the least possible displacement

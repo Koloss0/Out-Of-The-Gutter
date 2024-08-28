@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh7fiksxkep07"]
+
+[ext_resource type="Theme" uid="uid://b8amwfp2xjd5v" path="res://themes/ui.tres" id="1_qbol3"]
+[ext_resource type="Script" path="res://scripts/server_settings.gd" id="2_65a3c"]
+[ext_resource type="Texture2D" uid="uid://be4xldphturmu" path="res://art/sewer_wall.png" id="2_a6wey"]
+[ext_resource type="Theme" uid="uid://bnx4ww7k2gqli" path="res://themes/default.tres" id="3_hvw3h"]
+
+[node name="ServerSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qbol3")
+script = ExtResource("2_65a3c")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a6wey")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1080.0
+offset_bottom = 1057.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Settings" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="NameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/Settings"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+placeholder_text = "Server Name"
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PortEdit" type="SpinBox" parent="MarginContainer/VBoxContainer/Settings"]
+visible = false
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+max_value = 65535.0
+rounded = true
+alignment = 1
+prefix = "Port: "
+select_all_on_focus = true
+metadata/_edit_use_anchors_ = true
+
+[node name="AdvancedButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_hvw3h")
+theme_override_font_sizes/font_size = 48
+text = "Advanced"
+
+[node name="NextButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 247)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0925926
+anchor_top = 0.631771
+anchor_right = 0.912963
+anchor_bottom = 0.760417
+text = "Next"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0925926
+anchor_top = 0.789063
+anchor_right = 0.912963
+anchor_bottom = 0.917708
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/AdvancedButton" to="." method="_on_advanced_button_pressed"]
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

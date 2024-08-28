@@ -1,6 +1,5 @@
 extends Control
 
-@onready var port : LineEdit = $Port
 @onready var mode_option: OptionButton = $ScrollContainer/MarginContainer/GameModes/ModeOption
 @onready var game_modes: VBoxContainer = $ScrollContainer/MarginContainer/GameModes
 
@@ -8,16 +7,12 @@ var host_menus : Array[HostMenu] = []
 
 func _ready() -> void:
 	refresh_game_modes()
-	
-	if OS.is_debug_build():
-		port.set_text(str(Net.DEFAULT_PORT))
 
 
 func _on_host_button_pressed() -> void:
 	var menu : HostMenu = mode_option.get_selected_metadata()
 	var game_screen_path : String = menu.get_game_screen_path()
 
-	Net.server_port = int(port.text)
 	Net.is_host = true
 	Net.game_mode = game_screen_path
 	
@@ -30,7 +25,7 @@ func _on_host_button_pressed() -> void:
 
 
 func _on_back_button_pressed() -> void:
-	SceneManager.fade_to_scene("host_or_join")
+	SceneManager.fade_to_scene("server_settings")
 
 func refresh_game_modes():
 	var children = game_modes.get_children()

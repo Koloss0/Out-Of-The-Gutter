@@ -8,6 +8,7 @@ const SCENES : Dictionary = {
 	"start_screen" : "res://scenes/screens/start_screen.tscn",
 	"host_or_join" : "res://scenes/screens/host_or_join.tscn",
 	"host_screen" : "res://scenes/screens/host_screen.tscn",
+	"server_settings" : "res://scenes/screens/server_settings.tscn",
 	"join_screen" : "res://scenes/screens/join_screen.tscn",
 	"gutter_race" : "res://scenes/screens/game_modes/gutter_race.tscn",
 	"hot_potato" : "res://scenes/screens/game_modes/hot_potato.tscn",

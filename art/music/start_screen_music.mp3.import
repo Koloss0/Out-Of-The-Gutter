@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/start_screen_music.mp3-3893180576096df1c880de
 [params]
 
 loop=true
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=150.0
 beat_count=0
 bar_beats=4

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b8amwfp2xjd5v"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://b8amwfp2xjd5v"]
 
 [ext_resource type="Texture2D" uid="uid://vh0js2156jlo" path="res://art/button_rusty_upscaled.png" id="1_5r216"]
 [ext_resource type="FontFile" uid="uid://bbsihsv58dw5x" path="res://art/public_pixel_font/PublicPixel-z84yD.ttf" id="1_xmf4o"]
@@ -11,6 +11,16 @@ content_margin_bottom = 49.0
 texture = ExtResource("1_5r216")
 region_rect = Rect2(0, 0, 1080, 313)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jghd"]
+bg_color = Color(0.439216, 0.439216, 0.439216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmvq5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0a71o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hb1w2"]
+bg_color = Color(0.341584, 0.341584, 0.341584, 1)
+
 [resource]
 default_font = ExtResource("1_xmf4o")
 default_font_size = 64
@@ -22,3 +32,9 @@ Button/styles/normal = SubResource("StyleBoxTexture_67460")
 Button/styles/pressed = SubResource("StyleBoxTexture_67460")
 Label/font_sizes/font_size = 95
 Label/fonts/font = ExtResource("1_xmf4o")
+ServerListItem/font_sizes/font_size = 64
+ServerListItem/styles/disabled = SubResource("StyleBoxFlat_2jghd")
+ServerListItem/styles/focus = null
+ServerListItem/styles/hover = SubResource("StyleBoxFlat_dmvq5")
+ServerListItem/styles/normal = SubResource("StyleBoxFlat_0a71o")
+ServerListItem/styles/pressed = SubResource("StyleBoxFlat_hb1w2")

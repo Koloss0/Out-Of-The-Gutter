@@ -41,7 +41,7 @@ func _on_countdown_finished() -> void:
 @warning_ignore("unused_parameter")
 @rpc("any_peer", "call_local", "reliable")
 func show_leaderboard(l: Array):
-	MusicPlayer.stop_in_game_music()
+	MusicPlayer.play_Lobby_music()
 	leader_board.show()
 
 func on_player_registered(peer_id: int):
@@ -78,8 +78,7 @@ func register_settings(height : int, seed : int):
 
 @rpc("authority", "call_local", "reliable")
 func start_countdown():
-	MusicPlayer.stop_music()
-	MusicPlayer.play_in_Game_music()
+	MusicPlayer.play_gameplay_music()
 	countdown.play_countdown()
 
 func on_peer_connected(peer_id: int):

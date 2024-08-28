@@ -1,50 +1,33 @@
 extends Node
 
-@onready var game : AudioStreamPlayer = $Game
-@onready var main_menu : AudioStreamPlayer = $MainMenu
-@onready var lobby : AudioStreamPlayer = $Lobby
-@onready var gameplay_intro: AudioStreamPlayer = $GameplayIntro
-@onready var gameplay_chorus_1: AudioStreamPlayer = $GameplayChorus1
-@onready var gameplay_chorus_2: AudioStreamPlayer = $GameplayChorus2
-@onready var gameplay_outro: AudioStreamPlayer = $GameplayOutro
-var queued_music_stop : bool = false
+@onready var music_player: AudioStreamPlayer = $InteractiveMusic
+var interactive_stream : AudioStreamInteractive
+
+enum Clip {
+	INTRO,
+	CHORUS_1,
+	CHORUS_2,
+	OUTRO,
+	LOBBY,
+	START_SCREEN
+}
+
+func _ready() -> void:
+	interactive_stream = music_player.stream
 
 func play_main_menu_music():
-	stop_music()
-	main_menu.play()
+	switch_to_clip(Clip.START_SCREEN)
 
 func play_Lobby_music():
-	stop_music()
-	lobby.play()
+	switch_to_clip(Clip.LOBBY)
 
 func stop_music():
-	game.stop()
-	lobby.stop()
-	main_menu.stop()
+	music_player.stop()
 
-func play_in_Game_music():
-	stop_music()
-	gameplay_intro.play()
-	await gameplay_intro.finished
-	gameplay_chorus_1.play()
-	queued_music_stop = false
+func play_gameplay_music():
+	switch_to_clip(Clip.CHORUS_1)
 
-func stop_in_game_music():
-	queued_music_stop = true
-
-func _on_gameplay_chorus_1_finished() -> void:
-	if queued_music_stop:
-		gameplay_outro.play()
-	else:
-		gameplay_chorus_2.play()
-
-
-func _on_gameplay_chorus_2_finished() -> void:
-	if queued_music_stop:
-		gameplay_outro.play()
-	else:
-		gameplay_chorus_1.play()
-
-
-func _on_gameplay_outro_finished() -> void:
-	lobby.play()
+func switch_to_clip(clip : Clip):
+	if not music_player.playing: music_player.play()
+	var interactive_playback : AudioStreamPlaybackInteractive = music_player.get_stream_playback()
+	interactive_playback.switch_to_clip(clip)
